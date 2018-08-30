@@ -1,3 +1,29 @@
-page-home {
+#bg{
+    background: linear-gradient( #0f0c29,  #24243e)
+}
 
+.clear{
+    background: transparent !important;
+
+    .tb{
+        color: #f0f8ff;
+
+        ::placeholder{
+            color: #f0f8ff;
+        }
+    }
+}
+
+.bt{
+    border-radius: 20px !important;
+    margin-top: 30px !important;
+}
+.lb{
+    color: #f0f8ff !important;
+    text-align: center;
+    font-size: 12pt !important;
+}
+p{
+    color: #f0f8ff;
+    font-size: 10pt;
 }

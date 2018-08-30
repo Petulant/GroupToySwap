@@ -1,14 +1,63 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content padding id = "bg">
+  <ion-slides>
+    <ion-slide>
+       <ion-item class = "clear">
+          <ion-label stacked class = "lb">Your Email</ion-label>
+          <ion-input type = "email" class = "tb"></ion-input>
+       </ion-item>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+       <ion-item class = "clear">
+          <ion-label stacked class = "lb">Your Password</ion-label>
+          <ion-input type = "password" class = "tb"></ion-input>
+       </ion-item>
+      
+      <ion-row>
+        <ion-col>
+          <button ion-button full (click) = "login();" class = "bt">login</button>
+        </ion-col>
+        <ion-col>
+          <button ion-button full (click) = "toggle(true);" class = "bt">sign up</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+            <p>forgot your password?</p>
+        </ion-col>
+      </ion-row>
+    </ion-slide>
+    <ion-slide>
+      <ion-item class = "clear">
+        <ion-input type = "text" class = "tb" placeholder = "First Name"></ion-input>
+      </ion-item>
+
+      <ion-item class = "clear">
+        <ion-input type = "email" class = "tb" placeholder = "Email"></ion-input>
+      </ion-item>
+
+      <ion-item class = "clear">
+        <ion-input type = "password" class = "tb" placeholder = "Password"></ion-input>
+      </ion-item>
+
+      <ion-item class = "clear">
+        <ion-input type = "password" class = "tb" placeholder = "Confirm Password"></ion-input>
+      </ion-item>
+
+      <ion-row>
+        <ion-col>
+          <button icon-only ion-button clear class = "bt"> <ion-icon name = "images"></ion-icon>
+            upload profile picture
+          </button>
+        </ion-col>
+      </ion-row>
+        
+      <ion-row>
+        <ion-col>
+          <button ion-button full class = "bt">create account</button>
+        </ion-col>
+        <ion-col>
+          <button ion-button full (click) = "toggle(false);" class = "bt">go to login</button>
+        </ion-col>
+      </ion-row>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

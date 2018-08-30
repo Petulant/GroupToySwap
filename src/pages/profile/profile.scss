@@ -1,0 +1,25 @@
+#myFab{
+    background: url(../../assets/imgs/guy.jpg);
+    background-size: contain;
+    transform: scale(2) ;
+}
+#header{
+    padding: 20px 0;
+    background: linear-gradient( #0f0c29,  #24243e);
+    height: 125px;
+    margin-bottom: 80px;
+
+    #cont{
+       left: 50%;
+       transform: translateX(-50%);
+       top: 100px;
+
+    }
+
+    h5{
+        text-align: center;
+        width: 100%;
+        display: block;
+        color: #f0f8ff;
+    }
+}

@@ -1,0 +1,22 @@
+#center{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-pagination-bullet-active{
+    background : #24243e;
+}
+
+.ic{
+    color: #24243e;
+    height: 150px !important;
+    padding: 15px 0;
+}
+
+h5{
+    color: #24243e;
+}
