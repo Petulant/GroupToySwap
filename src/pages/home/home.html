@@ -1,63 +1,137 @@
-<ion-content padding id = "bg">
-  <ion-slides>
-    <ion-slide>
-       <ion-item class = "clear">
-          <ion-label stacked class = "lb">Your Email</ion-label>
-          <ion-input type = "email" class = "tb"></ion-input>
-       </ion-item>
+<ion-content padding id="bg">
 
-       <ion-item class = "clear">
-          <ion-label stacked class = "lb">Your Password</ion-label>
-          <ion-input type = "password" class = "tb"></ion-input>
-       </ion-item>
-      
-      <ion-row>
-        <ion-col>
-          <button ion-button full (click) = "login();" class = "bt">login</button>
-        </ion-col>
-        <ion-col>
-          <button ion-button full (click) = "toggle(true);" class = "bt">sign up</button>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-            <p>forgot your password?</p>
-        </ion-col>
-      </ion-row>
-    </ion-slide>
-    <ion-slide>
-      <ion-item class = "clear">
-        <ion-input type = "text" class = "tb" placeholder = "First Name"></ion-input>
-      </ion-item>
+	<ion-slides class = "sl">
 
-      <ion-item class = "clear">
-        <ion-input type = "email" class = "tb" placeholder = "Email"></ion-input>
-      </ion-item>
+        <!--login form -->
+		<ion-slide>
+			<div id="heading">Sign in to toySwap</div>
+			<form [formGroup]="logInForm" id = "login">
+				<ion-item class="clear">
+					<ion-label stacked class="lb">Email</ion-label>
+					<ion-input type="text" formControlName="email" class="tb" ></ion-input>
+				</ion-item>
+				<br>
+				<div class="validation-errors">
+					<ng-container *ngFor="let validation of validation_messages.email">
+						<div class="error-message" *ngIf="logInForm.get('email').hasError(validation.type) && (logInForm.get('email').dirty || logInForm.get('email').touched)">
+							{{ validation.message }}
+						</div>
+					</ng-container>
+				</div>
 
-      <ion-item class = "clear">
-        <ion-input type = "password" class = "tb" placeholder = "Password"></ion-input>
-      </ion-item>
+				<ion-item class="clear">
+					<ion-label stacked class="lb">Password</ion-label>
+					<ion-input type="password" formControlName="pass" class="tb"></ion-input>
+				</ion-item>
+				<br>
+				<div class="validation-errors">
+					<ng-container *ngFor="let validation of validation_messages.pass">
+						<div class="error-message" *ngIf="logInForm.get('pass').hasError(validation.type) && (logInForm.get('pass').dirty || logInForm.get('pass').touched)">
+							{{ validation.message }}
+						</div>
+					</ng-container>
+				</div>
 
-      <ion-item class = "clear">
-        <ion-input type = "password" class = "tb" placeholder = "Confirm Password"></ion-input>
-      </ion-item>
+				<ion-row>
+					<ion-col>
+						<button ion-button full (click)="login();" class="bt">login</button>
+					</ion-col>
+					<ion-col>
+						<button ion-button full (click)="toggle(true);" class="bt">sign up</button>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col>
+						<p>forgot your password?</p>
+					</ion-col>
+				</ion-row>
 
-      <ion-row>
-        <ion-col>
-          <button icon-only ion-button clear class = "bt"> <ion-icon name = "images"></ion-icon>
-            upload profile picture
-          </button>
-        </ion-col>
-      </ion-row>
-        
-      <ion-row>
-        <ion-col>
-          <button ion-button full class = "bt">create account</button>
-        </ion-col>
-        <ion-col>
-          <button ion-button full (click) = "toggle(false);" class = "bt">go to login</button>
-        </ion-col>
-      </ion-row>
-    </ion-slide>
-  </ion-slides>
+				<ion-row>
+					<h2>or</h2>
+				</ion-row>
+			
+			<div id = "flex">
+				<button ion-fab color = "google">
+						<ion-icon name="logo-google"></ion-icon>
+				</button>
+				<button ion-fab color = "facebook">
+						<ion-icon name="logo-facebook"></ion-icon>
+				</button>
+			</div>
+			
+			</form>
+		</ion-slide>
+
+		<!--register form-->
+
+		<ion-slide>
+			<div id="heading">Create a new account</div>
+			<form [formGroup]="registerForm" id = "login">
+				<ion-item class="clear">
+					<ion-label stacked class="lb">Full Names</ion-label>
+					<ion-input type="text" formControlName="name" class="tb"></ion-input>
+				</ion-item>
+
+				<div class="validation-errors">
+					<ng-container *ngFor="let validation of validation_messages.name">
+						<div class="error-message" *ngIf="registerForm.get('name').hasError(validation.type) && (registerForm.get('name').dirty || registerForm.get('name').touched)">
+							{{ validation.message }}
+						</div>
+					</ng-container>
+                </div>
+
+				<ion-item class="clear">
+					<ion-label stacked class="lb">Gender</ion-label>
+					<ion-select  formControlName="gender" class="tb">
+							<ion-option value="female">Female</ion-option>
+							<ion-option value="male">Male</ion-option>
+					</ion-select>
+					<!--ion-input type="text" formControlName="gender" class="tb"></ion-input-->
+				</ion-item>
+
+				<div class="validation-errors">
+					<ng-container *ngFor="let validation of validation_messages.gender">
+						<div class="error-message" *ngIf="registerForm.get('gender').hasError(validation.type) && (registerForm.get('gender').dirty || registerForm.get('gender').touched)">
+							{{ validation.message }}
+						</div>
+					</ng-container>
+				</div>
+				<ion-item class="clear">
+					<ion-label stacked class="lb">Email</ion-label>
+					<ion-input type="text" formControlName="email" class="tb"></ion-input>
+				</ion-item>
+
+				<div class="validation-errors">
+					<ng-container *ngFor="let validation of validation_messages.email">
+						<div class="error-message" *ngIf="registerForm.get('email').hasError(validation.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+							{{ validation.message }}
+						</div>
+					</ng-container>
+				</div>
+				<ion-item class="clear">
+					<ion-label stacked class="lb">Password</ion-label>
+					<ion-input type="text" formControlName="pass" class="tb"></ion-input>
+				</ion-item>
+
+				<div class="validation-errors">
+					<ng-container *ngFor="let validation of validation_messages.pass">
+						<div class="error-message" *ngIf="registerForm.get('pass').hasError(validation.type) && (registerForm.get('pass').dirty || registerForm.get('pass').touched)">
+							{{ validation.message }}
+						</div>
+					</ng-container>
+				</div>
+				<ion-row>
+					<ion-col>
+						<button ion-button full class="bt" (click)="register();">create account</button>
+					</ion-col>
+					<ion-col>
+						<button ion-button full (click)="toggle(false);" class="bt">go to login</button>
+					</ion-col>
+				</ion-row>
+			</form>
+
+		</ion-slide>
+
+	</ion-slides>
+
 </ion-content>

@@ -6,14 +6,14 @@
 -->
 <ion-header>
 
-  <ion-navbar color = "primary">
+  <ion-navbar>
     <ion-row>
       <ion-col  col-10>
         <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
       </ion-col>
       <ion-col  col-2>
         <button ion-button icon-only  clear medium (click) = "settings();">
-          <ion-icon name = "settings" color = "light"></ion-icon>
+          <ion-icon name = "settings" ></ion-icon>
         </button>
       </ion-col>
     </ion-row>
@@ -33,9 +33,6 @@
       </ion-fab-list>
       <ion-fab-list side="right">
         <button ion-fab><ion-icon name="link"></ion-icon></button>
-      </ion-fab-list>
-      <ion-fab-list side="bottom">
-        <button ion-fab><ion-icon name=""></ion-icon></button>
       </ion-fab-list>
     </ion-fab>
     <h5>John Doe</h5>

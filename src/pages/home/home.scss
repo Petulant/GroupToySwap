@@ -1,5 +1,8 @@
 #bg{
-    background: linear-gradient( #0f0c29,  #24243e)
+    background: #BE93C5;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #7BC6CC, #BE93C5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #7BC6CC, #BE93C5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .clear{
@@ -17,13 +20,55 @@
 .bt{
     border-radius: 20px !important;
     margin-top: 30px !important;
+    background: rgba(222,222,222,.1);
 }
 .lb{
     color: #f0f8ff !important;
     text-align: center;
-    font-size: 12pt !important;
+    font-size: 11pt !important;
+    font-weight: lighter !important;
 }
 p{
     color: #f0f8ff;
     font-size: 10pt;
+}
+
+.validation-errors{
+    color: #22222b;
+    transition: all .3s ease;
+    font-size: 11px;
+}
+
+.sl{
+    height: auto !important;
+    overflow-y: scroll;
+}
+
+#login{
+   padding-top: 50px;
+}
+
+h2{
+    width: 100%;
+    padding: 10px;
+    color: aliceblue;
+    display: block;
+}
+
+#flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    button{
+        margin: 10px;
+    }
+}
+
+#heading{
+    padding-top: 30px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    color: #293f55;
 }
