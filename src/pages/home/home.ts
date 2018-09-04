@@ -112,6 +112,13 @@ export class HomePage {
     })
   }
 
+  googleSign(){
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(user => {
+      this.navCtrl.setRoot('FeedPage');
+    });
+  }
+
 
   register() {
     
