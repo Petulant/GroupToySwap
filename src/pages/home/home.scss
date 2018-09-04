@@ -28,9 +28,13 @@
     font-size: 11pt !important;
     font-weight: lighter !important;
 }
-p{
+#reset{
     color: #f0f8ff;
     font-size: 10pt;
+    display: block;
+    background: none;
+    margin: auto;
+    padding: 20px 0;
 }
 
 .validation-errors{
@@ -44,8 +48,8 @@ p{
     overflow-y: scroll;
 }
 
-#login{
-   padding-top: 50px;
+.form{
+   padding-top: 30px;
 }
 
 h2{
@@ -53,6 +57,9 @@ h2{
     padding: 10px;
     color: aliceblue;
     display: block;
+    font-family: 'Segoe UI';
+    font-size: 18px;
+    font-weight: lighter;
 }
 
 #flex{
@@ -67,8 +74,10 @@ h2{
 }
 
 #heading{
-    padding-top: 30px;
+    margin-top: 50px;
     text-transform: uppercase;
-    font-weight: bolder;
+    font-weight: lighters;
     color: #293f55;
+    letter-spacing: 3px;
+    font-size: 14px;
 }

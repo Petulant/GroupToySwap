@@ -1,11 +1,10 @@
 <ion-content padding id="bg">
-
 	<ion-slides class = "sl">
 
         <!--login form -->
 		<ion-slide>
 			<div id="heading">Sign in to toySwap</div>
-			<form [formGroup]="logInForm" id = "login">
+			<form [formGroup]="logInForm" class = "form">
 				<ion-item class="clear">
 					<ion-label stacked class="lb">Email</ion-label>
 					<ion-input type="text" formControlName="email" class="tb" ></ion-input>
@@ -37,17 +36,17 @@
 						<button ion-button full (click)="login();" class="bt">login</button>
 					</ion-col>
 					<ion-col>
-						<button ion-button full (click)="toggle(true);" class="bt">sign up</button>
+						<button ion-button full (click)="toggle(true);" class="bt">create account</button>
 					</ion-col>
 				</ion-row>
 				<ion-row>
 					<ion-col>
-						<p>forgot your password?</p>
+						<button id = "reset" (click) = "resetAlert();">forgot your password?</button>
 					</ion-col>
 				</ion-row>
 
 				<ion-row>
-					<h2>or</h2>
+					<h2>or sign in with one of these services</h2>
 				</ion-row>
 			
 			<div id = "flex">
@@ -66,7 +65,7 @@
 
 		<ion-slide>
 			<div id="heading">Create a new account</div>
-			<form [formGroup]="registerForm" id = "login">
+			<form [formGroup]="registerForm" class = "form">
 				<ion-item class="clear">
 					<ion-label stacked class="lb">Full Names</ion-label>
 					<ion-input type="text" formControlName="name" class="tb"></ion-input>
@@ -122,7 +121,7 @@
 				</div>
 				<ion-row>
 					<ion-col>
-						<button ion-button full class="bt" (click)="register();">create account</button>
+						<button ion-button full class="bt" (click)="register();">sign up</button>
 					</ion-col>
 					<ion-col>
 						<button ion-button full (click)="toggle(false);" class="bt">go to login</button>

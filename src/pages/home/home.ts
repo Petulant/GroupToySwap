@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Slides, AlertController, ToastController  } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 declare var firebase;
 @IonicPage()
@@ -44,7 +44,7 @@ export class HomePage {
   @ViewChild(Slides) slides: Slides;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder) {
+  constructor(private alertCtrl: AlertController,public toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder) {
 
     //log in formgroup
     this.logInForm = this.fb.group({
@@ -109,7 +109,7 @@ export class HomePage {
      
       this.navCtrl.setRoot('FeedPage');
 
-    })
+    });
   }
 
   googleSign(){
@@ -123,7 +123,6 @@ export class HomePage {
   register() {
     
     firebase.auth().createUserWithEmailAndPassword(this.registerForm.value.email, this.registerForm.value.pass).then(data => {
-    
       firebase.database().ref('/users/' + (data.user.uid)).set(
         {
           email: this.registerForm.value.email,
@@ -135,8 +134,74 @@ export class HomePage {
       this.navCtrl.setRoot('FeedPage');
 
     }).catch(err => {
-      console.log(err.message);
+      //this.presentToast(err.message);
     });
+  }
+
+  resetAlert(){
+    
+    let alert = this.alertCtrl.create({
+      title: 'Login',
+      subTitle : "Reset Password",
+      message : "A reset password link will be sent to your email",
+      inputs: [
+        {
+          name: 'username',
+          placeholder: 'e.g user@mail.com',
+          type: 'email'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Reset Password',
+          handler: data => {
+            if (data.username != null) {
+            
+              this.resetPassword(data.username);
+              
+            } else {
+
+              return false;
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
+    
+  }
+
+  resetPassword(email){
+       
+    var auth = firebase.auth();
+
+    auth.sendPasswordResetEmail(email).then( res => {
+      this.presentToast("Email Sent, check your email");
+      
+    }).catch( error => {
+      this.presentToast(error.message);      
+    });
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
   }
   
 }
