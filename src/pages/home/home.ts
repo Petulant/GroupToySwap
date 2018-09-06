@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides, AlertController, ToastController  } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { User } from '../../model/user';
+import { ProfileProvider } from '../../providers/profile/profile';
 declare var firebase;
 @IonicPage()
 @Component({
@@ -8,7 +10,7 @@ declare var firebase;
   templateUrl: 'home.html',
 })
 export class HomePage {
-  
+  user:User;
   //form groups 
   logInForm: FormGroup;
   registerForm : FormGroup;
@@ -44,7 +46,9 @@ export class HomePage {
   @ViewChild(Slides) slides: Slides;
 
 
-  constructor(private alertCtrl: AlertController,public toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder) {
+  constructor(private alertCtrl: AlertController,public toastCtrl: ToastController, 
+    public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder,
+    public profile: ProfileProvider) {
 
     //log in formgroup
     this.logInForm = this.fb.group({
@@ -104,16 +108,12 @@ export class HomePage {
   }
 
   login(){
-    if(this.logInForm.value.email != "" && this.logInForm.value.pass != ""  ){
-      firebase.auth().signInWithEmailAndPassword(this.logInForm.value.email,this.logInForm.value.pass).then(user => {
-     
-        this.navCtrl.setRoot('FeedPage');
-  
-      });
-    }else{
-      this.presentToast("complete form");
-    }
     
+    firebase.auth().signInWithEmailAndPassword(this.logInForm.value.email,this.logInForm.value.pass).then(user => {
+     
+      this.instatiateUserObj(firebase.auth().currentUser.uid);
+
+    });
   }
 
   googleSign(){
@@ -124,66 +124,41 @@ export class HomePage {
   }
 
 
+
   register() {
     
-    if(this.registerForm.value.email != "" && this.registerForm.value.name != "" && this.registerForm.value.gender != ""){
-      firebase.auth().createUserWithEmailAndPassword(this.registerForm.value.email, this.registerForm.value.pass).then(data => {
-        firebase.database().ref('/users/' + (data.user.uid)).set(
-          {
-            email: this.registerForm.value.email,
-            name: this.registerForm.value.name,
-            gender: this.registerForm.value.gender
-          }
-        );
-  
-        this.navCtrl.setRoot('FeedPage');
-  
-      }).catch(err => {
-        this.presentToast(err.message);
-      });
-    }else{
-      this.presentToast("complete form");
-    }
-  }
+    var user: User;
+    user = new User();
+    console.log(user);
+    console.log(this.registerForm.value.name + " "+ this.registerForm.value.email + " " + this.registerForm.value.pass );
+    user.setUserName(this.registerForm.value.name);
+    user.setGender(this.registerForm.value.gender);
+    user.setEmail(this.registerForm.value.email);
 
-  resetAlert(){
-    
-    let alert = this.alertCtrl.create({
-      title: 'Login',
-      subTitle : "Reset Password",
-      message : "A reset password link will be sent to your email",
-      inputs: [
-        {
-          name: 'username',
-          placeholder: 'e.g user@mail.com',
-          type: 'email'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Reset Password',
-          handler: data => {
-            if (data.username != null) {
-            
-              this.resetPassword(data.username);
-              
-            } else {
-
-              return false;
-            }
-          }
-        }
-      ]
+    firebase.auth().createUserWithEmailAndPassword(this.registerForm.value.email, this.registerForm.value.pass).then(data => {
+      user.setUid(data.user.uid);
+      firebase.database().ref('/users/' + (data.user.uid)).set(user);
+      this.navCtrl.setRoot('FeedPage');
+    }).catch(err => {
+      // this.presentToast(err.message);
     });
-    alert.present();
-    
+  }
+  instatiateUserObj(key){
+  
+
+    firebase.database().ref('/users/'+ key).on('value', userSnapshot => {
+      this.user = new User();
+      this.user.setUid(key);
+      this.user.setEmail(userSnapshot.val()[Object.keys(userSnapshot.val())[0]]);
+      this.user.setGender(userSnapshot.val()[Object.keys(userSnapshot.val())[1]]);
+      this.user.setUserName(userSnapshot.val()[Object.keys(userSnapshot.val())[2]]);  
+
+      var t = Object.keys(userSnapshot.val())[0];
+      var type = userSnapshot.val()[t];
+      console.log("on home"+ userSnapshot.val()[Object.keys(userSnapshot.val())[0]]);
+      this.profile.user = this.user;
+      this.navCtrl.setRoot('FeedPage');
+    });
   }
 
   resetPassword(email){
@@ -202,7 +177,7 @@ export class HomePage {
     let toast = this.toastCtrl.create({
       message: message,
       duration: 3000,
-      position: 'top'
+      position: 'bottom'
     });
   
     toast.onDidDismiss(() => {
