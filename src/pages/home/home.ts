@@ -113,6 +113,9 @@ export class HomePage {
      
       this.instatiateUserObj(firebase.auth().currentUser.uid);
 
+    }).catch( err =>{
+      console.log(err);
+      
     });
   }
 
@@ -143,8 +146,9 @@ export class HomePage {
       // this.presentToast(err.message);
     });
   }
+
+
   instatiateUserObj(key){
-  
 
     firebase.database().ref('/users/'+ key).on('value', userSnapshot => {
       this.user = new User();
@@ -186,5 +190,36 @@ export class HomePage {
   
     toast.present();
   }
-  
+
+  showPrompt() {
+    let alert = this.alertCtrl.create({
+      title: 'Login',
+      subTitle : "Reset Password",
+      message : "A link to reset your password will be sent to your email",
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'e.g user@mail.com',
+          type : "email"
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Reset',
+          handler: data => {
+            this.resetPassword(data.email);            
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
 }
+  

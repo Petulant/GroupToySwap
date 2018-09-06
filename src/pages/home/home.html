@@ -1,7 +1,7 @@
 <ion-content padding id="bg">
 	<ion-slides class = "sl">
 
-        <!--login form -->
+		<!--login form -->
 		<ion-slide>
 			<div id="heading">Sign in to toySwap</div>
 			<form [formGroup]="logInForm" class = "form">
@@ -41,7 +41,7 @@
 				</ion-row>
 				<ion-row>
 					<ion-col>
-						<button id = "reset" (click) = "resetAlert();">forgot your password?</button>
+						<button id = "reset" (click) = "showPrompt();">forgot your password?</button>
 					</ion-col>
 				</ion-row>
 
