@@ -104,12 +104,16 @@ export class HomePage {
   }
 
   login(){
-    
-    firebase.auth().signInWithEmailAndPassword(this.logInForm.value.email,this.logInForm.value.pass).then(user => {
+    if(this.logInForm.value.email != "" && this.logInForm.value.pass != ""  ){
+      firebase.auth().signInWithEmailAndPassword(this.logInForm.value.email,this.logInForm.value.pass).then(user => {
      
-      this.navCtrl.setRoot('FeedPage');
-
-    });
+        this.navCtrl.setRoot('FeedPage');
+  
+      });
+    }else{
+      this.presentToast("complete form");
+    }
+    
   }
 
   googleSign(){
@@ -122,20 +126,24 @@ export class HomePage {
 
   register() {
     
-    firebase.auth().createUserWithEmailAndPassword(this.registerForm.value.email, this.registerForm.value.pass).then(data => {
-      firebase.database().ref('/users/' + (data.user.uid)).set(
-        {
-          email: this.registerForm.value.email,
-          name: this.registerForm.value.name,
-          gender: this.registerForm.value.gender
-        }
-      );
-
-      this.navCtrl.setRoot('FeedPage');
-
-    }).catch(err => {
-      //this.presentToast(err.message);
-    });
+    if(this.registerForm.value.email != "" && this.registerForm.value.name != "" && this.registerForm.value.gender != ""){
+      firebase.auth().createUserWithEmailAndPassword(this.registerForm.value.email, this.registerForm.value.pass).then(data => {
+        firebase.database().ref('/users/' + (data.user.uid)).set(
+          {
+            email: this.registerForm.value.email,
+            name: this.registerForm.value.name,
+            gender: this.registerForm.value.gender
+          }
+        );
+  
+        this.navCtrl.setRoot('FeedPage');
+  
+      }).catch(err => {
+        this.presentToast(err.message);
+      });
+    }else{
+      this.presentToast("complete form");
+    }
   }
 
   resetAlert(){
@@ -194,7 +202,7 @@ export class HomePage {
     let toast = this.toastCtrl.create({
       message: message,
       duration: 3000,
-      position: 'bottom'
+      position: 'top'
     });
   
     toast.onDidDismiss(() => {
