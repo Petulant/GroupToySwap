@@ -1,17 +1,24 @@
 #myFab{
-    background: url(../../assets/imgs/guy.jpg);
-    background-size: contain;
+    
+    background-size: cover;
     transform: scale(2) ;
+    background-color: #7BC6CC;
+
+    img{
+        position: relative;
+        transform: scale(1.3);
+    }
+    ion-icon{
+        font-size: 2.5em;
+        width: 100%;
+    }
 }
 #header{
     padding: 20px 0;
     height: 126px;
     margin-bottom: 80px;
-    background: #BE93C5;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #7BC6CC, #BE93C5);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #7BC6CC, #BE93C5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
+    background: #ff9068; 
+    
     #cont{
        left: 50%;
        transform: translateX(-50%);

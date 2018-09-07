@@ -8,6 +8,8 @@ export class User{
     private contact: String;
     private gender: String;
     private location: String;
+    private profilePic : String;
+
 
     constructor() {
 
@@ -49,6 +51,14 @@ export class User{
     setEmail(email){
         this.email = email;
     }
+
+    setProfilePic(profilePic){
+        this.profilePic = profilePic;
+    }
+
+    getProfilePic(){
+        return this.profilePic;
+    }
     toString(){
         return "User name : "+ this.name + "/n" + " email : "+ this.email;  
     }
@@ -60,4 +70,6 @@ export class User{
             return false;
         }
     }
+
+
 }

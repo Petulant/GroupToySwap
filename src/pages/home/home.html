@@ -53,7 +53,7 @@
 				<button ion-fab color = "google" (click) = "googleSign();">
 						<ion-icon name="logo-google"></ion-icon>
 				</button>
-				<button ion-fab color = "facebook">
+				<button ion-fab color = "facebook" (click) = "facebookSign();">
 						<ion-icon name="logo-facebook"></ion-icon>
 				</button>
 			</div>
@@ -81,7 +81,7 @@
 
 				<ion-item class="clear">
 					<ion-label stacked class="lb">Gender</ion-label>
-					<ion-select  formControlName="gender" class="tb">
+					<ion-select [selectOptions]="selectOptions" formControlName="gender" class="tb">
 							<ion-option value="female">Female</ion-option>
 							<ion-option value="male">Male</ion-option>
 					</ion-select>

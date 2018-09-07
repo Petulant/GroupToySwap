@@ -24,7 +24,10 @@
 <ion-content>
   <div id="header">
     <ion-fab id = "cont" >
-      <button ion-fab id = "myFab" ></button>
+      <button ion-fab id = "myFab" >
+        <img *ngIf = "profilePhoto != null" src="{{profilePhoto}}" alt="">
+        <ion-icon *ngIf = "profilePhoto == null"  name="person"></ion-icon>
+      </button>
       <ion-fab-list side="left">
         <button ion-fab><ion-icon name="images"></ion-icon></button>
       </ion-fab-list>
@@ -38,45 +41,32 @@
     <h5>{{username}}</h5>
   </div>
 
-  <div id="content">
-          
-    <h4>{{email}}</h4>
-    <h4>{{gender}}</h4>
-    <h4>{{username}}</h4>
-
-    <!-- <div *ngIf="currentUpload">
-      <div class="progress">
-        <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
-      </div>
-
-    </div>
-    
-        <label>
-           <input type="file"  accept="image/*" (change)="changeListener($event)">
-        </label>
-    
-        <button
-                [disabled]="!selectedFiles"
-                (click)="uploadSingle()">
-    
-          Upload Single
-        </button>
-    
-        <label>
-           <input type="file" (change)="detectFiles($event)" multiple>
-        </label>
-    
-          <button
-                  [disabled]="!selectedFiles"
-                  (click)="uploadMulti()">
-    
-            Upload Multiple
-          </button> -->
-
-  </div>
+  <ion-list>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="../../assets/imgs/car.jpg">
+      </ion-avatar>
+      <h3>Toy Car</h3>
+      <p>Good Condition, collectors item</p>
+    </ion-item>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="../../assets/imgs/spinner.jpg">
+      </ion-avatar>
+      <h3>Fidget Spinner</h3>
+      <p>Good Condition, collectors item</p>
+    </ion-item>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="../../assets/imgs/bear.jpg">
+      </ion-avatar>
+      <h3>Stuffed Bear</h3>
+      <p>Good Condition, collectors item</p>
+    </ion-item>
+  </ion-list>    
 
   <ion-fab bottom right>
-    <button ion-fab ><ion-icon name="add" ></ion-icon></button>
+    <button ion-fab  (click) = "addItem();"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
   
 </ion-content>

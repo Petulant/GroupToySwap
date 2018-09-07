@@ -7,14 +7,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { MyApp } from './app.component';
 import { BidPage } from "../pages/bid/bid";
 import { NotificationsPage } from "../pages/notifications/notifications";
+import { UploadPage } from "../pages/upload/upload";
+
 import { TestProvider } from '../providers/test/test';
 import { ProfileProvider } from '../providers/profile/profile';
 import { UploadProvider } from '../providers/upload/upload';
+
+
 @NgModule({
   declarations: [
     MyApp,
     BidPage,
-    NotificationsPage
+    NotificationsPage,
+    UploadPage
     
   ],
   imports: [
@@ -26,7 +31,8 @@ import { UploadProvider } from '../providers/upload/upload';
   entryComponents: [
     MyApp,
     BidPage,
-    NotificationsPage
+    NotificationsPage,
+    UploadPage
   ],
   providers: [
     StatusBar,

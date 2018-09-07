@@ -40,7 +40,8 @@ export class HomePage {
     'confirmpass': [
       { type: 'required', message: 'Confirm Password is required.' }
     ],
-  }
+  };
+  selectOptions;
 
   //slides
   @ViewChild(Slides) slides: Slides;
@@ -50,6 +51,10 @@ export class HomePage {
     public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder,
     public profile: ProfileProvider) {
 
+    //select options
+    this.selectOptions = {
+      subTitle: 'Choose Gender',
+    };
     //log in formgroup
     this.logInForm = this.fb.group({
     
@@ -122,18 +127,35 @@ export class HomePage {
   googleSign(){
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(user => {
+
+      var currentUser = new User();
+      currentUser.setUserName(user.user.displayName);
+      currentUser.setEmail(user.user.email);
+      currentUser.setProfilePic( user.user.photoURL);
+      this.profile.user = currentUser;
+
       this.navCtrl.setRoot('FeedPage');
+      
+    }).catch( err =>{
+      console.log(err);
+      
     });
   }
 
-
+  facebookSign(){
+    var provider = new firebase.auth.FacebookAuthProvider();
+    firebase.auth().signInWithPopup(provider).then(user => {
+      this.navCtrl.setRoot('FeedPage');
+    }).catch( err =>{
+      console.log(err); 
+    });
+  }
 
   register() {
     
     var user: User;
     user = new User();
-    console.log(user);
-    console.log(this.registerForm.value.name + " "+ this.registerForm.value.email + " " + this.registerForm.value.pass );
+
     user.setUserName(this.registerForm.value.name);
     user.setGender(this.registerForm.value.gender);
     user.setEmail(this.registerForm.value.email);
@@ -143,7 +165,7 @@ export class HomePage {
       firebase.database().ref('/users/' + (data.user.uid)).set(user);
       this.navCtrl.setRoot('FeedPage');
     }).catch(err => {
-      // this.presentToast(err.message);
+      this.presentToast(err.message);
     });
   }
 
@@ -159,7 +181,7 @@ export class HomePage {
 
       var t = Object.keys(userSnapshot.val())[0];
       var type = userSnapshot.val()[t];
-      console.log("on home"+ userSnapshot.val()[Object.keys(userSnapshot.val())[0]]);
+     
       this.profile.user = this.user;
       this.navCtrl.setRoot('FeedPage');
     });
