@@ -8,7 +8,7 @@
 
     .tb{
         color: #f0f8ff;
-
+        text-align: right;
         ::placeholder{
             color: #f0f8ff;
         }
@@ -33,10 +33,11 @@
     background: none;
     margin: auto;
     padding: 20px 0;
+    text-decoration: underline;
 }
 
 .validation-errors{
-    color: #22222b;
+    color: #293f55;
     transition: all .3s ease;
     font-size: 11px;
 }

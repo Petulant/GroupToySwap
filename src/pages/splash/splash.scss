@@ -23,3 +23,15 @@ h5{
     font-weight: lighter;
     letter-spacing: 1.5px;
 }
+
+#start{
+    width: calc(100% - 80px);
+    border: 2px solid #fd746c;
+    color: #fd746c;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 20px !important;
+    margin-top: 30px !important;
+    padding: 0 20px;
+
+}

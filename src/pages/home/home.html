@@ -46,15 +46,12 @@
 				</ion-row>
 
 				<ion-row>
-					<h2>or sign in with one of these services</h2>
+					<h2>or sign in with your google account</h2>
 				</ion-row>
 			
 			<div id = "flex">
 				<button ion-fab color = "google" (click) = "googleSign();">
 						<ion-icon name="logo-google"></ion-icon>
-				</button>
-				<button ion-fab color = "facebook" (click) = "facebookSign();">
-						<ion-icon name="logo-facebook"></ion-icon>
 				</button>
 			</div>
 			
@@ -67,7 +64,7 @@
 			<div id="heading">Create a new account</div>
 			<form [formGroup]="registerForm" class = "form">
 				<ion-item class="clear">
-					<ion-label stacked class="lb">Full Names</ion-label>
+					<ion-label stacked class="lb">First Name</ion-label>
 					<ion-input type="text" formControlName="name" class="tb"></ion-input>
 				</ion-item>
 
@@ -77,24 +74,21 @@
 							{{ validation.message }}
 						</div>
 					</ng-container>
-                </div>
+				</div>
 
 				<ion-item class="clear">
-					<ion-label stacked class="lb">Gender</ion-label>
-					<ion-select [selectOptions]="selectOptions" formControlName="gender" class="tb">
-							<ion-option value="female">Female</ion-option>
-							<ion-option value="male">Male</ion-option>
-					</ion-select>
-					<!--ion-input type="text" formControlName="gender" class="tb"></ion-input-->
+					<ion-label stacked class="lb">Surname</ion-label>
+					<ion-input type="text" formControlName="surname" class="tb"></ion-input>
 				</ion-item>
 
 				<div class="validation-errors">
-					<ng-container *ngFor="let validation of validation_messages.gender">
-						<div class="error-message" *ngIf="registerForm.get('gender').hasError(validation.type) && (registerForm.get('gender').dirty || registerForm.get('gender').touched)">
+					<ng-container *ngFor="let validation of validation_messages.name">
+						<div class="error-message" *ngIf="registerForm.get('surname').hasError(validation.type) && (registerForm.get('surname').dirty || registerForm.get('surname').touched)">
 							{{ validation.message }}
 						</div>
 					</ng-container>
 				</div>
+	
 				<ion-item class="clear">
 					<ion-label stacked class="lb">Email</ion-label>
 					<ion-input type="text" formControlName="email" class="tb"></ion-input>

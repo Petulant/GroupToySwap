@@ -5,9 +5,7 @@ export class User{
     private uid: String;
     private name: String;
     private email: String;
-    private contact: String;
-    private gender: String;
-    private location: String;
+    private type: String;
     private profilePic : String;
 
 
@@ -24,15 +22,10 @@ export class User{
     getEmail(){
         return this.email;
     }
-    getContact(){
-        return this.contact;
+    getType(){
+        return this.type;
     }
-    getLocation(){
-        return this.location;
-    }
-    getGender(){
-        return this.gender;
-    }
+
     setUid(uid:String){
         this.uid = uid;
     }
@@ -41,12 +34,9 @@ export class User{
             this.name = userName;
         }
     }
-    setContact(contact:String){
-        this.contact = contact;
-    }
 
-    setGender(gender:String){
-        this.gender = gender;
+    setType(type){
+        this.type = type;
     }
     setEmail(email){
         this.email = email;

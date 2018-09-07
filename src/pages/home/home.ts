@@ -18,14 +18,14 @@ export class HomePage {
   //error messages
   validation_messages = {
     'name': [
-      { type: 'required', message: 'full names is required.' },
-      { type: 'minlength', message: 'name must be at least 5 characters long.' },
-      { type: 'maxlength', message: 'name cannot be more than 25 characters long.' }
+      { type: 'required', message: 'first name names is required.' },
+      { type: 'minlength', message: 'first name must be at least 1 characters long.' },
+      { type: 'maxlength', message: 'first name cannot be more than 50 characters long.' }
     ],
-    'gender': [
-      { type: 'required', message: 'gender is required.' },
-      { type: 'minlength', message: 'gender must be at least 5 characters long.' },
-      { type: 'maxlength', message: 'gender cannot be more than 25 characters long.' }
+    'surname': [
+      { type: 'required', message: 'surname is required.' },
+      { type: 'minlength', message: 'surname must be at least 1 characters long.' },
+      { type: 'maxlength', message: 'surname cannot be more than 50 characters long.' }
     ],
     'email': [
       { type: 'required', message: 'email is required.' },
@@ -76,15 +76,15 @@ export class HomePage {
     
     this.registerForm = this.fb.group({
       name: new FormControl('', Validators.compose([
-        Validators.maxLength(25),
-        Validators.minLength(5),
+        Validators.maxLength(50),
+        Validators.minLength(1),
         Validators.required
       ])),
       surname: new FormControl('', Validators.compose([
-        Validators.maxLength(25),
-        Validators.minLength(5)])),
-      gender: new FormControl('', Validators.compose([
-        Validators.required])),
+        Validators.maxLength(50),
+        Validators.minLength(1),
+        Validators.required
+      ])),
       email: new FormControl('', Validators.compose([
         Validators.maxLength(25),
         Validators.minLength(5),
@@ -92,11 +92,6 @@ export class HomePage {
         Validators.required
       ])),
       pass: new FormControl('', Validators.compose([
-        Validators.minLength(5),
-        Validators.required,
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$') //this is for the letters (both uppercase and lowercase) and numbers validation
-      ])),
-      confirmpass: new FormControl('', Validators.compose([
         Validators.minLength(5),
         Validators.required,
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$') //this is for the letters (both uppercase and lowercase) and numbers validation
@@ -129,11 +124,14 @@ export class HomePage {
     firebase.auth().signInWithPopup(provider).then(user => {
 
       var currentUser = new User();
+      //console.log(user.user.uid);
+      currentUser.setUid(user.user.uid)
       currentUser.setUserName(user.user.displayName);
       currentUser.setEmail(user.user.email);
       currentUser.setProfilePic( user.user.photoURL);
+      currentUser.setType("user");
       this.profile.user = currentUser;
-
+      firebase.database().ref('/users/' + (user.user.uid)).set(currentUser);
       this.navCtrl.setRoot('FeedPage');
       
     }).catch( err =>{
@@ -142,24 +140,18 @@ export class HomePage {
     });
   }
 
-  facebookSign(){
-    var provider = new firebase.auth.FacebookAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(user => {
-      this.navCtrl.setRoot('FeedPage');
-    }).catch( err =>{
-      console.log(err); 
-    });
-  }
-
   register() {
     
     var user: User;
     user = new User();
 
-    user.setUserName(this.registerForm.value.name);
-    user.setGender(this.registerForm.value.gender);
+    user.setUserName(this.registerForm.value.name + " " + this.registerForm.value.surname );
     user.setEmail(this.registerForm.value.email);
-
+    user.setType("user");
+    user.setProfilePic("");
+  
+    this.profile.user = user;
+    
     firebase.auth().createUserWithEmailAndPassword(this.registerForm.value.email, this.registerForm.value.pass).then(data => {
       user.setUid(data.user.uid);
       firebase.database().ref('/users/' + (data.user.uid)).set(user);
@@ -173,17 +165,28 @@ export class HomePage {
   instatiateUserObj(key){
 
     firebase.database().ref('/users/'+ key).on('value', userSnapshot => {
+      
+      
+      
       this.user = new User();
-      this.user.setUid(key);
-      this.user.setEmail(userSnapshot.val()[Object.keys(userSnapshot.val())[0]]);
-      this.user.setGender(userSnapshot.val()[Object.keys(userSnapshot.val())[1]]);
-      this.user.setUserName(userSnapshot.val()[Object.keys(userSnapshot.val())[2]]);  
-
-      var t = Object.keys(userSnapshot.val())[0];
-      var type = userSnapshot.val()[t];
+      this.user.setUid(userSnapshot.val().uid);
+      this.user.setEmail(userSnapshot.val().email);
+      this.user.setUserName(userSnapshot.val().name);  
+      this.user.setType(userSnapshot.val().type);
      
       this.profile.user = this.user;
-      this.navCtrl.setRoot('FeedPage');
+      console.log(this.user.getType());
+      
+  
+      if(this.user.getType() == "user"){
+        console.log("user logged in");
+        
+        this.navCtrl.setRoot('FeedPage');
+      }else if(this.user.getType() != "user"){
+        console.log("user logged in");
+        this.navCtrl.setRoot('DashboardPage');
+      }
+
     });
   }
 

@@ -2,7 +2,7 @@
     
     background-size: cover;
     transform: scale(2) ;
-    background-color: #7BC6CC;
+    background-color: #262626;
 
     img{
         position: relative;
@@ -15,14 +15,18 @@
 }
 #header{
     padding: 20px 0;
-    height: 126px;
-    margin-bottom: 80px;
-    background: #ff9068; 
+    height: 140px;
+    width: 96%;
+    margin: 0 auto;
+    background: #ff9068;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+
     
     #cont{
        left: 50%;
        transform: translateX(-50%);
-       top: 100px;
+       top: 115px;
 
     }
 
@@ -31,13 +35,24 @@
         width: 100%;
         display: block;
         color: #f0f8ff;
-    }
-    h4{
-        text-align: center;
-        background-color: none;
+        margin-top: 20px;
+        text-transform: capitalize;
     }
 }
-#content{
-    background-color: #BE93C5;
-    width: 100%;
+#posts{
+    margin-top: 70px;
+
+    ion-list-header{
+        text-align: center;
+    }
+}
+ion-item{
+
+    #delete{
+        position: absolute;
+        right: 10px;
+        top: 1px;
+    }
+
+
 }

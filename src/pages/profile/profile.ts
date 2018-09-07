@@ -27,7 +27,6 @@ export class ProfilePage {
       this.username = this.profile.user.getUserName();
       this.email = this.profile.user.getEmail();
       this.surname = this.profile.user.getUid();
-      this.gender = this.profile.user.getGender();
       this.profilePhoto = this.profile.user.getProfilePic();
       console.log(this.profilePhoto);
       
@@ -35,8 +34,7 @@ export class ProfilePage {
       this.user = new User();
       this.user.setUserName(this.username);
       this.user.setEmail(this.email);
-      this.user.setGender(this.gender);
-      console.log("user details on profile: " + this.user.getGender() + " email: " + this.user.getEmail() + " username" + this.user.getUserName());
+    
       // } else {
       console.log("one of the user parameters are missing, please make sure that the value exist on the stack");
       // }
@@ -52,10 +50,15 @@ export class ProfilePage {
 
   addItem(){
     console.log("called");
-    
+
     const modal = this.modalCtrl.create(UploadPage);
     modal.present();
 
+  }
+
+  remove(){
+    console.log("remove");
+    
   }
 
 }

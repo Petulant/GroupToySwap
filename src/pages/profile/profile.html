@@ -41,15 +41,20 @@
     <h5>{{username}}</h5>
   </div>
 
-  <ion-list>
+  <ion-list id = "posts">
+    <ion-list-header>
+      recent posts
+    </ion-list-header>
     <ion-item>
+      <button id = "delete" ion-button icon-only clear (click) = "remove(key);"><ion-icon name="close"></ion-icon></button>
       <ion-avatar item-start>
         <img src="../../assets/imgs/car.jpg">
       </ion-avatar>
       <h3>Toy Car</h3>
-      <p>Good Condition, collectors item</p>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos officia impedit delectus animi labore quas necessitatibus nobis consectetur in eius eaque error quis sequi quisquam, omnis, beatae rem et quo.</p>
     </ion-item>
     <ion-item>
+      <button id = "delete" ion-button icon-only clear (click) = "remove(key);"><ion-icon name="close"></ion-icon></button>
       <ion-avatar item-start>
         <img src="../../assets/imgs/spinner.jpg">
       </ion-avatar>
@@ -57,6 +62,7 @@
       <p>Good Condition, collectors item</p>
     </ion-item>
     <ion-item>
+      <button id = "delete" ion-button icon-only clear (click) = "remove(key);"><ion-icon name="close"></ion-icon></button>
       <ion-avatar item-start>
         <img src="../../assets/imgs/bear.jpg">
       </ion-avatar>
