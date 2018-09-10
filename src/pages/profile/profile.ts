@@ -23,6 +23,7 @@ export class ProfilePage {
 
   constructor(public modalCtrl: ModalController,public navCtrl: NavController, public navParams: NavParams, public profile: ProfileProvider) {
     //console.log(this.user);
+    
     if (profile != null) {
       this.username = this.profile.user.getUserName();
       this.email = this.profile.user.getEmail();

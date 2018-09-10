@@ -19,11 +19,11 @@
 <ion-content padding>
     <ion-item class="clear">
       <ion-label floating>Title</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)] = "title"></ion-input>
     </ion-item>
     <ion-item class="clear">
       <ion-label floating>Description</ion-label>
-      <ion-textarea type="text"></ion-textarea>
+      <ion-textarea type="text" [(ngModel)] = "description"></ion-textarea>
     </ion-item>
     <ion-item class="clear">
       <ion-label floating>Choose Toy Type</ion-label>
@@ -47,13 +47,13 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <button ion-button full>gallery</button>
+        <button ion-button full (click) = "openGallery();">gallery</button>
       </ion-col>
       <ion-col>
-        <button ion-button full>camera</button>
+        <button ion-button full (click) = "takePicture();">camera</button>
       </ion-col>
     </ion-row>
     <ion-row>
-      <button ion-button (click) = "upload();" full>upload</button>
+      <button ion-button (click) = "uploadImage();" full>upload</button>
     </ion-row>
 </ion-content>
