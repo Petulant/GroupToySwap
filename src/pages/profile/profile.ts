@@ -62,4 +62,13 @@ export class ProfilePage {
     
   }
 
+  signOut(){
+    firebase.auth().signOut().then( resp => {
+      this.navCtrl.setRoot("HomePage");
+    }).catch(error => {
+      // An error happened.
+      console.log(error);
+      
+    });
+  }
 }

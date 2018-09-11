@@ -1,0 +1,12 @@
+#preview{
+  min-height: 40px;
+  width: 100%;
+  background: whitesmoke;
+
+  .thumbnails{
+    width: calc(20% - 4px);
+    border-radius: 50%;
+    background: grey;
+    margin: 2px;
+  }
+}

@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController  } from 'ionic-angular';
 import { BidPage } from "../bid/bid";
+import {  UploadPage  } from "../upload/upload";
 import { NotificationsPage } from "../notifications/notifications";
+declare var firebase;
+
 
 @IonicPage()
 @Component({
@@ -10,42 +13,21 @@ import { NotificationsPage } from "../notifications/notifications";
 })
 export class FeedPage {
 
-  items = [
-    {
-      status: "available",
-      username : "john doe",
-      location : "pta, gezina",
-      profileImg : "../../assets/imgs/guy.jpg",
-      itemImg : "../../assets/imgs/spinner.jpg",
-      itemKey : "ghyt175dd5d5dd",
-      toyName : "fidget spinner",
-      datePosted : "25/05/2018",
-      views : 35,
-      description : "In publishing and graphic design, lorem ipsum is common placeholder text used to demonstrate the graphic elements of a document or visual presentation, such as web pages, typography, and graphical layout"
-      
-    },
-    {
-      status: "available",
-      username : "jane doe",
-      location : "jhb, mababoneng",
-      profileImg : "../../assets/imgs/girl.png",
-      itemImg : "../../assets/imgs/car.jpg",
-      itemKey : "shdhdhg55w5w5w",
-      toyName : "car model",
-      datePosted : "05/07/2018",
-      views : 15,
-      description : "In publishing and graphic design, lorem ipsum is common placeholder text used to demonstrate the graphic elements of a document or visual presentation, such as web pages, typography, and graphical layout"
-      
-    }
-  ];
+  items = [];
   constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) {
-    
+      
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FeedPage');
-
-    
+    this.items = [];
+    firebase.database().ref('/activeBids/').on('value', (snapshot) => {
+      this.items = []; 
+      snapshot.forEach(snap => {
+        this.items.push(snap.val());
+        return false;
+      });
+      this.items.reverse();
+    });  
   }
 
   profile(){
@@ -64,5 +46,17 @@ export class FeedPage {
   notify(){
     const modal = this.modalCtrl.create(NotificationsPage);
     modal.present();
+  }
+
+  doRefresh(refresher){
+    console.log(this.items);
+    refresher.complete();
+  }
+
+  addItem(){
+    console.log("called");
+    const modal = this.modalCtrl.create(UploadPage);
+    modal.present();
+
   }
 }

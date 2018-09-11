@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides, AlertController, ToastController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Slides,LoadingController, AlertController, ToastController  } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { User } from '../../model/user';
 import { ProfileProvider } from '../../providers/profile/profile';
@@ -14,6 +14,7 @@ export class HomePage {
   //form groups 
   logInForm: FormGroup;
   registerForm : FormGroup;
+  loading;
 
   //error messages
   validation_messages = {
@@ -41,7 +42,6 @@ export class HomePage {
       { type: 'required', message: 'Confirm Password is required.' }
     ],
   };
-  selectOptions;
 
   //slides
   @ViewChild(Slides) slides: Slides;
@@ -49,12 +49,8 @@ export class HomePage {
 
   constructor(private alertCtrl: AlertController,public toastCtrl: ToastController, 
     public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder,
-    public profile: ProfileProvider) {
+    public profile: ProfileProvider, public loadingCtrl: LoadingController) {
 
-    //select options
-    this.selectOptions = {
-      subTitle: 'Choose Gender',
-    };
     //log in formgroup
     this.logInForm = this.fb.group({
     
@@ -108,23 +104,41 @@ export class HomePage {
   }
 
   login(){
-    
+    this.loading = this.loadingCtrl.create({
+      content: 'Signing in, Please wait...'
+    });
+  
+    this.loading.present();
+
     firebase.auth().signInWithEmailAndPassword(this.logInForm.value.email,this.logInForm.value.pass).then(user => {
      
       this.instatiateUserObj(firebase.auth().currentUser.uid);
 
     }).catch( err =>{
       console.log(err);
+      this.loading.dismiss();
       
     });
   }
 
   googleSign(){
     var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(user => {
+    firebase.auth().signInWithPopup(provider).then( user => {
+
+      if(user.user.uid != null){
+        this.loading = this.loadingCtrl.create({
+          content: 'Signing into your account, Please wait...'
+        });
+      
+        this.loading.present(); 
+      }
 
       var currentUser = new User();
+      console.log("redirected");
+      console.log(user);
+      
       //console.log(user.user.uid);
+  
       currentUser.setUid(user.user.uid)
       currentUser.setUserName(user.user.displayName);
       currentUser.setEmail(user.user.email);
@@ -132,16 +146,25 @@ export class HomePage {
       currentUser.setType("user");
       this.profile.user = currentUser;
       firebase.database().ref('/users/' + (user.user.uid)).set(currentUser);
+      this.loading.dismiss();
       this.navCtrl.setRoot('FeedPage');
       
-    }).catch( err =>{
-      console.log(err);
-      
+    }).catch(error => {
+      console.log("no redirect");
     });
   }
 
-  register() {
+  ionViewDidLoad(){    
     
+  }
+
+  register() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Creating your account, Please wait...'
+    });
+  
+    this.loading.present();
+
     var user: User;
     user = new User();
 
@@ -155,6 +178,7 @@ export class HomePage {
     firebase.auth().createUserWithEmailAndPassword(this.registerForm.value.email, this.registerForm.value.pass).then(data => {
       user.setUid(data.user.uid);
       firebase.database().ref('/users/' + (data.user.uid)).set(user);
+      this.loading.dismiss();
       this.navCtrl.setRoot('FeedPage');
     }).catch(err => {
       this.presentToast(err.message);
@@ -165,8 +189,7 @@ export class HomePage {
   instatiateUserObj(key){
 
     firebase.database().ref('/users/'+ key).on('value', userSnapshot => {
-      
-      
+  
       
       this.user = new User();
       this.user.setUid(userSnapshot.val().uid);
@@ -180,10 +203,11 @@ export class HomePage {
   
       if(this.user.getType() == "user"){
         console.log("user logged in");
-        
+        this.loading.dismiss();
         this.navCtrl.setRoot('FeedPage');
       }else if(this.user.getType() != "user"){
         console.log("user logged in");
+        this.loading.dismiss();
         this.navCtrl.setRoot('DashboardPage');
       }
 

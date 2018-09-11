@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController} from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { User } from '../../model/user';
 import { ProfileProvider } from '../../providers/profile/profile';
@@ -42,19 +42,31 @@ export class UploadPage {
   firebaseStorage : any;
   imageUri : any = null;
   details : string;
+  uid : any;
+  username : any;
+  loading: any;
   
-  constructor(private fileChooser: FileChooser, private camera: Camera, public navCtrl: NavController, public navParams: NavParams, public profile: ProfileProvider) {
+  constructor(public loadingCtrl: LoadingController, private fileChooser: FileChooser, private camera: Camera, public navCtrl: NavController, public navParams: NavParams, public profile: ProfileProvider) {
     this.selectOptions = {
       title: 'Categories',
       subTitle: 'Select your category',
     };
     this.firebaseStorage = firebase.storage();
-    console.log(this.pictures);
-    
+
+    let user = this.profile.user;
+    this.uid = user.getUid()
+    this.username = user.getUserName();
   }
 
   close(){
     this.navCtrl.pop();
+  }
+
+  ionViewDidLoad(){
+    console.log("view loaded");
+    this.pictures = [];
+    this.downloadUrls = [];
+    
   }
 
   takePicture(){
@@ -67,7 +79,8 @@ export class UploadPage {
       mediaType: this.camera.MediaType.PICTURE,
       saveToPhotoAlbum : true,
       cameraDirection : 0,
-      correctOrientation : true
+      targetWidth : 640,
+      targetHeight : 640
     };
 
     this.camera.getPicture(options).then((imageData) => {
@@ -92,48 +105,54 @@ export class UploadPage {
   }
 
   uploadImage(){
-    let user = this.profile.user;
-    //user.getUid()
     
+    this.loading = this.loadingCtrl.create({
+      content: 'Uploading files, Please wait...'
+    });
+  
+    this.loading.present();
+
     for(let i = 0 ; i < this.pictures.length; i++){
+
       console.log("uploading image #" + (i + 1));
-      var ref = this.firebaseStorage.ref('pictures/' + user.getUid() + '/' + this.pictures[i].details );
+
+      var ref = this.firebaseStorage.ref('pictures/' + this.uid  + '/' + this.pictures[i].details );
       ref.putString(
       this.pictures[i].uri, 'data_url').then(
        
         snapshot => {
           ref.getDownloadURL().then((url) =>{
-            console.log(url);
             this.downloadUrls.push(url);
-            //this.saveToDB(url);
+            
+            console.log("url #" + (i +1) + "pushed to array. array size : " + this.downloadUrls.length);
+            if(this.pictures.length == this.downloadUrls.length){
+              this.saveToDB();
+            }
           })
-          console.log("upload done");
-          console.log(snapshot);
-          
-          //this.presentToast("picture saved to storage");
+    
         }
       ).catch(
         err => {
           console.log("upload failed");
           console.log(err);
+          this.loading.dismiss();
           
         }
       );
       console.log("done uploading image #" + (i + 1));
     }
-    this.saveToDB();
+    
   }
 
   saveToDB() {
     console.log("save to DB");
-    
-    let user = this.profile.user;
-    console.log(user.getUid());
     console.log(this.downloadUrls);
     
     
-    firebase.database().ref('/activeBids/' + user.getUid() ).push(
+    firebase.database().ref('/activeBids/' ).push(
       {
+        uid: this.uid,
+        username : this.username,
         imgUrl : this.downloadUrls,
         title : this.title,
         description : this.description,
@@ -142,12 +161,14 @@ export class UploadPage {
         expire : this.expire
       }
     );
-    
+
+    this.loading.dismiss();
+    this.navCtrl.pop();
+    //console.log(this.downloadUrls);
   }
 
   openGallery(){
     this.fileChooser.open().then(uri => {
-
 
       console.log(uri)
     }).catch(e => {
