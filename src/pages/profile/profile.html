@@ -25,8 +25,7 @@
   <div id="header">
     <ion-fab id = "cont" >
       <button ion-fab id = "myFab" >
-        <img *ngIf = "profilePhoto != null" src="{{profilePhoto}}" alt="">
-        <ion-icon *ngIf = "profilePhoto == null"  name="person"></ion-icon>
+        <img src="{{profilePhoto}}" alt="">
       </button>
       <ion-fab-list side="left">
         <button ion-fab><ion-icon name="images"></ion-icon></button>

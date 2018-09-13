@@ -8,7 +8,7 @@
 }
 
 .swiper-pagination-bullet-active{
-    background : #ff9068;
+    background : #f3a183;
 }
 
 .ic{
@@ -18,18 +18,22 @@
 }
 
 h5{
-    color: #fd746c;
+    color: #f3a183;
     padding: 0 20px;
     font-weight: lighter;
     letter-spacing: 1.5px;
 }
 
 #start{
+    position: absolute;
+    bottom: 50px;
+    left: 40px;
     width: calc(100% - 80px);
-    border: 2px solid #fd746c;
-    color: #fd746c;
+    border: 2px solid #f3a183;
+    color: #f3a183;
     background: transparent;
     box-shadow: none;
+    z-index: 9999;
     border-radius: 20px !important;
     margin-top: 30px !important;
     padding: 0 20px;

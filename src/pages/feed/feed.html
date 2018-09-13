@@ -1,66 +1,66 @@
 <ion-header>
 
-  <ion-navbar  >
+  <ion-navbar>
     <ion-row>
       <ion-col  col-2>
         <button ion-button icon-only  clear medium (click) = "profile();">
           <ion-icon name = "person"></ion-icon>
         </button>
       </ion-col>
-      <ion-col  col-8>
+      <ion-col  col->
         <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
       </ion-col>
       <ion-col  col-2>
         <button ion-button icon-only  clear medium (click) = "notify();">
-          <ion-icon name = "notifications"></ion-icon>
+          <ion-icon name = "more"></ion-icon>
         </button>
       </ion-col>
     </ion-row>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content>
+<ion-content id = "feed">
   <ion-refresher (ionRefresh)="doRefresh($event);">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <div *ngIf = "items != null">
     <ion-card  *ngFor = "let item of items">
-      <ion-item>
-        <ion-avatar item-start>
-          <img src="{{item.imgUrl}}">
-        </ion-avatar>
-        <h2>{{item.username}}</h2>
-        <p>{{item.location}}</p>
-      </ion-item>
-  
+      
       <ion-slides pager>
         <ion-slide *ngFor = "let slideUrl of item.imgUrl">
           <img src="{{slideUrl}}"/>
         </ion-slide>
       </ion-slides>
-  
-      <ion-row>
-        <ion-col>
-          <button ion-button icon-start clear medium (click) = "bidFor(item)">
-            <ion-icon name="add-circle"></ion-icon>
-            <div>bid</div>
-          </button>
-        </ion-col>
-        <ion-col>
-          <button ion-button icon-start clear medium>
-            <ion-icon name="flag"></ion-icon>
-            <div>report</div>
-          </button>
-        </ion-col>
-        <ion-col center text-center>
-          <button ion-button icon-start clear medium>
-            <ion-icon name="eye"></ion-icon>
-            <ion-badge item-end>{{item.views}}</ion-badge>
-          </button>
-        </ion-col>
-      </ion-row>
+      <div class="b_profile">
+        <ion-row>
+          <ion-col col-2>
+              <img src="{{item.profilePicture}}">
+          </ion-col>
+          <ion-col col-10>
+            <h2 ion-text>{{item.username}}</h2>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-4>
+              <button ion-button icon-start clear medium (click) = "bidFor(item)">
+                <ion-icon name="add-circle"></ion-icon>
+                <div>bid</div>
+              </button>
+            </ion-col>
+            <ion-col col-4>
+              <button ion-button icon-start clear medium>
+                <ion-icon name="flag"></ion-icon>
+                <div>report</div>
+              </button>
+            </ion-col>
+            <ion-col col-4 center text-center>
+              <button ion-button icon-start clear medium>
+                <ion-icon name="eye"></ion-icon>
+                <ion-badge item-end>{{item.views}}</ion-badge>
+              </button>
+            </ion-col>
+          </ion-row>
+      </div>
     </ion-card>
   </div>
   

@@ -45,9 +45,8 @@
         </ion-item>
       </ion-col>
     </ion-row>
-
    <ion-card id="preview" *ngIf = "pictures.length > 0">
-     <img class = "thumbnails" *ngFor = "let thumb of pictures"src="{{thumb.img}}" alt="">
+     <div class = "thumbnails" *ngFor = "let thumb of pictures; let i of index">{{i + 1}}</div>
    </ion-card>
     <ion-row>
       <ion-col>

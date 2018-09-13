@@ -44,6 +44,7 @@ export class UploadPage {
   details : string;
   uid : any;
   username : any;
+  profilePicture : any;
   loading: any;
   
   constructor(public loadingCtrl: LoadingController, private fileChooser: FileChooser, private camera: Camera, public navCtrl: NavController, public navParams: NavParams, public profile: ProfileProvider) {
@@ -56,6 +57,7 @@ export class UploadPage {
     let user = this.profile.user;
     this.uid = user.getUid()
     this.username = user.getUserName();
+    this.profilePicture = user.getProfilePic();
   }
 
   close(){
@@ -147,7 +149,8 @@ export class UploadPage {
   saveToDB() {
     console.log("save to DB");
     console.log(this.downloadUrls);
-    
+
+    console.log(this.profilePicture);
     
     firebase.database().ref('/activeBids/' ).push(
       {
@@ -158,6 +161,7 @@ export class UploadPage {
         description : this.description,
         toyType : this.toyType,
         start : this.start,
+        profilePicture : this.profilePicture,
         expire : this.expire
       }
     );

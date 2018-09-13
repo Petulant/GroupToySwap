@@ -14,34 +14,9 @@ export class HomePage {
   //form groups 
   logInForm: FormGroup;
   registerForm : FormGroup;
-  loading;
-
-  //error messages
-  validation_messages = {
-    'name': [
-      { type: 'required', message: 'first name names is required.' },
-      { type: 'minlength', message: 'first name must be at least 1 characters long.' },
-      { type: 'maxlength', message: 'first name cannot be more than 50 characters long.' }
-    ],
-    'surname': [
-      { type: 'required', message: 'surname is required.' },
-      { type: 'minlength', message: 'surname must be at least 1 characters long.' },
-      { type: 'maxlength', message: 'surname cannot be more than 50 characters long.' }
-    ],
-    'email': [
-      { type: 'required', message: 'email is required.' },
-      { type: 'minlength', message: 'email must be at least 5 characters long.' },
-      { type: 'maxlength', message: 'email cannot be more than 25 characters long.' },
-      { type: 'pattern', message: 'Your email must contain only numbers and letters.' },
-      { type: 'validUsername', message: 'Your email has already been taken.' }
-    ],
-    'pass': [
-      { type: 'required', message: 'Password is required.' }
-    ],
-    'confirmpass': [
-      { type: 'required', message: 'Confirm Password is required.' }
-    ],
-  };
+  loading: any;
+  googleResponse : any;
+  counter = 0;
 
   //slides
   @ViewChild(Slides) slides: Slides;
@@ -122,22 +97,18 @@ export class HomePage {
   }
 
   googleSign(){
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).then( user => {
 
-      if(user.user.uid != null){
-        this.loading = this.loadingCtrl.create({
-          content: 'Signing into your account, Please wait...'
-        });
-      
-        this.loading.present(); 
-      }
+    this.loading = this.loadingCtrl.create({
+      content: 'Signing into your account, Please wait...'
+    });
+  
+    this.loading.present(); 
+    var provider = new firebase.auth.GoogleAuthProvider();
+
+    firebase.auth().signInWithPopup(provider).then( user => {
+      console.log("signed in");
 
       var currentUser = new User();
-      console.log("redirected");
-      console.log(user);
-      
-      //console.log(user.user.uid);
   
       currentUser.setUid(user.user.uid)
       currentUser.setUserName(user.user.displayName);
@@ -148,14 +119,12 @@ export class HomePage {
       firebase.database().ref('/users/' + (user.user.uid)).set(currentUser);
       this.loading.dismiss();
       this.navCtrl.setRoot('FeedPage');
-      
     }).catch(error => {
-      console.log("no redirect");
+      console.log(error.message);
+      this.loading.dismiss();
     });
-  }
-
-  ionViewDidLoad(){    
-    
+   
+  
   }
 
   register() {
@@ -171,7 +140,7 @@ export class HomePage {
     user.setUserName(this.registerForm.value.name + " " + this.registerForm.value.surname );
     user.setEmail(this.registerForm.value.email);
     user.setType("user");
-    user.setProfilePic("");
+    user.setProfilePic("../assets/imgs/user.svg");
   
     this.profile.user = user;
     
@@ -182,6 +151,7 @@ export class HomePage {
       this.navCtrl.setRoot('FeedPage');
     }).catch(err => {
       this.presentToast(err.message);
+      this.loading.dismiss();
     });
   }
 
@@ -196,6 +166,7 @@ export class HomePage {
       this.user.setEmail(userSnapshot.val().email);
       this.user.setUserName(userSnapshot.val().name);  
       this.user.setType(userSnapshot.val().type);
+      this.user.setProfilePic(userSnapshot.val().profilePic);
      
       this.profile.user = this.user;
       console.log(this.user.getType());
@@ -270,5 +241,32 @@ export class HomePage {
     });
     alert.present();
   }
+
+  //error messages
+  validation_messages = {
+    'name': [
+      { type: 'required', message: 'first name names is required.' },
+      { type: 'minlength', message: 'first name must be at least 1 characters long.' },
+      { type: 'maxlength', message: 'first name cannot be more than 50 characters long.' }
+    ],
+    'surname': [
+      { type: 'required', message: 'surname is required.' },
+      { type: 'minlength', message: 'surname must be at least 1 characters long.' },
+      { type: 'maxlength', message: 'surname cannot be more than 50 characters long.' }
+    ],
+    'email': [
+      { type: 'required', message: 'email is required.' },
+      { type: 'minlength', message: 'email must be at least 5 characters long.' },
+      { type: 'maxlength', message: 'email cannot be more than 25 characters long.' },
+      { type: 'pattern', message: 'Your email must contain only numbers and letters.' },
+      { type: 'validUsername', message: 'Your email has already been taken.' }
+    ],
+    'pass': [
+      { type: 'required', message: 'Password is required.' }
+    ],
+    'confirmpass': [
+      { type: 'required', message: 'Confirm Password is required.' }
+    ],
+  };
 }
   

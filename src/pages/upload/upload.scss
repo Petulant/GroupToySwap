@@ -4,9 +4,12 @@
   background: whitesmoke;
 
   .thumbnails{
-    width: calc(20% - 4px);
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     background: grey;
     margin: 2px;
+    line-height: 25px;
+    
   }
 }
