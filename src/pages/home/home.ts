@@ -79,21 +79,26 @@ export class HomePage {
   }
 
   login(){
-    this.loading = this.loadingCtrl.create({
-      content: 'Signing in, Please wait...'
-    });
+    
+    if(this.logInForm.value.email != "" && this.logInForm.value.pass != ""){
+      this.loading = this.loadingCtrl.create({
+        content: 'Signing in, Please wait...'
+      });
+    
+      this.loading.present();
   
-    this.loading.present();
-
-    firebase.auth().signInWithEmailAndPassword(this.logInForm.value.email,this.logInForm.value.pass).then(user => {
-     
-      this.instatiateUserObj(firebase.auth().currentUser.uid);
-
-    }).catch( err =>{
-      console.log(err);
-      this.loading.dismiss();
-      
-    });
+      firebase.auth().signInWithEmailAndPassword(this.logInForm.value.email,this.logInForm.value.pass).then(user => {
+       
+        this.instatiateUserObj(firebase.auth().currentUser.uid);
+  
+      }).catch( err =>{
+        console.log(err);
+        this.loading.dismiss();
+        
+      });
+    }else{
+      this.presentToast("Fill in your credentials first");
+    }
   }
 
   googleSign(){
@@ -128,31 +133,37 @@ export class HomePage {
   }
 
   register() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Creating your account, Please wait...'
-    });
-  
-    this.loading.present();
-
-    var user: User;
-    user = new User();
-
-    user.setUserName(this.registerForm.value.name + " " + this.registerForm.value.surname );
-    user.setEmail(this.registerForm.value.email);
-    user.setType("user");
-    user.setProfilePic("../assets/imgs/user.svg");
-  
-    this.profile.user = user;
     
-    firebase.auth().createUserWithEmailAndPassword(this.registerForm.value.email, this.registerForm.value.pass).then(data => {
-      user.setUid(data.user.uid);
-      firebase.database().ref('/users/' + (data.user.uid)).set(user);
-      this.loading.dismiss();
-      this.navCtrl.setRoot('FeedPage');
-    }).catch(err => {
-      this.presentToast(err.message);
-      this.loading.dismiss();
-    });
+
+    if(this.registerForm.value.name != "" && this.registerForm.value.surname != "" && this.registerForm.value.email != "" && this.registerForm.value.password != ""){
+      this.loading = this.loadingCtrl.create({
+        content: 'Creating your account, Please wait...'
+      });
+    
+      this.loading.present();
+  
+      var user: User;
+      user = new User();
+  
+      user.setUserName(this.registerForm.value.name + " " + this.registerForm.value.surname );
+      user.setEmail(this.registerForm.value.email);
+      user.setType("user");
+      user.setProfilePic("../assets/imgs/user.svg");
+    
+      this.profile.user = user;
+      
+      firebase.auth().createUserWithEmailAndPassword(this.registerForm.value.email, this.registerForm.value.pass).then(data => {
+        user.setUid(data.user.uid);
+        firebase.database().ref('/users/' + (data.user.uid)).set(user);
+        this.loading.dismiss();
+        this.navCtrl.setRoot('FeedPage');
+      }).catch(err => {
+        this.presentToast(err.message);
+        this.loading.dismiss();
+      });
+    }else{
+      this.presentToast("Complete form first");
+    }
   }
 
 
@@ -187,21 +198,25 @@ export class HomePage {
 
   resetPassword(email){
        
-    var auth = firebase.auth();
+    if(email != ""){
+      var auth = firebase.auth();
 
-    auth.sendPasswordResetEmail(email).then( res => {
-      this.presentToast("Email Sent, check your email");
-      
-    }).catch( error => {
-      this.presentToast(error.message);      
-    });
+      auth.sendPasswordResetEmail(email).then( res => {
+        this.presentToast("Email Sent, check your email");
+        
+      }).catch( error => {
+        this.presentToast(error.message);      
+      });
+    }else{
+      this.presentToast("action cancelled");
+    }
   }
 
   presentToast(message) {
     let toast = this.toastCtrl.create({
       message: message,
       duration: 3000,
-      position: 'bottom'
+      position: 'top'
     });
   
     toast.onDidDismiss(() => {

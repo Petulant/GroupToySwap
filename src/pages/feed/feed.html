@@ -23,40 +23,41 @@
   <ion-refresher (ionRefresh)="doRefresh($event);">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <div *ngIf = "items != null">
-    <ion-card  *ngFor = "let item of items">
+  <div id = "main" *ngIf = "items != null">
+    <ion-card  *ngFor = "let item of items" class = "cards">
       
       <ion-slides pager>
         <ion-slide *ngFor = "let slideUrl of item.imgUrl">
           <img src="{{slideUrl}}"/>
         </ion-slide>
       </ion-slides>
-      <div class="b_profile">
+      <div class = "profile">
+  
+        <ion-fab class = "img-fab">
+          <button ion-fab ><img src="{{item.profilePicture}}"></button>
+        </ion-fab>
         <ion-row>
-          <ion-col col-2>
-              <img src="{{item.profilePicture}}">
-          </ion-col>
-          <ion-col col-10>
-            <h2 ion-text>{{item.username}}</h2>
+          <ion-col>
+            <h3 ion-text>{{item.username}}</h3>
           </ion-col>
         </ion-row>
         <ion-row>
             <ion-col col-4>
               <button ion-button icon-start clear medium (click) = "bidFor(item)">
-                <ion-icon name="add-circle"></ion-icon>
+                <ion-icon name="add-circle" color = "light"></ion-icon>
                 <div>bid</div>
               </button>
             </ion-col>
             <ion-col col-4>
               <button ion-button icon-start clear medium>
-                <ion-icon name="flag"></ion-icon>
+                <ion-icon name="flag" color = "light"></ion-icon>
                 <div>report</div>
               </button>
             </ion-col>
             <ion-col col-4 center text-center>
               <button ion-button icon-start clear medium>
-                <ion-icon name="eye"></ion-icon>
-                <ion-badge item-end>{{item.views}}</ion-badge>
+                <ion-icon name="eye"color = "light" ></ion-icon>
+                <ion-badge color = "light" item-end>{{item.views}}</ion-badge>
               </button>
             </ion-col>
           </ion-row>

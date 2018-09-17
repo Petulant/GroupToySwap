@@ -8,7 +8,8 @@ import { MyApp } from './app.component';
 import { BidPage } from "../pages/bid/bid";
 import { NotificationsPage } from "../pages/notifications/notifications";
 import { UploadPage } from "../pages/upload/upload";
-import { FileChooser } from '@ionic-native/file-chooser';
+import { ImagePicker } from '@ionic-native/image-picker';
+
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { TestProvider } from '../providers/test/test';
 import { ProfileProvider } from '../providers/profile/profile';
@@ -40,7 +41,7 @@ import { UploadProvider } from '../providers/upload/upload';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
-    FileChooser,
+    ImagePicker,
     TestProvider,
     ProfileProvider,
     UploadProvider,

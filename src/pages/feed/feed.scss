@@ -1,18 +1,35 @@
+.img-fab{
+  transform: translate(20px, -25px);
+  
+  button{
+    background: white;
+  }
+}
+.profile{
+  background: #fd746c;
+  
+}
+h3{
+  padding: 40px 20px 2px;
+  text-transform: capitalize;
+  color: aliceblue !important;
+}
 
-.b_profile{
-  padding: 5px 0;
+.cards{
+  animation: fadeIn 300ms ease-in;
 
-  ion-col{
-    img{
-      border: 2px solid rgba($color: #000000, $alpha: .2);
-      border-radius: 50%;
-      background: white;
-    }
+  div{
+    color: aliceblue !important;
+    font-weight: lighter; 
+  }
+}
 
-    h2{
-      font-size: 16px;
-      text-transform: capitalize;
-      color: rgba($color: #000000, $alpha: .7)
-    }
+#main{
+  padding-bottom: 70px;
+}
+@keyframes fadeIn{
+  0%{
+    opacity: .2;
+    transform: translateY(15px);
   }
 }

@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController} from 'ionic-ang
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { User } from '../../model/user';
 import { ProfileProvider } from '../../providers/profile/profile';
-import { FileChooser } from '@ionic-native/file-chooser';
+import { ImagePicker } from '@ionic-native/image-picker';
 declare var firebase;
 
 @IonicPage()
@@ -22,32 +22,31 @@ export class UploadPage {
     "Dolls",
     "Educational toys",
     "Electronic toys",
-    "	Puzzle/assembly",
+    "Puzzle/assembly",
     "Games", 
     "Sound toys",
     "Spinning toys",
     "Wooden toys"
   ];
 
-  title : string;
-  description : string;
-  toyType : string;
-  start  : string;
-  expire : string;
+  title : string = "";
+  description : string = "";
+  toyType : string = "";
+  start  : string = "";
+  expire : string = "";
   pictures = [];
   downloadUrls = [];
 
   selectOptions : any;
-  filePath : any;
   firebaseStorage : any;
   imageUri : any = null;
-  details : string;
+  details : string = null;
   uid : any;
   username : any;
   profilePicture : any;
   loading: any;
   
-  constructor(public loadingCtrl: LoadingController, private fileChooser: FileChooser, private camera: Camera, public navCtrl: NavController, public navParams: NavParams, public profile: ProfileProvider) {
+  constructor(public loadingCtrl: LoadingController, private imagePicker: ImagePicker, private camera: Camera, public navCtrl: NavController, public navParams: NavParams, public profile: ProfileProvider) {
     this.selectOptions = {
       title: 'Categories',
       subTitle: 'Select your category',
@@ -58,6 +57,7 @@ export class UploadPage {
     this.uid = user.getUid()
     this.username = user.getUserName();
     this.profilePicture = user.getProfilePic();
+  
   }
 
   close(){
@@ -65,15 +65,14 @@ export class UploadPage {
   }
 
   ionViewDidLoad(){
-    console.log("view loaded");
+
     this.pictures = [];
     this.downloadUrls = [];
     
   }
 
   takePicture(){
-    console.log("camera open");
-    
+       
     const options: CameraOptions = {
       quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -90,24 +89,22 @@ export class UploadPage {
       this.imageUri = 'data:image/jpeg;base64,' + imageData;
       this.details =  "img" + Date.now().toString() + ".jpeg";
 
-      this.pictures.push(
-        {
-          details : this.details,
-          uri : this.imageUri
-        }
-      );
-      console.log("new image added");
-      console.log(this.pictures);
+      this.pictures.push({
+        name :this.details,
+        uri : this.imageUri
+      });
       
      }, (err) => {
-      //this.presentToast(err);
+      
       console.log(err);
      });
     
   }
 
+
   uploadImage(){
     
+    let counter = 0;
     this.loading = this.loadingCtrl.create({
       content: 'Uploading files, Please wait...'
     });
@@ -116,41 +113,45 @@ export class UploadPage {
 
     for(let i = 0 ; i < this.pictures.length; i++){
 
-      console.log("uploading image #" + (i + 1));
-
-      var ref = this.firebaseStorage.ref('pictures/' + this.uid  + '/' + this.pictures[i].details );
+      var ref = this.firebaseStorage.ref('pictures/' + this.uid  + '/' + this.pictures[i].name );
       ref.putString(
       this.pictures[i].uri, 'data_url').then(
-       
-        snapshot => {
-          ref.getDownloadURL().then((url) =>{
-            this.downloadUrls.push(url);
-            
-            console.log("url #" + (i +1) + "pushed to array. array size : " + this.downloadUrls.length);
-            if(this.pictures.length == this.downloadUrls.length){
-              this.saveToDB();
-            }
-          })
-    
+        resp =>{
+          counter++;
+
+          if(counter == this.pictures.length){
+            this.getUrls();
+          }
         }
       ).catch(
         err => {
-          console.log("upload failed");
-          console.log(err);
+
           this.loading.dismiss();
-          
         }
       );
-      console.log("done uploading image #" + (i + 1));
     }
     
   }
 
-  saveToDB() {
-    console.log("save to DB");
-    console.log(this.downloadUrls);
+  getUrls(){
 
-    console.log(this.profilePicture);
+    for(let i = 0; i <  this.pictures.length ; i++){
+
+        this.firebaseStorage.ref('/pictures/' + this.uid +  '/' +  this.pictures[i].name + '/').getDownloadURL().then(url => {
+        this.downloadUrls.push(url);
+
+        if(this.downloadUrls.length == this.pictures.length){
+          this.saveToDB();
+        }
+        
+      }).catch(error => {
+       
+        console.log(error);
+      });
+    }
+  }
+
+  saveToDB() {
     
     firebase.database().ref('/activeBids/' ).push(
       {
@@ -162,22 +163,38 @@ export class UploadPage {
         toyType : this.toyType,
         start : this.start,
         profilePicture : this.profilePicture,
-        expire : this.expire
+        expire : this.expire,
+        views : 0
       }
     );
 
     this.loading.dismiss();
     this.navCtrl.pop();
-    //console.log(this.downloadUrls);
+
   }
 
   openGallery(){
-    this.fileChooser.open().then(uri => {
 
-      console.log(uri)
-    }).catch(e => {
-      console.log(e)
-    });
+    let options = {maximumImagesCount: 1, outputType : 1, quality : 50};
+    
+    this.imagePicker.getPictures(options).then( results => {
+      for (var i = 0; i < results.length; i++) {
+
+          this.imageUri = 'data:image/jpeg;base64,' + results[i];
+          this.details =  "img" + Date.now().toString() + ".jpeg";
+
+          
+          this.pictures.push(
+            {
+              name :this.details,
+              uri : this.imageUri
+            }
+          );
+
+          
+      }
+    }, err => { console.log(err);
+     });
   }
 
 }

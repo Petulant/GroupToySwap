@@ -33,10 +33,10 @@
 
 				<ion-row>
 					<ion-col>
-						<button ion-button full (click)="login();" class="bt">login</button>
+						<button ion-button full (click)="toggle(true);" class="bt">create account</button>
 					</ion-col>
 					<ion-col>
-						<button ion-button full (click)="toggle(true);" class="bt">create account</button>
+						<button ion-button full (click)="login();" class="bt">login</button>
 					</ion-col>
 				</ion-row>
 				<ion-row>
@@ -115,10 +115,10 @@
 				</div>
 				<ion-row>
 					<ion-col>
-						<button ion-button full class="bt" (click)="register();">sign up</button>
+						<button ion-button full (click)="toggle(false);" class="bt">go to login</button>
 					</ion-col>
 					<ion-col>
-						<button ion-button full (click)="toggle(false);" class="bt">go to login</button>
+						<button ion-button full class="bt" (click)="register();">sign up</button>
 					</ion-col>
 				</ion-row>
 			</form>
