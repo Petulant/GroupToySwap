@@ -9,6 +9,8 @@ import { BidPage } from "../pages/bid/bid";
 import { NotificationsPage } from "../pages/notifications/notifications";
 import { UploadPage } from "../pages/upload/upload";
 import { ImagePicker } from '@ionic-native/image-picker';
+import { Crop } from '@ionic-native/crop';
+import { File } from '@ionic-native/file';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { TestProvider } from '../providers/test/test';
@@ -42,7 +44,9 @@ import { UploadProvider } from '../providers/upload/upload';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Camera,
     ImagePicker,
+    Crop,
     TestProvider,
+    File,
     ProfileProvider,
     UploadProvider,
 

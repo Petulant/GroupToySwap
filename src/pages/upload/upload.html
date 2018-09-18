@@ -1,60 +1,69 @@
-<!--
-  Generated template for the UploadPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar clear>
-   <ion-row>
-      <button ion-button clear (click) = "close();">cancel
+	<ion-navbar clear>
+		<ion-row>
+			<button ion-button clear (click)="close();">cancel
       </button>
-   </ion-row>
-  </ion-navbar>
-
+		</ion-row>
+	</ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-    <ion-item class="clear">
-      <ion-label floating>Title</ion-label>
-      <ion-input type="text" [(ngModel)] = "title"></ion-input>
-    </ion-item>
-    <ion-item class="clear">
-      <ion-label floating>Description</ion-label>
-      <ion-textarea type="text" [(ngModel)] = "description"></ion-textarea>
-    </ion-item>
-    <ion-item class="clear">
-      <ion-label floating>Choose Toy Type</ion-label>
-      <ion-select [selectOptions]="selectOptions" [(ngModel)] = "toyType">
-          <ion-option *ngFor = "let type of types" value="{{type}}">{{type}}</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-row>
-      <ion-col col-6>
-        <ion-item>
-          <ion-label>Start Date</ion-label>
-          <ion-datetime displayFormat="MM/DD/YYYY" min="2018" max="2018" [(ngModel)]="start"></ion-datetime>
-        </ion-item>
-      </ion-col>
-      <ion-col col-6>
-        <ion-item>
-          <ion-label>Expire Date</ion-label>
-          <ion-datetime displayFormat="MM/DD/YYYY" min="2018" max="2018-12-31" [(ngModel)]="expire"></ion-datetime>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-   <ion-card id="preview" *ngIf = "pictures.length > 0">
-     <img class = "thumbnails" *ngFor = "let thumb of pictures" src="data:image/jpeg;base64,{{thumb.uri}}"/>
-   </ion-card>
-    <ion-row>
-      <ion-col>
-        <button ion-button full (click) = "openGallery();">gallery</button>
-      </ion-col>
-      <ion-col>
-        <button ion-button full (click) = "takePicture();">camera</button>
-      </ion-col>
-    </ion-row>
-    <button ion-button (click) = "uploadImage();" full>upload</button>
+	<ion-list-header>
+		Bid Details
+	</ion-list-header>
+	<ion-item class="clear">
+		<ion-label floating>Title</ion-label>
+		<ion-input type="text" [(ngModel)]="title"></ion-input>
+	</ion-item>
+	<ion-item class="clear">
+		<ion-label floating>Description</ion-label>
+		<ion-textarea type="text" [(ngModel)]="description"></ion-textarea>
+	</ion-item>
+	<ion-item class="clear">
+		<ion-label floating>Choose Toy Type</ion-label>
+		<ion-select [selectOptions]="selectOptions" [(ngModel)]="toyType">
+			<ion-option *ngFor="let type of types" value="{{type}}">{{type}}</ion-option>
+		</ion-select>
+	</ion-item><br>
+
+	<ion-list-header>
+		Bid duration
+		<ion-badge item-end>{{bidDuration}} Days</ion-badge>
+		<ion-icon item-end name="calendar"></ion-icon>
+	</ion-list-header>
+	<ion-item>
+		<ion-range [(ngModel)]="bidDuration" min="3" max="21" color="danger" pin="true">
+			<ion-label range-left>3</ion-label>
+			<ion-label range-right>21</ion-label>
+		</ion-range>
+	</ion-item>
+	<ion-card id="preview" *ngIf="pictures.length > 0">
+		<div class="thumbnails" *ngFor="let thumb of pictures" [ngStyle] ="{ 'background-image' : 'url(' + thumb.uri + ')'}"></div>
+	</ion-card>
+	<ion-row>
+		<ion-col col-4>
+			<ion-fab center>
+				<button ion-fab mini (click)="openGallery();">
+          <ion-icon name="images"></ion-icon>
+        </button>
+			</ion-fab>
+		</ion-col>
+		<ion-col col-4>
+			<ion-fab center>
+				<button ion-fab mini (click)="takePicture();">
+          <ion-icon name="camera"></ion-icon>
+        </button>
+			</ion-fab>
+    </ion-col>
+    <ion-col col-4>
+      <ion-fab center>
+        <button ion-fab mini (click)="uploadImage();">
+          <ion-icon name="cloud-upload"></ion-icon>
+        </button>
+      </ion-fab>
+    </ion-col>
+	</ion-row>
+	
+
 </ion-content>

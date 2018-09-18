@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController} from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { User } from '../../model/user';
+import { Crop } from '@ionic-native/crop';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { ImagePicker } from '@ionic-native/image-picker';
+import { File } from '@ionic-native/file';
 declare var firebase;
 
 @IonicPage()
@@ -36,6 +38,7 @@ export class UploadPage {
   expire : string = "";
   pictures = [];
   downloadUrls = [];
+  bidDuration : number = 3;
 
   selectOptions : any;
   firebaseStorage : any;
@@ -46,10 +49,9 @@ export class UploadPage {
   profilePicture : any;
   loading: any;
   
-  constructor(public loadingCtrl: LoadingController, private imagePicker: ImagePicker, private camera: Camera, public navCtrl: NavController, public navParams: NavParams, public profile: ProfileProvider) {
+  constructor(private file: File, private crop: Crop, public loadingCtrl: LoadingController, private imagePicker: ImagePicker, private camera: Camera, public navCtrl: NavController, public navParams: NavParams, public profile: ProfileProvider) {
     this.selectOptions = {
-      title: 'Categories',
-      subTitle: 'Select your category',
+      subTitle: 'Select a category',
     };
     this.firebaseStorage = firebase.storage();
 
@@ -57,6 +59,7 @@ export class UploadPage {
     this.uid = user.getUid()
     this.username = user.getUserName();
     this.profilePicture = user.getProfilePic();
+    
   
   }
 
@@ -73,15 +76,17 @@ export class UploadPage {
 
   takePicture(){
        
-    const options: CameraOptions = {
-      quality: 50,
+    let options: CameraOptions = {
+      quality: 40,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      saveToPhotoAlbum : true,
+      saveToPhotoAlbum : false,
       cameraDirection : 0,
       targetWidth : 640,
-      targetHeight : 640
+      targetHeight : 640,
+      allowEdit : true
+
     };
 
     this.camera.getPicture(options).then((imageData) => {
@@ -153,6 +158,11 @@ export class UploadPage {
 
   saveToDB() {
     
+    this.bidDuration *= 60*60*24*1000;
+
+    this.bidDuration +=  Date.now();
+  
+
     firebase.database().ref('/activeBids/' ).push(
       {
         uid: this.uid,
@@ -161,9 +171,8 @@ export class UploadPage {
         title : this.title,
         description : this.description,
         toyType : this.toyType,
-        start : this.start,
+        duration : this.bidDuration,
         profilePicture : this.profilePicture,
-        expire : this.expire,
         views : 0
       }
     );
@@ -171,27 +180,50 @@ export class UploadPage {
     this.loading.dismiss();
     this.navCtrl.pop();
 
+
   }
 
   openGallery(){
 
-    let options = {maximumImagesCount: 1, outputType : 1, quality : 50};
+    let options = {maximumImagesCount: 1, outputType : 0};
     
     this.imagePicker.getPictures(options).then( results => {
       for (var i = 0; i < results.length; i++) {
 
-          this.imageUri = 'data:image/jpeg;base64,' + results[i];
-          this.details =  "img" + Date.now().toString() + ".jpeg";
+        this.crop.crop(results[i], {quality: 40, targetWidth : 640, targetHeight : 640})
+        .then(
+        newImage => {
+          console.log('new image path is: ' + newImage);
 
+          let path = newImage.substring(0, newImage.lastIndexOf('/')+1);
+          let file = newImage.substring(newImage.lastIndexOf('/') + 1, newImage.lastIndexOf('?'));
+
+          console.log(path);
+          console.log(file);
           
-          this.pictures.push(
-            {
-              name :this.details,
-              uri : this.imageUri
+          
+          this.file.readAsDataURL(path, file).then(
+            uri =>{
+              this.imageUri = uri ;
+              this.details =  "img" + Date.now().toString() + ".jpeg";
+
+              this.pictures.push(
+                {
+                  name :this.details,
+                  uri : this.imageUri
+                }
+              );
+              
+            }
+          ).catch( error =>{
+              console.log(error);
+              
             }
           );
-
           
+        },
+        error => console.error('Error cropping image', error)
+        );
       }
     }, err => { console.log(err);
      });

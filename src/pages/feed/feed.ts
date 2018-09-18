@@ -14,8 +14,14 @@ declare var firebase;
 export class FeedPage {
 
   items = [];
+  currentDay;
+
   constructor(public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) {
-      
+    
+    //this.bidDuration *= 86400000;
+    this.currentDay = Date.now();
+    console.log(this.currentDay);
+    
   }
 
   ionViewDidLoad() {
@@ -58,5 +64,9 @@ export class FeedPage {
     const modal = this.modalCtrl.create(UploadPage);
     modal.present();
 
+  }
+
+  search($event){
+    console.log($event);
   }
 }

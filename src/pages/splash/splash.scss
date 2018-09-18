@@ -8,7 +8,7 @@
 }
 
 .swiper-pagination-bullet-active{
-    background : #f3a183;
+    background : #1cd8d2;
 }
 
 .ic{
@@ -17,8 +17,8 @@
     padding: 15px 0;
 }
 
-h5{
-    color: #f3a183;
+ion-slide h5{
+    color: #1cd8d2;
     padding: 0 20px;
     letter-spacing: 1.5px;
 }
@@ -28,8 +28,8 @@ h5{
     bottom: 50px;
     left: 40px;
     width: calc(100% - 80px);
-    border: 2px solid #f3a183;
-    color: #f3a183;
+    border: 2px solid #1cd8d2;
+    color: #1cd8d2;
     background: transparent;
     box-shadow: none;
     z-index: 9999;

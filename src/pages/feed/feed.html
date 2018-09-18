@@ -1,6 +1,5 @@
-<ion-header>
-
-  <ion-navbar>
+<ion-content id = "feed">
+  <ion-fab id="nav">
     <ion-row>
       <ion-col  col-2>
         <button ion-button icon-only  clear medium (click) = "profile();">
@@ -8,7 +7,12 @@
         </button>
       </ion-col>
       <ion-col  col->
-        <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+          <ion-searchbar
+          [(ngModel)]="myInput"
+          [showCancelButton]="shouldShowCancel"
+          (search)="search($event)"
+          (ionCancel)="onCancel($event)">
+        </ion-searchbar>
       </ion-col>
       <ion-col  col-2>
         <button ion-button icon-only  clear medium (click) = "notify();">
@@ -16,10 +20,8 @@
         </button>
       </ion-col>
     </ion-row>
-  </ion-navbar>
-</ion-header>
+  </ion-fab>
 
-<ion-content id = "feed">
   <ion-refresher (ionRefresh)="doRefresh($event);">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -39,6 +41,9 @@
         <ion-row>
           <ion-col>
             <h3 ion-text>{{item.username}}</h3>
+          </ion-col>
+          <ion-col>
+            <h3 ion-text>{{ (item.duration - currentDay) / 60 / 60 / 24 / 1000   | number : '2.0-0' }} days left</h3>
           </ion-col>
         </ion-row>
         <ion-row>

@@ -228,7 +228,6 @@ export class HomePage {
 
   showPrompt() {
     let alert = this.alertCtrl.create({
-      title: 'Login',
       subTitle : "Reset Password",
       message : "A link to reset your password will be sent to your email",
       inputs: [

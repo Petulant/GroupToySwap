@@ -6,7 +6,7 @@
   }
 }
 .profile{
-  background: #fd746c;
+  background: #1cd8d2;
   
 }
 h3{
@@ -16,7 +16,7 @@ h3{
 }
 
 .cards{
-  animation: fadeIn 300ms ease-in;
+  animation: fadeIn 500ms ease-in;
 
   div{
     color: aliceblue !important;
@@ -24,12 +24,40 @@ h3{
   }
 }
 
+
+#nav{
+  width: calc(100% - 16px);
+  left: 8px;
+  background: whitesmoke;
+  height: 50px;
+  position: fixed;
+  top: 5px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1);
+
+  ion-searchbar{
+    padding: 0px;
+    
+  }
+}
+
+.searchbar-input{
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none  !important;
+  box-shadow: none  !important;
+  background: transparent !important;
+}
+
+.searchbar-input:focus-within{
+  border-bottom: 1px solid grey;
+}
 #main{
   padding-bottom: 70px;
+  padding-top: 70px;
 }
 @keyframes fadeIn{
   0%{
     opacity: .2;
-    transform: translateY(15px);
+    transform: translateY(35px);
   }
 }
