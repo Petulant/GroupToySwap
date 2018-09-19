@@ -25,12 +25,11 @@
   <ion-refresher (ionRefresh)="doRefresh($event);">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <div id = "main" *ngIf = "items != null">
+  <div id = "main">
     <ion-card  *ngFor = "let item of items" class = "cards">
-      
       <ion-slides pager>
         <ion-slide *ngFor = "let slideUrl of item.imgUrl">
-          <img src="{{slideUrl}}"/>
+          <img class = "ph" src="{{slideUrl}}"/>
         </ion-slide>
       </ion-slides>
       <div class = "profile">
@@ -40,10 +39,10 @@
         </ion-fab>
         <ion-row>
           <ion-col>
-            <h3 ion-text>{{item.username}}</h3>
+            <h3 ion-text><{{item.username}}</h3>
           </ion-col>
           <ion-col>
-            <h3 ion-text>{{ (item.duration - currentDay) / 60 / 60 / 24 / 1000   | number : '2.0-0' }} days left</h3>
+            <h3 ion-text id = "right">{{ (item.duration - currentDay) / 60 / 60 / 24 / 1000   | number : '2.0-0' }} days left</h3>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -71,6 +70,6 @@
   </div>
   
   <ion-fab bottom right>
-    <button ion-fab  (click) = "addItem();"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color = "secondary" (click) = "addItem();"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 </ion-content>

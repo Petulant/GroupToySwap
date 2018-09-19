@@ -1,16 +1,16 @@
 #bg{
     //background: linear-gradient(to right, #fd746c, #fd9068);
     //background: linear-gradient(to right, #d3cce3, #e9e4f0);
-    background: linear-gradient(-45deg, #1cd8d2, #93edc7);
+    background: linear-gradient(25deg, #1cd8d2, #93edc7);
     //background: linear-gradient(-35deg, #085078, #85d8ce);
 }
 
 #logo{
     width: 130px;
-    height: 60px;
+    height: 55px;
     background: url(../assets/imgs/toy-swap.png) center no-repeat;
     background-size: contain;
-    margin: 20px 10px 0px calc(50% - 65px);
+    margin: 20px 10px 10px calc(50% - 65px);
 }
 
 .clear{
@@ -19,19 +19,27 @@
     .tb{
         color: #293f55;
         text-align: right;
+
         ::placeholder{
             color: #293f55;
         }
+    }
+
+    .input-cove, .input-wrapper{
+        //border-bottom : 0.55px solid #222222;  
     }
 }
 
 .bt{
     border-radius: 20px !important;
     margin-top: 30px !important;
-    background: rgba(222,222,222,.1);
+    background: transparent;
     color: #293f55;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 11px;
+    border: 2px solid rgba($color: #000000, $alpha: .7);
+    box-shadow: none;
+
 }
 .lb{
     color: #293f55 !important;
@@ -41,7 +49,7 @@
 }
 #reset{
     color: #293f55;
-    font-size: 10pt;
+    font-size: 12pt;
     display: block;
     background: none;
     margin: auto;
@@ -50,7 +58,7 @@
 }
 
 .validation-errors{
-    color: #293f55;
+    color: tomato;
     transition: all .3s ease;
     font-size: 11px;
 }
@@ -72,7 +80,7 @@ h2{
     color: #293f55;
     display: block;
     font-family: 'Segoe UI';
-    font-size: 18px;
+    font-size: 16px;
     font-weight: lighter;
 }
 
@@ -88,10 +96,10 @@ h2{
 }
 
 #heading{
-    margin-top: 10px;
+    margin-top: 20px;
     text-transform: uppercase;
     font-weight: lighters;
     color: #293f55;
-    letter-spacing: 3px;
-    font-size: 14px;
+    letter-spacing: 2px;
+    font-size: 12px;
 }
