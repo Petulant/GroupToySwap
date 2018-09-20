@@ -17,7 +17,11 @@
 
   <!-- cordova.js required for cordova apps (remove if not needed) -->
   <script src="cordova.js"></script>
-
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+  </script>
   <!-- un-comment this code to enable service worker
   <script>
     if ('serviceWorker' in navigator) {
@@ -48,6 +52,9 @@
     firebase.initializeApp(config);
   </script>
 
+  
+
+  
   <!-- The polyfills js is generated during the build process -->
   <script src="build/polyfills.js"></script>
 

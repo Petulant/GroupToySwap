@@ -4,7 +4,8 @@ export class Item{
     type: String;
     name: String;
     color: String;
-    imageUri: String;
+    imageUri: String[];
+    description: String;
 
     constructor(){
 
@@ -15,19 +16,25 @@ export class Item{
     }
     setType(type: String){
         //validate item id
-        this.itemId = type;
+        this.type = type;
     }
     setName(name: String){
         //validate item id
-        this.itemId = name;
+        this.name = name;
     }
     setColor(color: String){
         //validate item id
-        this.itemId = color;
+        this.color = color;
     }
-    setImageUri(imgaeUri: String){
+    setImageUri(imageUri: String[]){
         //validate item id
-        this.itemId = this.imageUri;
+        this.imageUri = imageUri;
+    }
+    setDescription(description: String){
+        this.description = description;
+    }
+    getDescription(){
+        return this.description;
     }
     getItemId(){
         return this.itemId;

@@ -2,7 +2,8 @@
     //background: linear-gradient(to right, #fd746c, #fd9068);
     //background: linear-gradient(to right, #d3cce3, #e9e4f0);
     background: linear-gradient(25deg, #1cd8d2, #93edc7);
-    //background: linear-gradient(-35deg, #085078, #85d8ce);
+    //background: linear-gradient(-35deg, #085078, #85d8ce) !important;
+   
 }
 
 #logo{
@@ -23,10 +24,6 @@
         ::placeholder{
             color: #293f55;
         }
-    }
-
-    .input-cove, .input-wrapper{
-        //border-bottom : 0.55px solid #222222;  
     }
 }
 

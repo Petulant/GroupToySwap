@@ -1,10 +1,17 @@
 .img-fab{
   transform: translate(20px, -25px);
+  position: absolute !important;
+  z-index: 999999 !important;
   
+  
+ 
   button{
     background: white;
+    
+   
   }
 }
+
 .profile{
   background: #1cd8d2;
   
@@ -16,12 +23,11 @@ h3{
 }
 
 .ph{
-  min-height: 340px;
-  animation: fadeIn 200ms ease-in;
-  
+  min-height: 340px;  
 }
 .cards{
-  animation: fadeIn 500ms ease-in;
+  animation: fadeIn 700ms ease-in;
+  z-index: -5 !important;
 
   div{
     color: aliceblue !important;
@@ -69,6 +75,6 @@ h3{
 }
 @keyframes fadeIn{
   0%{
-    opacity: .2;
+    opacity: 0;
   }
 }

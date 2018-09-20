@@ -31,6 +31,21 @@ export class UploadPage {
     "Wooden toys"
   ];
 
+  months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November', 
+    'December'
+  ];
+
   title : string = "";
   description : string = "";
   toyType : string = "";
@@ -98,6 +113,7 @@ export class UploadPage {
         name :this.details,
         uri : this.imageUri
       });
+      console.log(this.pictures);
       
      }, (err) => {
       
@@ -161,6 +177,10 @@ export class UploadPage {
     this.bidDuration *= 60*60*24*1000;
 
     this.bidDuration +=  Date.now();
+    
+    let d = new Date();
+    let n = d.getMonth();
+    let month = this.months[n];
   
 
     firebase.database().ref('/activeBids/' ).push(
@@ -173,7 +193,12 @@ export class UploadPage {
         toyType : this.toyType,
         duration : this.bidDuration,
         profilePicture : this.profilePicture,
-        views : 0
+        status:"open",
+        views : 0,
+        monthPosted : month,
+        itemId: "not specified",
+        bidderUid: "not specified",
+        bidDate: new Date()
       }
     );
 
@@ -206,6 +231,8 @@ export class UploadPage {
             uri =>{
               this.imageUri = uri ;
               this.details =  "img" + Date.now().toString() + ".jpeg";
+              console.log(this.imageUri);
+              
 
               this.pictures.push(
                 {
@@ -213,14 +240,13 @@ export class UploadPage {
                   uri : this.imageUri
                 }
               );
-              
+
+              console.log(this.pictures);
             }
           ).catch( error =>{
               console.log(error);
-              
             }
           );
-          
         },
         error => console.error('Error cropping image', error)
         );
