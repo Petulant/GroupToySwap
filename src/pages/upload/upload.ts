@@ -31,20 +31,6 @@ export class UploadPage {
     "Wooden toys"
   ];
 
-  months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November', 
-    'December'
-  ];
 
   title : string = "";
   description : string = "";
@@ -177,10 +163,6 @@ export class UploadPage {
     this.bidDuration *= 60*60*24*1000;
 
     this.bidDuration +=  Date.now();
-    
-    let d = new Date();
-    let n = d.getMonth();
-    let month = this.months[n];
   
 
     firebase.database().ref('/activeBids/' ).push(
@@ -195,7 +177,6 @@ export class UploadPage {
         profilePicture : this.profilePicture,
         status:"open",
         views : 0,
-        monthPosted : month,
         itemId: "not specified",
         bidderUid: "not specified",
         bidDate: new Date()

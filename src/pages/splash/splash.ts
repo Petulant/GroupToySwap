@@ -11,15 +11,17 @@ declare var firebase;
   templateUrl: 'splash.html',
 })
 export class SplashPage {
-
+  currentUser: User;
   @ViewChild(Slides) slides : Slides;
-
+  
   constructor(public profile : ProfileProvider ,public navCtrl: NavController, public navParams: NavParams) {
-    firebase.auth().onAuthStateChanged(function (user) {
+    /*
+    firebase.auth().onAuthStateChanged( user => {
       if (user) {
         // User is signed in.
         console.log("user in");
-        console.log(user);
+        
+        console.log(user.displayName);
         this.currentUser = new User();
         this.currentUser.setUid(user.uid)
         this.currentUser.setUserName(user.displayName);
@@ -34,6 +36,8 @@ export class SplashPage {
         console.log("user out");
       }
     });
+
+    */
   }
 
   start(){

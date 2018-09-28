@@ -9,7 +9,7 @@
   <ion-navbar>
     <ion-row>
       <ion-col  col-10>
-        <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+        
       </ion-col>
       <ion-col  col-2>
         <button ion-button icon-only  clear medium (click) = "signOut();">
@@ -40,8 +40,4 @@
     <h5>{{username}}</h5>
   </div>    
 
-  <ion-fab bottom right>
-    <button ion-fab  (click) = "addItem();"><ion-icon name="add"></ion-icon></button>
-  </ion-fab>
-  
 </ion-content>

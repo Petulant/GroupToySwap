@@ -1,9 +1,3 @@
-<!--
-  Generated template for the DashboardPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -11,7 +5,7 @@
       <ion-col col-2>
         <button class = "cb" icon-only clear (click) = "home();"><ion-icon name = "home"></ion-icon></button>
       </ion-col>
-      <ion-col col-8><ion-title>Dashboard</ion-title></ion-col>
+      <ion-col col-8><div id="dashlogo"></div></ion-col>
       <ion-col col-2>
         <button class = "cb" icon-only clear><ion-icon name = "more"></ion-icon></button>
       </ion-col>
@@ -40,11 +34,12 @@
     <h5>flags</h5>
   </div>
   <div *ngIf = "activeScreen == 2">
+      
       <ion-list>
           <ion-item>
               <ion-label floating>period in months</ion-label>
               <ion-select (ionChange)="onChange();" [selectOptions]="selectOptions" [(ngModel)]="month">
-                <ion-option value="All Time">All</ion-option>
+                <ion-option value="All time">All</ion-option>
                 <ion-option value="January">January</ion-option>
                 <ion-option value="February">February</ion-option>
                 <ion-option value="March">March</ion-option>
@@ -75,7 +70,7 @@
         <div id="chart_div"></div>
       </ion-card> 
 
-      <ion-item *ngFor = "let item of dispList; let ind = index">
+      <ion-item *ngFor = "let item of filteredList; let ind = index">
         <ion-avatar item-start>
           <img src="../assets/imgs/logo.png">
         </ion-avatar>
@@ -84,7 +79,29 @@
       </ion-item>
   </div>
   <div *ngIf = "activeScreen == 3">
-    <h5>users</h5>
+    <ion-list>
+      <ion-list-header>
+        Active users
+      </ion-list-header>
+      <ion-item-sliding *ngFor = "let user of users; let ind = index">
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="{{user.profilePic}}">
+          </ion-avatar>
+          <h2>{{user.name}}</h2>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="primary">
+            <ion-icon name="close"></ion-icon>
+            Block
+          </button>
+          <button ion-button color="danger">
+            <ion-icon name="trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
   </div>
   
 </ion-content>
