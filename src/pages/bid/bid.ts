@@ -58,11 +58,11 @@ export class BidPage {
     this.navCtrl.pop();
   }
   perfomBid(){
-    var bidFactory = new BidManager();
+    /*var bidFactory = new BidManager(null);
     bidFactory.perfomBid(this.uid,this.username,this.imgUrl,
       this.title,this.description, this.toyType, this.itemId, 
       this.status,this.bidderUid,this.duration,this.bidDate,
-      this.profilePicture,this.views,this.bidder);
+      this.profilePicture,this.views,this.bidder);*/
   }
 
 }

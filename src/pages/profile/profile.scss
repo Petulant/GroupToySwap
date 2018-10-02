@@ -15,12 +15,13 @@
 }
 #header{
     padding: 20px 0;
-    height: 140px;
+    height: 175px;
     width: 96%;
     margin: 0 auto;
     background: #1cd8d2;
-    border-bottom-right-radius: 6px;
-    border-bottom-left-radius: 6px;
+    border-bottom: 35px solid white;
+    border-right: 50vw solid transparent;
+    border-left: 50vw solid transparent;
 
     
     #cont{
@@ -29,15 +30,21 @@
        top: 115px;
 
     }
+}
 
-    h5{
-        text-align: center;
-        width: 100%;
-        display: block;
-        color: #f0f8ff;
-        margin-top: 20px;
-        text-transform: capitalize;
-    }
+ion-title{
+    padding-top: 12px;
+}
+#username{
+    text-align: center;
+    width: 100vw;
+    position: absolute;
+    left: 0;
+    display: block;
+    color: #f0f8ff;
+    margin-top: 20px;
+    font-size: 22px;
+    text-transform: capitalize;
 }
 #posts{
     margin-top: 70px;
@@ -55,4 +62,8 @@ ion-item{
     }
 
 
+}
+output{
+    color:white;
+    background-color: black;
 }

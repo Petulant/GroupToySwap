@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController, LoadingController} from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { User } from '../../model/user';
 import { Crop } from '@ionic-native/crop';
@@ -28,7 +28,8 @@ export class UploadPage {
     "Games", 
     "Sound toys",
     "Spinning toys",
-    "Wooden toys"
+    "Wooden toys",
+    "Other"
   ];
 
 
@@ -50,18 +51,17 @@ export class UploadPage {
   profilePicture : any;
   loading: any;
   
-  constructor(private file: File, private crop: Crop, public loadingCtrl: LoadingController, private imagePicker: ImagePicker, private camera: Camera, public navCtrl: NavController, public navParams: NavParams, public profile: ProfileProvider) {
+  constructor(public toastCtrl: ToastController, private file: File, private crop: Crop, public loadingCtrl: LoadingController, private imagePicker: ImagePicker, private camera: Camera, public navCtrl: NavController, public navParams: NavParams, public profile: ProfileProvider) {
     this.selectOptions = {
       subTitle: 'Select a category',
     };
     this.firebaseStorage = firebase.storage();
-
+    
     let user = this.profile.user;
     this.uid = user.getUid()
     this.username = user.getUserName();
     this.profilePicture = user.getProfilePic();
     
-  
   }
 
   close(){
@@ -95,10 +95,16 @@ export class UploadPage {
       this.imageUri = 'data:image/jpeg;base64,' + imageData;
       this.details =  "img" + Date.now().toString() + ".jpeg";
 
-      this.pictures.push({
-        name :this.details,
-        uri : this.imageUri
-      });
+      
+
+      if(this.pictures.length <= 5){
+        this.pictures.push({
+          name :this.details,
+          uri : this.imageUri
+        });
+      }else{
+        this.presentToast("You can only add 6 images");
+      }
       console.log(this.pictures);
       
      }, (err) => {
@@ -141,12 +147,15 @@ export class UploadPage {
   }
 
   getUrls(){
-
+    console.log("fetching urls");
+    
     for(let i = 0; i <  this.pictures.length ; i++){
 
         this.firebaseStorage.ref('/pictures/' + this.uid +  '/' +  this.pictures[i].name + '/').getDownloadURL().then(url => {
         this.downloadUrls.push(url);
-
+        
+        console.log("saving url for image " + (1+i));
+        
         if(this.downloadUrls.length == this.pictures.length){
           this.saveToDB();
         }
@@ -159,6 +168,8 @@ export class UploadPage {
   }
 
   saveToDB() {
+    console.log("save to db");
+    console.log(this.downloadUrls);
     
     this.bidDuration *= 60*60*24*1000;
 
@@ -184,11 +195,16 @@ export class UploadPage {
     );
 
     this.loading.dismiss();
+    this.presentToast("Bid posted successfully");
     this.navCtrl.pop();
 
 
   }
 
+  remove(x){
+    this.pictures.splice(x,1);
+    this.presentToast("picture deleted");
+  }
   openGallery(){
 
     let options = {maximumImagesCount: 1, outputType : 0};
@@ -199,30 +215,27 @@ export class UploadPage {
         this.crop.crop(results[i], {quality: 40, targetWidth : 640, targetHeight : 640})
         .then(
         newImage => {
-          console.log('new image path is: ' + newImage);
 
           let path = newImage.substring(0, newImage.lastIndexOf('/')+1);
-          let file = newImage.substring(newImage.lastIndexOf('/') + 1, newImage.lastIndexOf('?'));
-
-          console.log(path);
-          console.log(file);
-          
+          let file = newImage.substring(newImage.lastIndexOf('/') + 1, newImage.lastIndexOf('?'));       
           
           this.file.readAsDataURL(path, file).then(
             uri =>{
               this.imageUri = uri ;
               this.details =  "img" + Date.now().toString() + ".jpeg";
-              console.log(this.imageUri);
               
 
-              this.pictures.push(
-                {
-                  name :this.details,
-                  uri : this.imageUri
-                }
-              );
-
-              console.log(this.pictures);
+              if(this.pictures.length <= 5){
+                               
+                this.pictures.push(
+                  {
+                    name :this.details,
+                    uri : this.imageUri
+                  }
+                );
+              }else{
+                this.presentToast("You can only add 6 images");
+              }
             }
           ).catch( error =>{
               console.log(error);
@@ -234,6 +247,21 @@ export class UploadPage {
       }
     }, err => { console.log(err);
      });
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 4000,
+      position: 'top',
+      showCloseButton : true,
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
   }
 
 }

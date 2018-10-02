@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, Slides,LoadingController, AlertCon
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { User } from '../../model/user';
 import { ProfileProvider } from '../../providers/profile/profile';
+import { BrowserTab } from '@ionic-native/browser-tab';
+
 declare var firebase;
 @IonicPage()
 @Component({
@@ -22,7 +24,7 @@ export class HomePage {
   @ViewChild(Slides) slides: Slides;
 
 
-  constructor(private alertCtrl: AlertController,public toastCtrl: ToastController, 
+  constructor(private browserTab: BrowserTab, private alertCtrl: AlertController,public toastCtrl: ToastController, 
     public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder,
     public profile: ProfileProvider, public loadingCtrl: LoadingController) {
 
@@ -92,7 +94,16 @@ export class HomePage {
         this.instatiateUserObj(firebase.auth().currentUser.uid);
   
       }).catch( err =>{
-        console.log(err);
+        console.log(err.code);
+       
+        if(err.code == "auth/user-not-found"){
+          this.presentToast("create an account before login");
+        }
+
+        if(err.code == "auth/wrong-password" || err.code == "auth/invalid-email"){
+          this.presentToast("The email or password you entered is invalid");
+        }
+        
         this.loading.dismiss();
         
       });
@@ -103,6 +114,7 @@ export class HomePage {
 
   googleSign(){
 
+   
     this.loading = this.loadingCtrl.create({
       content: 'Signing into your account, Please wait...'
     });
@@ -113,7 +125,7 @@ export class HomePage {
     firebase.auth().signInWithPopup(provider).then( user => {
       console.log("signed in");
 
-      var currentUser = new User();
+      var currentUser = new User(null);
   
       currentUser.setUid(user.user.uid)
       currentUser.setUserName(user.user.displayName);
@@ -128,7 +140,6 @@ export class HomePage {
       console.log(error.message);
       this.loading.dismiss();
     });
-   
   
   }
 
@@ -143,7 +154,7 @@ export class HomePage {
       this.loading.present();
   
       var user: User;
-      user = new User();
+      user = new User(null);
   
       user.setUserName(this.registerForm.value.name + " " + this.registerForm.value.surname );
       user.setEmail(this.registerForm.value.email);
@@ -158,8 +169,18 @@ export class HomePage {
         this.loading.dismiss();
         this.navCtrl.setRoot('FeedPage');
       }).catch(err => {
-        this.presentToast(err.message);
+        console.log(err.code);
         this.loading.dismiss();
+        if(err.code == "auth/wrong-password" || err.code == "auth/invalid-email"){
+          this.presentToast("The email or password you entered is invalid");
+        }
+
+        if(err.code == "auth/email-already-in-use"){
+          this.presentToast("Account already exist");
+        }
+
+        
+        
       });
     }else{
       this.presentToast("Complete form first");
@@ -172,7 +193,7 @@ export class HomePage {
     firebase.database().ref('/users/'+ key).on('value', userSnapshot => {
   
       
-      this.user = new User();
+      this.user = new User(null);
       this.user.setUid(userSnapshot.val().uid);
       this.user.setEmail(userSnapshot.val().email);
       this.user.setUserName(userSnapshot.val().name);  
@@ -208,15 +229,16 @@ export class HomePage {
         this.presentToast(error.message);      
       });
     }else{
-      this.presentToast("action cancelled");
+      this.presentToast("Email not sent");
     }
   }
 
   presentToast(message) {
     let toast = this.toastCtrl.create({
       message: message,
-      duration: 3000,
-      position: 'top'
+      duration: 4000,
+      position: 'top',
+      showCloseButton : true,
     });
   
     toast.onDidDismiss(() => {

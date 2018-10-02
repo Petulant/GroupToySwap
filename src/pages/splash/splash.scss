@@ -1,3 +1,15 @@
+#detail{
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    height: 75vh;
+    background: #1cd8d2;
+    width: 100%;
+    border-bottom: 35px solid white;
+    border-right: 50vw solid transparent;
+    border-left: 50vw solid transparent;
+}
 #center{
     display: flex;
     height: 100vh;
@@ -18,7 +30,7 @@
 }
 
 ion-slide h5{
-    color: #1cd8d2;
+    color: white;
     padding: 0 20px;
     letter-spacing: 1.5px;
 }

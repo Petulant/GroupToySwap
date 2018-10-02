@@ -1,17 +1,15 @@
 <ion-header>
-	<ion-navbar clear>
+	<ion-navbar>
 		<ion-row>
-			<button ion-button clear (click)="close();">cancel
-      </button>
+			<button ion-button (click)="close();">
+				cancel
+			</button>
 		</ion-row>
 	</ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-	<ion-list-header>
-		Bid Details
-	</ion-list-header>
 	<ion-item class="clear">
 		<ion-label floating>Title</ion-label>
 		<ion-input type="text" [(ngModel)]="title"></ion-input>
@@ -33,13 +31,17 @@
 		<ion-icon item-end name="calendar"></ion-icon>
 	</ion-list-header>
 	<ion-item>
-		<ion-range [(ngModel)]="bidDuration" min="3" max="21" color="danger" pin="true">
+		<ion-range [(ngModel)]="bidDuration" min="3" max="21" pin="true">
 			<ion-label range-left>3</ion-label>
 			<ion-label range-right>21</ion-label>
 		</ion-range>
 	</ion-item>
-	<ion-card id="preview" *ngIf="pictures.length > 0">
-		<div class="thumbnails" *ngFor="let thumb of pictures" [ngStyle] ="{ 'background-image' : 'url(' + thumb.uri + ')'}"></div>
+	<ion-card id="preview">
+		<div class="thumbnails" *ngFor="let thumb of pictures; let ind = index" [ngStyle] ="{ 'background-image' : 'url(' + thumb.uri + ')'}">
+			<button ion-button icon-only clear (click) = "remove(ind)">
+				<ion-icon name="close-circle"></ion-icon>
+			</button>
+		</div>
 	</ion-card>
 	<ion-row>
 		<ion-col col-4>
@@ -50,20 +52,22 @@
 			</ion-fab>
 		</ion-col>
 		<ion-col col-4>
+			<div id="status">
+				{{pictures.length}} of 6
+			</div>
+		</ion-col>
+		<ion-col col-4>
 			<ion-fab center>
 				<button ion-fab mini (click)="takePicture();">
           <ion-icon name="camera"></ion-icon>
         </button>
 			</ion-fab>
     </ion-col>
-    <ion-col col-4>
-      <ion-fab center>
-        <button ion-fab mini (click)="uploadImage();">
-          <ion-icon name="cloud-upload"></ion-icon>
-        </button>
-      </ion-fab>
-    </ion-col>
 	</ion-row>
+	<button id = "place" ion-button full (click)="uploadImage();">
+		place bid
+	</button>
+
 	
 
 </ion-content>

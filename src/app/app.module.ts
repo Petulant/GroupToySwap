@@ -15,6 +15,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { TestProvider } from '../providers/test/test';
 import { ProfileProvider } from '../providers/profile/profile';
 import { UploadProvider } from '../providers/upload/upload';
+import { AppMinimize } from '@ionic-native/app-minimize';
+import { BrowserTab } from '@ionic-native/browser-tab';
+import { BidInfoPage } from '../pages/bid-info/bid-info';
 
 
 @NgModule({
@@ -22,7 +25,8 @@ import { UploadProvider } from '../providers/upload/upload';
     MyApp,
     BidPage,
     NotificationsPage,
-    UploadPage
+    UploadPage,
+    BidInfoPage
     
   ],
   imports: [
@@ -35,7 +39,8 @@ import { UploadProvider } from '../providers/upload/upload';
     MyApp,
     BidPage,
     NotificationsPage,
-    UploadPage
+    UploadPage,
+    BidInfoPage
   ],
   providers: [
     StatusBar,
@@ -48,6 +53,8 @@ import { UploadProvider } from '../providers/upload/upload';
     File,
     ProfileProvider,
     UploadProvider,
+    AppMinimize ,
+    BrowserTab
 
   ]
 })

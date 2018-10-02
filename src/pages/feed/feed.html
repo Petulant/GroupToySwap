@@ -26,11 +26,14 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <div id = "main">
+    <div id="activity">Activity feed</div>
     
     <ion-card  *ngFor = "let item of items" class = "cards">
       <ion-slides pager>
         <ion-slide *ngFor = "let slideUrl of item.imgUrl">
-          <img class = "ph" src="{{slideUrl}}"/>
+          <div class="img-ph">
+            <img class = "img" src="{{slideUrl}}"/>
+          </div>
         </ion-slide>
       </ion-slides>
       <div class = "profile">

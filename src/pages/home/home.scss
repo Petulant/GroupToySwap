@@ -1,11 +1,24 @@
-#bg{
-    //background: linear-gradient(to right, #fd746c, #fd9068);
-    //background: linear-gradient(to right, #d3cce3, #e9e4f0);
-    background: linear-gradient(25deg, #1cd8d2, #93edc7);
-    //background: linear-gradient(-35deg, #085078, #85d8ce) !important;
-   
+#blur{
+    background: url(../../assets/imgs/walle.jpg) no-repeat center;
+    background-size: cover;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    filter: blur(5px);
+    z-index: -6666;
 }
 
+#blur::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba($color: #fff, $alpha: .45);
+}
 #logo{
     width: 130px;
     height: 55px;
@@ -34,7 +47,7 @@
     color: #293f55;
     font-weight: normal;
     font-size: 11px;
-    border: 2px solid rgba($color: #000000, $alpha: .7);
+    border: 2px solid rgba($color: #293f55, $alpha: .7);
     box-shadow: none;
 
 }
@@ -55,9 +68,10 @@
 }
 
 .validation-errors{
-    color: tomato;
+    color: #ff0033;
     transition: all .3s ease;
-    font-size: 11px;
+    font-size: 12px;
+    margin-top: 5px;
 }
 
 .sl{
@@ -88,7 +102,7 @@ h2{
     align-items: center;
 
     button{
-        margin: 10px;
+        margin: 20px;
     }
 }
 

@@ -7,10 +7,13 @@ export class User{
     private email: String;
     private type: String;
     private profilePic : String;
+    
 
-
-    constructor() {
-
+    constructor(obj) {
+        if(obj != null){
+            obj && Object.assign(this, obj);
+        }
+        
     }    
     getUid(){
         return this.uid;
@@ -35,7 +38,7 @@ export class User{
         }
     }
 
-    setType(type){
+    setType(type: String){
         this.type = type;
     }
     setEmail(email){

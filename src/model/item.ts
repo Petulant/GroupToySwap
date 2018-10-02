@@ -3,12 +3,14 @@ export class Item{
     itemId: String;
     type: String;
     name: String;
-    color: String;
     imageUri: String[];
     description: String;
 
-    constructor(){
-
+    constructor(obj){
+        if(obj != null){
+            obj && Object.assign(this, obj);
+        }
+        
     }
     setItemId(itemId: String){
         //validate item id
@@ -21,10 +23,6 @@ export class Item{
     setName(name: String){
         //validate item id
         this.name = name;
-    }
-    setColor(color: String){
-        //validate item id
-        this.color = color;
     }
     setImageUri(imageUri: String[]){
         //validate item id
@@ -44,9 +42,6 @@ export class Item{
     }
     getName(){
         return this.name;
-    }
-    getColor(){
-        return this.color;
     }
     getImageUri(){
         return this.imageUri;

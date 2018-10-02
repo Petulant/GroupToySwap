@@ -15,14 +15,14 @@ export class SplashPage {
   @ViewChild(Slides) slides : Slides;
   
   constructor(public profile : ProfileProvider ,public navCtrl: NavController, public navParams: NavParams) {
-    /*
+    
     firebase.auth().onAuthStateChanged( user => {
       if (user) {
         // User is signed in.
         console.log("user in");
         
         console.log(user.displayName);
-        this.currentUser = new User();
+        this.currentUser = new User(null);
         this.currentUser.setUid(user.uid)
         this.currentUser.setUserName(user.displayName);
         this.currentUser.setEmail(user.email);
@@ -37,7 +37,6 @@ export class SplashPage {
       }
     });
 
-    */
   }
 
   start(){

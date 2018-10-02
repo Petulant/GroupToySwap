@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, ModalController , LoadingControlle
 import { BidPage } from "../bid/bid";
 import {  UploadPage  } from "../upload/upload";
 import { NotificationsPage } from "../notifications/notifications";
+import { AppMinimize } from '@ionic-native/app-minimize';
+import { Platform } from 'ionic-angular';
 declare var firebase;
 
 
@@ -16,18 +18,22 @@ export class FeedPage {
   items = [];
   currentDay;
 
-  constructor(public loadingCtrl: LoadingController, public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private platform: Platform, private appMinimize: AppMinimize, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams) {
     
     //this.bidDuration *= 86400000;
     this.currentDay = Date.now();
     console.log(this.currentDay);
+
+    this.platform.registerBackButtonAction(() => {
+      this.appMinimize.minimize();
+    });
     
     
   }
 
   ionViewDidLoad() {
 
-       
+      
     let loading = this.loadingCtrl.create({
       content : "Loading please wait",
       spinner : "crescent",
@@ -35,19 +41,22 @@ export class FeedPage {
     });
   
     loading.present();
-    
-    this.items = [];
-    firebase.database().ref('/activeBids/').on('value', snapshot => {
+
+     firebase.database().ref('/activeBids/').on('value', snapshot => {
       this.items = []; 
       snapshot.forEach(snap => {
         this.items.push(snap.val());
         return false;
       });
+      console.log("active");
       console.log(this.items);
+      loading.dismiss();
       
       this.items.reverse();
-      loading.dismiss();
-    });  
+    });
+
+  
+
   }
 
   profile(){

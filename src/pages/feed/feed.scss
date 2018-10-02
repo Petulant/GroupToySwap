@@ -22,12 +22,19 @@ h3{
   color: aliceblue !important;
 }
 
-.ph{
-  min-height: 340px;  
+.img{
+  height: 340px;
+  width: 340px;
+}
+.img-ph{
+  
+  height: 340px;
+  background: #b3bcc4 url(../../assets/imgs/picture.svg) center no-repeat;
+  background-size: 180px;
 }
 .cards{
   animation: fadeIn 700ms ease-in;
-  z-index: -5 !important;
+  z-index: -55 !important;
 
   div{
     color: aliceblue !important;
@@ -40,7 +47,13 @@ h3{
 }
 
 #feed{
-  background: aliceblue;
+  background: #f0f8ff;
+
+  #activity{
+    padding: 5px 10px;
+    font-size: 22px;
+    color: #1cd8d2;
+  }
 }
 
 
