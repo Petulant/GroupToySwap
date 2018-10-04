@@ -21,18 +21,18 @@
       </ion-col>
     </ion-row>
   </ion-fab>
+  <div id="activity">Activity feed <small>{{date | date:'yyyy-MM-dd'}}</small></div>
 
-  <ion-refresher (ionRefresh)="doRefresh($event);">
+  <!--ion-refresher (ionRefresh)="doRefresh($event);">
     <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  <div id = "main">
-    <div id="activity">Activity feed</div>
-    
+  </ion-refresher-->
+  <div id = "main">    
     <ion-card  *ngFor = "let item of items" class = "cards">
       <ion-slides pager>
         <ion-slide *ngFor = "let slideUrl of item.imgUrl">
-          <div class="img-ph">
-            <img class = "img" src="{{slideUrl}}"/>
+          
+          <div class = "img">
+            <img src="{{slideUrl}}"/>
           </div>
         </ion-slide>
       </ion-slides>
@@ -74,6 +74,6 @@
   </div>
   
   <ion-fab bottom right>
-    <button ion-fab color = "primary" (click) = "addItem();"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color = "dark" (click) = "addItem();"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 </ion-content>

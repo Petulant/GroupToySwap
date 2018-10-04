@@ -3,12 +3,24 @@
     top:0;
     left: 0;
     right: 0;
-    height: 75vh;
+    height: 78vh;
     background: #1cd8d2;
     width: 100%;
     border-bottom: 35px solid white;
     border-right: 50vw solid transparent;
     border-left: 50vw solid transparent;
+}
+
+#splash-logo{
+    position: absolute;
+    background: url(../assets/imgs/toy-swap.png) no-repeat center bottom;
+    background-size: 180px;
+    width: 100%;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 160px;
+
 }
 #center{
     display: flex;
@@ -20,7 +32,7 @@
 }
 
 .swiper-pagination-bullet-active{
-    background : #1cd8d2;
+    background : #afdbda;
 }
 
 .ic{

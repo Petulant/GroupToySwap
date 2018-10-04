@@ -33,10 +33,9 @@
 
   <ion-list id = "posts">
     <ion-list-header>
-      recent posts
+      recent posts | tap item for more info
     </ion-list-header>
     <ion-item *ngFor= "let bid of h; let i = index" (click)="userBidClick(bid)">
-      <button id = "delete" ion-button icon-only clear (click) = "remove(key);"><ion-icon name="close"></ion-icon></button>
       <ion-avatar item-start>
         <img src={{itemProfileImg[0]}}>
       </ion-avatar>

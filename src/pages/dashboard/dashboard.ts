@@ -137,14 +137,6 @@ export class DashboardPage {
     var close = 0;
     var open = 0;
 
-    for(let j = 0; j < this.filterData.length; j++){
-      if(this.dispList[j].bid.status == "open"){
-        open++;
-      }else{
-        close++;
-      }
-    }
-
     console.log("close " + close);
     console.log("open " + open);
     

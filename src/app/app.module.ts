@@ -15,9 +15,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { TestProvider } from '../providers/test/test';
 import { ProfileProvider } from '../providers/profile/profile';
 import { UploadProvider } from '../providers/upload/upload';
-import { AppMinimize } from '@ionic-native/app-minimize';
-import { BrowserTab } from '@ionic-native/browser-tab';
 import { BidInfoPage } from '../pages/bid-info/bid-info';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 
 @NgModule({
@@ -53,8 +52,7 @@ import { BidInfoPage } from '../pages/bid-info/bid-info';
     File,
     ProfileProvider,
     UploadProvider,
-    AppMinimize ,
-    BrowserTab
+    AndroidPermissions
 
   ]
 })

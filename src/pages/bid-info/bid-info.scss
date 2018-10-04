@@ -1,3 +1,37 @@
-page-bid-info {
+#header{
+  padding: 20px 0;
+  height: 175px;
+  width: 96%;
+  margin: 0 auto;
+  background: #1cd8d2;
+  border-bottom: 35px solid white;
+  border-right: 50vw solid transparent;
+  border-left: 50vw solid transparent; 
+  
+}
 
+#bid-img{
+     
+  top: 90px;
+  position: absolute;
+  width: 112px;
+  left: calc(50% - 56px);
+  height: 112px;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+#bid-main{
+  padding: 60px 12px 70px;
+}
+
+#views{
+  text-align: center;
+  width: 100%;
+  padding: 5px 0 15px;
+}
+
+#summary{
+  padding:0 7px 10px;
 }

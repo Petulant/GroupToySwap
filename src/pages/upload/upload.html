@@ -10,20 +10,22 @@
 
 
 <ion-content padding>
-	<ion-item class="clear">
-		<ion-label floating>Title</ion-label>
-		<ion-input type="text" [(ngModel)]="title"></ion-input>
-	</ion-item>
-	<ion-item class="clear">
-		<ion-label floating>Description</ion-label>
-		<ion-textarea type="text" [(ngModel)]="description"></ion-textarea>
-	</ion-item>
-	<ion-item class="clear">
-		<ion-label floating>Choose Toy Type</ion-label>
-		<ion-select [selectOptions]="selectOptions" [(ngModel)]="toyType">
-			<ion-option *ngFor="let type of types" value="{{type}}">{{type}}</ion-option>
-		</ion-select>
-	</ion-item><br>
+	<ion-list>
+		<ion-item class="clear">
+			<ion-label floating>Title</ion-label>
+			<ion-input type="text" [(ngModel)]="title"></ion-input>
+		</ion-item>
+		<ion-item class="clear">
+			<ion-label floating>Description</ion-label>
+			<ion-textarea type="text" [(ngModel)]="description"></ion-textarea>
+		</ion-item>
+		<ion-item class="clear">
+			<ion-label floating>Choose Toy Type</ion-label>
+			<ion-select [selectOptions]="selectOptions" [(ngModel)]="toyType">
+				<ion-option *ngFor="let type of types" value="{{type}}">{{type}}</ion-option>
+			</ion-select>
+		</ion-item>
+	</ion-list>
 
 	<ion-list-header>
 		Bid duration
@@ -36,27 +38,27 @@
 			<ion-label range-right>21</ion-label>
 		</ion-range>
 	</ion-item>
+
 	<ion-card id="preview">
+		
 		<div class="thumbnails" *ngFor="let thumb of pictures; let ind = index" [ngStyle] ="{ 'background-image' : 'url(' + thumb.uri + ')'}">
-			<button ion-button icon-only clear (click) = "remove(ind)">
-				<ion-icon name="close-circle"></ion-icon>
-			</button>
+			<button class = "remove" icon-only (click) = "remove(ind)"></button>	
 		</div>
 	</ion-card>
 	<ion-row>
-		<ion-col col-4>
+		<ion-col col-8>
+			<div id="status">
+				{{pictures.length}} added. you can still add {{6 - pictures.length}}.
+			</div>
+		</ion-col>
+		<ion-col col-2>
 			<ion-fab center>
 				<button ion-fab mini (click)="openGallery();">
           <ion-icon name="images"></ion-icon>
         </button>
 			</ion-fab>
 		</ion-col>
-		<ion-col col-4>
-			<div id="status">
-				{{pictures.length}} of 6
-			</div>
-		</ion-col>
-		<ion-col col-4>
+		<ion-col col-2>
 			<ion-fab center>
 				<button ion-fab mini (click)="takePicture();">
           <ion-icon name="camera"></ion-icon>
@@ -64,9 +66,11 @@
 			</ion-fab>
     </ion-col>
 	</ion-row>
-	<button id = "place" ion-button full (click)="uploadImage();">
-		place bid
-	</button>
+	<ion-row>
+		<button ion-button full (click)="uploadImage();">
+			place bid
+		</button>
+	</ion-row>
 
 	
 

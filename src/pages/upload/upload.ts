@@ -78,7 +78,7 @@ export class UploadPage {
   takePicture(){
        
     let options: CameraOptions = {
-      quality: 40,
+      quality: 25,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
@@ -94,7 +94,11 @@ export class UploadPage {
       
       this.imageUri = 'data:image/jpeg;base64,' + imageData;
       this.details =  "img" + Date.now().toString() + ".jpeg";
-
+      this.loading = this.loadingCtrl.create({
+        content: 'Optimizing image. please wait...'
+      });
+    
+      this.loading.present();
       
 
       if(this.pictures.length <= 5){
@@ -102,14 +106,17 @@ export class UploadPage {
           name :this.details,
           uri : this.imageUri
         });
+        this.loading.dismiss();
       }else{
         this.presentToast("You can only add 6 images");
+        this.loading.dismiss();
       }
       console.log(this.pictures);
       
      }, (err) => {
       
       console.log(err);
+      this.loading.dismiss();
      });
     
   }
@@ -208,39 +215,49 @@ export class UploadPage {
   openGallery(){
 
     let options = {maximumImagesCount: 1, outputType : 0};
-    
     this.imagePicker.getPictures(options).then( results => {
       for (var i = 0; i < results.length; i++) {
 
-        this.crop.crop(results[i], {quality: 40, targetWidth : 640, targetHeight : 640})
+        this.crop.crop(results[i], {quality: 25, targetWidth : 640, targetHeight : 640})
         .then(
         newImage => {
+          console.log('new image path is: ' + newImage);
 
           let path = newImage.substring(0, newImage.lastIndexOf('/')+1);
-          let file = newImage.substring(newImage.lastIndexOf('/') + 1, newImage.lastIndexOf('?'));       
+          let file = newImage.substring(newImage.lastIndexOf('/') + 1, newImage.lastIndexOf('?'));
+
+          console.log(path);
+          console.log(file);
+
+          this.loading = this.loadingCtrl.create({
+            content: 'Optimizing image. please wait...'
+          });
+        
+          this.loading.present();
           
           this.file.readAsDataURL(path, file).then(
             uri =>{
               this.imageUri = uri ;
               this.details =  "img" + Date.now().toString() + ".jpeg";
-              
 
               if(this.pictures.length <= 5){
-                               
-                this.pictures.push(
-                  {
-                    name :this.details,
-                    uri : this.imageUri
-                  }
-                );
+                this.pictures.push({
+                  name :this.details,
+                  uri : this.imageUri
+                });
+                this.loading.dismiss();
               }else{
                 this.presentToast("You can only add 6 images");
+                this.loading.dismiss();
               }
+              
             }
           ).catch( error =>{
               console.log(error);
+              
             }
           );
+          
         },
         error => console.error('Error cropping image', error)
         );

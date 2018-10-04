@@ -7,12 +7,57 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>bidInfo</ion-title>
+    <ion-row>
+      <button ion-button (click) = "close();">close</button>
+    </ion-row>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <div id="header">
+  </div>
+  <img id = "bid-img" src="../../assets/imgs/logo.png"/>
 
+  <div id="bid-main">
+    <ion-row>
+      <div id="views">1256 views</div>
+    </ion-row>
+    <ion-row>
+      <div id="summary">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas pariatur quos sequi voluptate sint fugia
+      </div>
+    </ion-row>
+    <ion-row>
+      <button ion-button full>delete item</button>
+    </ion-row>
+    
+    <ion-row>
+      <ion-list>
+        <ion-list-header>
+          bidders for this item
+        </ion-list-header>
+
+        <ion-item>
+          <p>
+            blah blah blah blah blah blah blah blahblah blah
+          </p>
+        </ion-item>
+        <ion-item>
+          <p>
+            blah blah blah blah blah blah blah blahblah blah
+          </p>
+        </ion-item>
+        <ion-item>
+          <p>
+            blah blah blah blah blah blah blah blahblah blah
+          </p>
+        </ion-item>
+      </ion-list>
+    </ion-row>
+    
+    
+
+  </div>
 </ion-content>

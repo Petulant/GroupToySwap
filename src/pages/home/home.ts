@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, Slides,LoadingController, AlertCon
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { User } from '../../model/user';
 import { ProfileProvider } from '../../providers/profile/profile';
-import { BrowserTab } from '@ionic-native/browser-tab';
 
 declare var firebase;
 @IonicPage()
@@ -24,7 +23,7 @@ export class HomePage {
   @ViewChild(Slides) slides: Slides;
 
 
-  constructor(private browserTab: BrowserTab, private alertCtrl: AlertController,public toastCtrl: ToastController, 
+  constructor(private alertCtrl: AlertController,public toastCtrl: ToastController, 
     public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder,
     public profile: ProfileProvider, public loadingCtrl: LoadingController) {
 

@@ -19,25 +19,20 @@
 h3{
   padding: 40px 20px 2px;
   text-transform: capitalize;
-  color: aliceblue !important;
+  color: #f0f8ff !important;
 }
 
-.img{
-  height: 340px;
-  width: 340px;
-}
-.img-ph{
-  
-  height: 340px;
-  background: #b3bcc4 url(../../assets/imgs/picture.svg) center no-repeat;
-  background-size: 180px;
-}
 .cards{
   animation: fadeIn 700ms ease-in;
   z-index: -55 !important;
 
+  .img{
+    min-height: calc(100vw - 25px);
+    background: url(../assets/imgs/picture.svg) no-repeat center;
+    background-size: 80%;
+  }
   div{
-    color: aliceblue !important;
+    color: #f0f8ff !important;
     font-weight: lighter; 
   }
 
@@ -48,18 +43,25 @@ h3{
 
 #feed{
   background: #f0f8ff;
-
   #activity{
-    padding: 5px 10px;
+    padding: 75px 0px 15px;
     font-size: 22px;
-    color: #1cd8d2;
+    color: #f0f8ff;
+    background: #1cd8d2;
+    border-bottom: 10px solid #f0f8ff;
+    border-left: 11px solid transparent;
+
+    small{
+      float: right;
+      padding-right: 12px;
+    }
   }
 }
 
 
 #nav{
-  width: calc(100% - 16px);
-  left: 8px;
+  width: calc(100% - 24px);
+  left: 12px;
   background: white;
   height: 50px;
   position: fixed;
@@ -79,12 +81,9 @@ h3{
   background: transparent !important;
 }
 
-.searchbar-input:focus-within{
-  //border-bottom: 1px solid grey;
-}
 #main{
   padding-bottom: 70px;
-  padding-top: 70px;
+
 }
 @keyframes fadeIn{
   0%{
