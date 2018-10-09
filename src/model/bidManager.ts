@@ -41,9 +41,29 @@ export class BidManager {
     placedBidsRef.child('/' + placedBidskey + '/').set({
       bid: bid,
     });
-
+    
   }
+  updatePlacedBid(bid: Bid){
+    console.log(bid);
+    console.log(bid.getBidId());
+    
+    var placedBidsRef = firebase.database().ref('/placedBids/');
+    var placedBidskey = bid.getBidId();
 
+    placedBidsRef.child('/' + placedBidskey + '/').set({
+      bid: bid,
+    });
+  }
+  updateUsersBid(bid: Bid,userId){
+    console.log(bid);
+    var placedBidsRef = firebase.database().ref('/userBids/');
+    var userBidkey = bid.getBidId();
+    console.log(userBidkey);
+    console.log(userId);
+    placedBidsRef.child('/'+ userId +'/' + userBidkey + '/').set({
+      bid: bid,
+    });
+  }
   writeUserBid(bid: Bid) {
     var userId = bid.getOwner().getUid();
     var bidId = bid.getBidId();
@@ -92,11 +112,9 @@ export class BidManager {
     // }
     // `delay` returns a promise
 
-
     // Only `delay` is able to resolve or reject the promise
     var userBidObjArr = {};
  
-
     firebase.database().ref('/userBids/' + userId).on('value', (snapshot) => {
       snapshot.forEach(snap => {
         console.log(snap)
@@ -124,7 +142,17 @@ export class BidManager {
     // });
 
   }
+  getUserById(uid: String,callback){
+    var currentUser;
+    firebase.database().ref('/users/' + uid).on('value', (snapshot) => {
 
+          console.log(snapshot.val().name);   
+          currentUser = new User(snapshot.val());
+  
+      console.log(currentUser);
+      callback(currentUser);
+    });
+  }
   getAllPlacedBids() {
 
     var placedBidObject: Object;
@@ -293,7 +321,9 @@ export class BidManager {
     var Offerkey = bidOfferRef.push().getKey();
 
     offer.setOfferId(Offerkey);
-    console.log(Offerkey)
+    console.log(offer);
+    console.log(Offerkey);
+    console.log(bidId);
     bidOfferRef.child('/' + bidId + '/' + Offerkey).set({
       offer: offer,
     });
@@ -310,16 +340,24 @@ export class BidManager {
       });
     });
   }
-  readBidOffersById(bidId: String) {
-    bidId = "-LNK6QX0PLmFLehrD-2P"
-    var bidOffer: Object;
+  offerItems = [];
+  ownerArr = [];
+  readBidOffersById(bidId: String,consumedOfferData) {
+    // var bidOffer: Offer;
     firebase.database().ref('/bidOffers/' + bidId).on('value', (snapshot) => {
       snapshot.forEach(snap => {
-        bidOffer = snap.val();
-        console.log(bidOffer);
+        // var bidOffer = new Offer(snap.val().offer);
+        this.offerItems.push(snap.val().offer);
+        console.log(snap.val().offer.bidId);
+        this.ownerArr.push(snap.val().offer.owner);
+        console.log(this.ownerArr[0].name);
+        // console.log(owner);
+       
         return false;
       });
     });
+    console.log(this.offerItems.length);
+    consumedOfferData(this.offerItems);
   }
   updateOffer(bidId: String, property: String, newVal: String) {
     var updates: Object;
@@ -348,6 +386,19 @@ export class BidManager {
     });
     if (flags != null) {
       return flags;
+    }
+  }
+  readAllBidFlagsById(bidId,consumedFlagsData) {
+    var flags = [];
+    firebase.database().ref('/bidFlags/' + bidId).on('value', (snapshot) => {
+      snapshot.forEach(snap => {
+        flags.push(snap.val());
+        console.log(flags);
+        return false;
+      });
+    });
+    if (flags != null) {
+      consumedFlagsData(flags);
     }
   }
   readBidFlagById(bidId: String) {

@@ -5,6 +5,7 @@ import { Flag } from "./flag";
 
 
 export class Bid{
+    
     bidId: String;
     owner: User;
     bidder: User;
@@ -18,24 +19,13 @@ export class Bid{
     flagId: String;
 
     constructor(obj: Object){
-
-        
+  
         if(obj != null){
             obj && Object.assign(this, obj);
+        }else{
+            this.views = 0;
         }
-        
-        // this.bidId = "not yet specified";
-        // this.owner = null;
-        // this.bidder = null;
-        // this.views = 0;
-        // this.merchandise = null;
-        // this.offers = Item[0];
-        // // this.upload = "not yet specified";
-        // this.bidDate = null;
-        // this.status= "not yet specified";
-        // this.expireDate = null;
-        // this.bidDuration = 0;
-        // this.flagId = "not yet specified";
+    
     }
     setOwner(owner: User){
         if(owner != null && owner instanceof User){

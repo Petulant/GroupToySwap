@@ -4,6 +4,7 @@ export class User{
 
     private uid: String;
     private name: String;
+    private surname: String;
     private email: String;
     private type: String;
     private profilePic : String;
@@ -37,7 +38,9 @@ export class User{
             this.name = userName;
         }
     }
-
+    setSurname(surname){
+        this.surname = surname;
+    }
     setType(type: String){
         this.type = type;
     }
@@ -48,7 +51,9 @@ export class User{
     setProfilePic(profilePic){
         this.profilePic = profilePic;
     }
-
+    getSurname(){
+        return this.surname;
+    }
     getProfilePic(){
         return this.profilePic;
     }

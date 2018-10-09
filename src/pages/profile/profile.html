@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-row>
-      <ion-title>Prodile</ion-title>
+      <ion-title>Profile</ion-title>
       <ion-col  col-2>
         <button ion-button icon-only  clear medium (click) = "signOut();">
           <ion-icon name = "log-out" ></ion-icon>
@@ -43,5 +43,9 @@
       <p>{{items[i].description}}</p>
     </ion-item>
   </ion-list>
+  <ion-fab bottom right>
+    <button ion-fab color = "dark" (click) = "dash();" *ngIf = "userType == 'admin'"><ion-icon name="options"></ion-icon></button>
+  </ion-fab>
+  
   
 </ion-content>

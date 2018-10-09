@@ -8,13 +8,10 @@ export class Flag{
     issue: String;
     adminComment: String;
 
-    constructor(){
-
-        this.bidId = "not specified";
-        this.reportDate = Date.now();
-        this.status = "not specified";
-        this.issue = "not specified";
-        this.adminComment = "not specified"
+    constructor(obj){
+        if(obj != null){
+            obj && Object.assign(this, obj);
+        }
     }
 
     setBidId(bidId: String){

@@ -4,11 +4,16 @@ import { Item } from "../../node_modules/ionic-angular/umd";
 
 export class Offer{
 
-    bidId: String;
+    owner: User;
     items: Item[];
+    bidId: String;
+    offerDate: any;
+    
 
-    constructor(){
-
+    constructor(obj){
+        if(obj != null){
+            obj && Object.assign(this, obj);
+        }
     }
     setOfferId(offerId: String){
         this.bidId = offerId;
@@ -21,5 +26,17 @@ export class Offer{
     }
     getItems(){
         return this.items;
+    }
+    setOwner(owner:User){
+        this.owner = owner;
+    }
+    getOwner(){
+        return this.owner
+    }
+    setOfferDate(date: any){
+        this.offerDate = date;
+    }
+    getOfferDate(){
+        return this.offerDate;
     }
 }

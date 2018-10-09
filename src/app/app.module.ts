@@ -16,6 +16,7 @@ import { TestProvider } from '../providers/test/test';
 import { ProfileProvider } from '../providers/profile/profile';
 import { UploadProvider } from '../providers/upload/upload';
 import { BidInfoPage } from '../pages/bid-info/bid-info';
+import { ReportPage } from "../pages/report/report";
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 
@@ -25,7 +26,8 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
     BidPage,
     NotificationsPage,
     UploadPage,
-    BidInfoPage
+    BidInfoPage,
+    ReportPage
     
   ],
   imports: [
@@ -39,7 +41,8 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
     BidPage,
     NotificationsPage,
     UploadPage,
-    BidInfoPage
+    BidInfoPage,
+    ReportPage
   ],
   providers: [
     StatusBar,

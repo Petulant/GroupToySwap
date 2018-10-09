@@ -26,11 +26,6 @@ h3{
   animation: fadeIn 700ms ease-in;
   z-index: -55 !important;
 
-  .img{
-    min-height: calc(100vw - 25px);
-    background: url(../assets/imgs/picture.svg) no-repeat center;
-    background-size: 80%;
-  }
   div{
     color: #f0f8ff !important;
     font-weight: lighter; 
@@ -58,7 +53,12 @@ h3{
   }
 }
 
-
+.img-ph{
+  background: url(../../assets/imgs/picture.svg) no-repeat center;
+  background-size: 70%;
+  height: calc(100vw - 20px);
+  width: calc(100vw - 20px);
+}
 #nav{
   width: calc(100% - 24px);
   left: 12px;

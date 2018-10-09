@@ -24,6 +24,7 @@ export class ProfilePage {
   email;
   gender;
   surname;
+  userType;
   h = [];
   datalist: Bid[] = [];
   description;
@@ -42,6 +43,11 @@ export class ProfilePage {
       this.email = this.profile.user.getEmail();
       this.surname = this.profile.user.getUid();
       this.profilePhoto = this.profile.user.getProfilePic();
+      this.userType = this.profile.user.getType();
+      console.log("type should appear");
+      
+      console.log(this.userType);
+      
       console.log(this.profilePhoto);
 
       console.log(this.profile.user.getUid());
@@ -107,5 +113,9 @@ export class ProfilePage {
       console.log(error);
 
     });
+  }
+
+  dash(){
+    this.navCtrl.setRoot("DashboardPage");
   }
 }
