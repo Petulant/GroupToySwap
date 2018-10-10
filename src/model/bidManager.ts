@@ -12,7 +12,7 @@ export class BidManager {
   private upload;
   bidDate: Date;
   itemObj;
-
+  offerItemsMerchandise = [];
 
   constructor() {
 
@@ -342,22 +342,33 @@ export class BidManager {
   }
   offerItems = [];
   ownerArr = [];
+  
+  offerMechandiseArr = [];
   readBidOffersById(bidId: String,consumedOfferData) {
+    var g = 0;
     // var bidOffer: Offer;
     firebase.database().ref('/bidOffers/' + bidId).on('value', (snapshot) => {
+      g = 0;
       snapshot.forEach(snap => {
         // var bidOffer = new Offer(snap.val().offer);
         this.offerItems.push(snap.val().offer);
+        console.log(snap.val().offer);
         console.log(snap.val().offer.bidId);
         this.ownerArr.push(snap.val().offer.owner);
-        console.log(this.ownerArr[0].name);
+        this.offerItemsMerchandise.push(snap.val().offer.items);
+        this.offerMechandiseArr.push(this.offerItemsMerchandise[g][0]);
+        console.log(this.ownerArr[g].name);
         // console.log(owner);
-       
+       g++;
         return false;
       });
+      console.log(this.offerItems);
+      console.log(this.offerItemsMerchandise[0][0]);
+      console.log(this.offerMechandiseArr);
+      console.log(this.offerMechandiseArr[0].description);
+      consumedOfferData(this.offerItems,this.ownerArr,this.offerMechandiseArr);
     });
-    console.log(this.offerItems.length);
-    consumedOfferData(this.offerItems);
+
   }
   updateOffer(bidId: String, property: String, newVal: String) {
     var updates: Object;

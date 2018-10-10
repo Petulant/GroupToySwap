@@ -37,13 +37,17 @@ h3{
 }
 
 #feed{
-  background: #f0f8ff;
+  //background: #f0f8ff;
   #activity{
+
+    position: absolute;
+    left: 0;
+    right: 0;
     padding: 75px 0px 15px;
     font-size: 22px;
     color: #f0f8ff;
     background: #1cd8d2;
-    border-bottom: 10px solid #f0f8ff;
+    border-bottom: 10px solid white;
     border-left: 11px solid transparent;
 
     small{
@@ -59,6 +63,7 @@ h3{
   height: calc(100vw - 20px);
   width: calc(100vw - 20px);
 }
+
 #nav{
   width: calc(100% - 24px);
   left: 12px;
@@ -82,8 +87,24 @@ h3{
 }
 
 #main{
-  padding-bottom: 70px;
+  position: relative;
+  margin-top: 123px;
+  padding: 15px 0 70px;
 
+}
+
+#resetSearch{
+  transition: all .15s ease;
+  animation: fadeIn 450ms ease-in;
+  position: fixed;
+  bottom: 15px;
+  z-index: 5555;
+  left: 0;
+  right: 0;
+  width: 120px;
+  left: calc(50% - 60px);
+  border-radius: 10px;
+  padding: 20px;
 }
 @keyframes fadeIn{
   0%{

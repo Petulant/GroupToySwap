@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController, ModalController, LoadingController } from 'ionic-angular';
 import { BidPage } from "../bid/bid";
 import { UploadPage } from "../upload/upload";
 import { NotificationsPage } from "../notifications/notifications";
@@ -31,25 +31,27 @@ export class FeedPage {
   bidItemImgList = [];
   ownerObjArr = [];
   views = [];
+  myInput;
+  searchResults= [];
 
-  constructor(private platform: Platform, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams,public userProfile: ProfileProvider) {
+
+  constructor(public toastCtrl: ToastController, private platform: Platform, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams,public userProfile: ProfileProvider) {
 
     this.currentDay = Date.now();
-    console.log(this.userProfile.user);
-    // this.uid = this.userProfile.user.getUid();
-    console.log(this.uid);
-
     if(this.userProfile.user === undefined){
-        console.log("user not loaded properly please reload the splash page");
+      console.log("user not loaded properly please reload the splash page");
     }else{
       
     }
-    
-    
-
   }
 
   ionViewDidLoad() {
+    this.retrieveData();
+  }
+
+  retrieveData(){
+
+    this.searchResults = [];
     this.date = new Date();
     let loading = this.loadingCtrl.create({
       content: "Loading please wait",
@@ -66,66 +68,37 @@ export class FeedPage {
     firebase.database().ref('/placedBids/').on('value', snapshot => {
       this.items = [];
       g = 0;
-      console.log("in placed bids");
+
       snapshot.forEach(snap => {
         if (snap.val() != undefined)  {
           
           this.items.push(snap.val());
-          console.log(this.items);
-          console.log(g);
-          console.log(this.items[g].bid);
           dummyItemObj.push(this.items[g].bid);
           dummyOwner.push(dummyItemObj[g].owner);
 
-          console.log(dummyItemObj[g]);
-          console.log(dummyOwner[g]);
-
           this.itemsObjArr.push(this.items[g].bid);
-          console.log(this.itemsObjArr[g].bidId);
 
           this.views.push(this.itemsObjArr[g].views);
           
-          // console.log(this.userProfile.user.getUid());
           this.merchandiseObjArr.push(this.itemsObjArr[g].merchandise);
           this.ownerObjArr.push(this.itemsObjArr[g].owner);
-          console.log(this.ownerObjArr[g].uid);
-          // console.log(this.merchandiseObjArr);
-          // this.imgUrlArr.push(this.merchandiseObjArr[g].imageUri);
-          // console.log(this.imgUrlArr[g]);
-          // this.imgObjUri.push(this.merchandiseObjArr[g]);
-
-          console.log(this.merchandiseObjArr[g].name);
+      
           this.imgObjUri.push(this.merchandiseObjArr[g]);
-          console.log(this.imgObjUri[g]);
-          console.log(this.imgObjUri[g]);
-          // console.log(this.imgObjUri[1].imageUri)S
-          // this.testImageArr.push(this.imgObjUri[g].imageUri);
-          // console.log(this.testImageArr[0][0]);
 
           g++;
 
         }
-        // this.items.reverse();
         return false;
       });
 
-      // this.bidItemImgList = [];
-      // for (var i = 0; i < this.testImageArr.length; i++) {
-      //   this.bidItemImgList = this.testImageArr[i];
-      //   console.log(this.bidItemImgList);
-      //   console.log(i);
-      //   // this.bidItemImgList = this.testImageArr[i];         
-      // }
+    
       this.items.reverse();
       this.merchandiseObjArr.reverse();
       this.imgObjUri.reverse();
       this.itemsObjArr.reverse();
       this.ownerObjArr.reverse();
       this.views.reverse();
-      console.log(this.itemsObjArr);
-      console.log(this.ownerObjArr[0].profilePic);
       loading.dismiss();
-      console.log(this.imgObjUri);
     });
   }
 
@@ -155,8 +128,9 @@ export class FeedPage {
   }
 
   doRefresh(refresher) {
-    console.log(this.items);
+    this.retrieveData();
     refresher.complete();
+    this.myInput = "";
   }
 
   addItem() {
@@ -167,6 +141,48 @@ export class FeedPage {
   }
 
   search($event) {
-    console.log($event);
+        
+    this.searchResults = [];
+
+    for(let i = 0 ; i < this.items.length ; i++){
+      if(this.items[i].bid.merchandise.type.toLowerCase() == this.myInput.toLowerCase() || this.items[i].bid.merchandise.name.toLowerCase() == this.myInput.toLowerCase() ){
+        console.log("item found on index " + i);
+        this.searchResults.push(this.items[1]);
+      }
+    }
+
+
+    if(this.searchResults.length > 0){
+      this.items = this.searchResults;
+      
+      this.presentToast("Now showing " +  this.myInput);
+    }else{
+      this.presentToast(this.myInput + " not found"); 
+    }
+
+    console.log(this.searchResults.length);
+    
+    
+  }
+
+  onClear($event){
+
+    console.log("cancel");
+    this.retrieveData();
+  }
+
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 4000,
+      position: 'top',
+      showCloseButton : true,
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
   }
 }

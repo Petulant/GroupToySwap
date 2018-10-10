@@ -9,8 +9,9 @@
       <ion-col  col->
           <ion-searchbar
           [(ngModel)]="myInput"
-          [showCancelButton]="shouldShowCancel"
+          [showCancelButton]="True"
           (search)="search($event)"
+          (ionClear)="onClear($event)"
           (ionCancel)="onCancel($event)">
         </ion-searchbar>
       </ion-col>
@@ -21,13 +22,21 @@
       </ion-col>
     </ion-row>
   </ion-fab>
-  <div id="activity">Activity feed <small>{{date | date:'yyyy-MM-dd'}}</small></div>
-  <div id = "main">    
+  <div id="activity">
+    Activity feed <small>{{date | date:'yyyy-MM-dd'}}</small>
+  </div>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div *ngIf= "searchResults.length >= 1">
+    <button ion-button id = "resetSearch" (click) = "retrieveData();">clear search</button>  
+  </div>
+  <div id = "main"> 
     <ion-card  *ngFor = "let item of items; let i = index" class = "cards">
       <ion-slides pager>
         <ion-slide *ngFor = "let slideUrls of imgObjUri[i].imageUri; let j = index">
           <div class="img-ph">
-            <img src="{{slideUrls}}"/>
+            <img class = "img" src="{{slideUrls}}"/>
           </div>
         </ion-slide>
       </ion-slides>
@@ -67,7 +76,8 @@
       </div>
     </ion-card>
   </div>
-  <ion-fab bottom right>
+  
+  <ion-fab bottom right fixed>
     <button ion-fab color = "dark" (click) = "addItem();"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 </ion-content>

@@ -92,6 +92,8 @@ export class DashboardPage {
 
   toggleScreens(x){
     this.activeScreen = x;
+    console.log(x);
+    
   }
 
   onChange(){
@@ -139,31 +141,27 @@ export class DashboardPage {
 
     console.log("close " + close);
     console.log("open " + open);
-    
-
-    this.drawChart(open, close);
-
-  
+     
     
   }
 
-  drawChart(o, c) {
+  // drawChart(o, c) {
 
-    var data = google.visualization.arrayToDataTable([
-      ['Task', 'Hours per Day'],
-      ['Closed', c],
-      ['Active', o],
-    ]);
+  //   var data = google.visualization.arrayToDataTable([
+  //     ['Task', 'Hours per Day'],
+  //     ['Closed', c],
+  //     ['Active', o],
+  //   ]);m
 
-    var options = {
-      title: 'Activity for ' + this.month,
-      pieHole: 0.4,
-    };
+  //   var options = {
+  //     title: 'Activity for ' + this.month,
+  //     pieHole: 0.4,
+  //   };
 
-    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
+  //   var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+  //   chart.draw(data, options);
 
-  }
+  // }
 
   home(){
     this.navCtrl.setRoot('FeedPage');

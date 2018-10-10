@@ -1,15 +1,9 @@
-<!--
-  Generated template for the BidInfoPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
     <ion-row>
       <button clear icon-only ion-button (click) = "close();">
-        <ion-icon name="arrow-back"></ion-icon>
+        <ion-icon name="close"></ion-icon>
       </button>
     </ion-row>
   </ion-navbar>
@@ -18,30 +12,39 @@
 
 
 <ion-content>
-  <!-- <div id="header">
-  </div> -->
-  <ion-slides pager>
-    <ion-slide *ngFor = "let slideUrls of itemImageUri; let j = index">
-      <img class = "ph" src="{{slideUrls}}"/>
-    </ion-slide>
-  </ion-slides>
+  <div id="bid-preview">
+    <ion-slides pager>
+      <ion-slide *ngFor = "let slideUrls of itemImageUri; let j = index">
+        <img class = "ph" src="{{slideUrls}}"/>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  
 
   <div id="bid-main">    
     <ion-row>
       <ion-list>
         <ion-list-header>
-          bidders for this item
+          <p>{{itemName}}</p>
+          <p>{{itemType}}</p>
+          <p>{{formattedDate}}</p>
+          <p>{{itemDescription}}</p>
+          <p>{{views}}</p>
         </ion-list-header>
 
-        <ion-item *ngFor="let offer of offersObjArr; let i = index">
+        <ion-item *ngFor="let offer of offersObjArr; let i = index" (click)="viewOffer(offer)">
+          <ion-avatar item-start>
+            <img src={{ownerProfilePic}}>
+          </ion-avatar>
           <p>
-            f
+            {{offerOwnersArr[i].name}}
+          </p>
+          <p>
+            {{offerMechandisesArr[i].name}}
           </p>
         </ion-item>
       </ion-list>
-    </ion-row>
-    
-    
+    </ion-row> 
 
   </div>
 </ion-content>

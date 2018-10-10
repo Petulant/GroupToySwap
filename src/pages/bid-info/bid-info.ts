@@ -1,17 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Bid } from '../../model/bid';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { Offer } from '../../model/offer';
 import { Item } from '../../model/item';
 import { BidManager } from '../../model/bidManager';
+import { User } from '../../model/user';
+import { ViewOfferPage } from "../view-offer/view-offer";
 declare var firebase
-/**
- * Generated class for the BidInfoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -20,62 +16,78 @@ declare var firebase
 })
 export class BidInfoPage {
 
-  bidInfo : any;
-  bid:Bid;
+  bidInfo: any;
+  bid: Bid;
   offersObjArr = [];
-  itemImageUri = {};
-  merchandise;
-  offerOwner ;
+  offerOwnersArr;
+  itemImageUri = [];
+  itemObjects = [];
+  merchandise: Item;
+  offerOwner: User;
+  ownerName;
+  ownerProfilePic;
+  itemName;
+  itemType;
+  bidDate;
+  itemDescription;
   offerObj;
+  views;
+  formattedDate;
+  offerMechandisesArr
+  
+
   // consumedData;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public profile: ProfileProvider) {
+  constructor(public modalCtrl: ModalController,public navCtrl: NavController, public navParams: NavParams, public profile: ProfileProvider) {
     console.log(navParams.get('item'));
     this.bidInfo = navParams.get('item');
     this.bid = new Bid(this.bidInfo);
+    console.log(this.bidInfo);
     this.merchandise = new Item(this.bid.getMerchandise());
     this.itemImageUri = this.merchandise.getImageUri();
-    console.log(this.merchandise);
-    var count = 0;
-    var bidFactory = new BidManager();
-    var items;
-    bidFactory.readBidOffersById(this.bid.getBidId(),function(consumedData){
-      console.log(consumedData);
-      // this.offersObjArr = consumedData;
-      items = [];
-      items = consumedData;
+    this.offerOwner = new User(this.bid.getOwner());
+    this.ownerName = this.offerOwner.getUserName();
+    this.ownerProfilePic = this.offerOwner.getProfilePic();
+    this.itemName = this.merchandise.getName();
+    this.itemType = this.merchandise.getType();
+    this.itemDescription = this.merchandise.getDescription();
+    this.views = this.bid.getViews();
+    this.bidDate = this.bid.getBidDate();
+    this.formattedDate = new Date(this.bidDate);
+    this.formattedDate.toString("MMM dd YYYY");
     
-      console.log(items);
-      count++;
-      // console.log(this.offersObjArr);
-    });
-    this.offersObjArr = items;
-    this.offerObj = new Offer(items.items);
-    console.log(this.offersObjArr[0]);
-
   }
 
-  close(){
+  close() {
     this.navCtrl.pop();
   }
 
   ionViewDidLoad() {
+    var count = 0;
+    var bidFactory = new BidManager();
+    var items;
+    var offerOwners;
+    var offerMechandises;
+    bidFactory.readBidOffersById(this.bid.getBidId(), function (consumedData,ownerArr,offerMechandiseArr) {
+      console.log(consumedData);
+      // this.offersObjArr = consumedData;
+      items = [];
+      items = consumedData;
+      offerOwners = ownerArr;
+      offerMechandises = offerMechandiseArr;
 
-    console.log('ionViewDidLoad BidInfoPage');
-    // firebase.database().ref('/bidOffers/' + this.bid.getBidId()).on('value', (snapshot) => {
-      
-    //   snapshot.forEach(snap => {
-        
-    //       console.log(snap.val());
-    //       console.log(snap.val().offer);
-    //       var bidOffer = new Offer(snap.val().offer);
-    //       console.log(bidOffer.getItems());
-    //       this.offerObjectsArr.push(bidOffer);
-    //       console.log(bidOffer.getItems()[0]);
-    //       var offerdItem = new Item(bidOffer.getItems()[0]);
-    //       console.log(offerdItem.getDescription());
-    //       this.itemImageUri = offerdItem.getImageUri();
-    //       console.log(this.itemImageUri);
-    //   });
-    // });    
+      count++;
+      // console.log(this.offersObjArr);
+    });
+    this.offersObjArr = items;
+    this.offerOwnersArr = offerOwners;
+    this.offerObj = new Offer(items);
+    this.offerMechandisesArr = offerMechandises;
+
+  }
+  viewOffer(item){
+    const modal = this.modalCtrl.create(ViewOfferPage, {
+      item: item
+    });
+    modal.present();
   }
 }

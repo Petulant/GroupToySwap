@@ -21,6 +21,7 @@ export class HomePage {
 
   //slides
   @ViewChild(Slides) slides: Slides;
+  onlyExternal;
 
 
   constructor(private alertCtrl: AlertController,public toastCtrl: ToastController, 
@@ -204,11 +205,9 @@ export class HomePage {
       
   
       if(this.user.getType() == "user"){
-        console.log("user logged in");
         this.loading.dismiss();
         this.navCtrl.setRoot('FeedPage');
       }else if(this.user.getType() != "user"){
-        console.log("user logged in");
         this.loading.dismiss();
         this.navCtrl.setRoot('DashboardPage');
       }

@@ -18,6 +18,7 @@ import { UploadProvider } from '../providers/upload/upload';
 import { BidInfoPage } from '../pages/bid-info/bid-info';
 import { ReportPage } from "../pages/report/report";
 import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { ViewOfferPage } from "../pages/view-offer/view-offer";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
     NotificationsPage,
     UploadPage,
     BidInfoPage,
-    ReportPage
+    ReportPage,
+    ViewOfferPage 
     
   ],
   imports: [
@@ -42,7 +44,9 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
     NotificationsPage,
     UploadPage,
     BidInfoPage,
-    ReportPage
+    ReportPage,
+    ViewOfferPage
+   
   ],
   providers: [
     StatusBar,

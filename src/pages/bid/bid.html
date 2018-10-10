@@ -2,7 +2,7 @@
 	<ion-navbar>
 		<ion-row>
 			<button icon-only clear ion-button (click)="close();">
-				<ion-icon name="arrow-back"></ion-icon>
+				<ion-icon name="close"></ion-icon>
 			</button>
 		</ion-row>
 	</ion-navbar>
@@ -26,18 +26,6 @@
 			</ion-select>
 		</ion-item>
 	</ion-list>
-
-	<ion-list-header>
-		Bid duration
-		<ion-badge item-end>{{bidDuration}} Days</ion-badge>
-		<ion-icon item-end name="calendar"></ion-icon>
-	</ion-list-header>
-	<ion-item>
-		<ion-range [(ngModel)]="bidDuration" min="3" max="21" pin="true">
-			<ion-label range-left>3</ion-label>
-			<ion-label range-right>21</ion-label>
-		</ion-range>
-	</ion-item>
 
 	<ion-card id="preview">
 		<div class="thumbnails" *ngFor="let thumb of pictures; let ind = index" [ngStyle] ="{ 'background-image' : 'url(' + thumb.uri + ')'}">
@@ -72,7 +60,5 @@
 			place bid
 		</button>
 	</ion-row>
-
-	
 
 </ion-content>
