@@ -6,6 +6,9 @@ import { Crop } from '@ionic-native/crop';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { File } from '@ionic-native/file';
+import { BidManager } from '../../model/bidManager';
+import { Bid } from '../../model/bid';
+import { Item } from '../../model/item';
 declare var firebase;
 
 @IonicPage()
@@ -175,35 +178,40 @@ export class UploadPage {
   }
 
   saveToDB() {
-    console.log("save to db");
-    console.log(this.downloadUrls);
-    
+    console.log("on save to db");
     this.bidDuration *= 60*60*24*1000;
 
     this.bidDuration +=  Date.now();
   
+    var itemObj = new Item(null);
+    var bid = new Bid(null);
+    itemObj.setImageUri(this.downloadUrls);
 
-    firebase.database().ref('/activeBids/' ).push(
-      {
-        uid: this.uid,
-        username : this.username,
-        imgUrl : this.downloadUrls,
-        title : this.title,
-        description : this.description,
-        toyType : this.toyType,
-        duration : this.bidDuration,
-        profilePicture : this.profilePicture,
-        status:"open",
-        views : 0,
-        itemId: "not specified",
-        bidderUid: "not specified",
-        bidDate: new Date()
-      }
-    );
+    itemObj.setName(this.title);
+    itemObj.setType(this.toyType);
+    itemObj.setItemId("not specified");
+    itemObj.setDescription(this.description);
+
+    bid = new Bid(null);
+    bid.setOwner(this.profile.user);
+    bid.setBidDate( Date.now());
+    bid.setBidDuration(this.bidDuration);
+    bid.setMerchandise(itemObj);
+    bid.setViews(0);
+    bid.setStatus("open");
+    bid.setBidder(null);
+    bid.setMerchandise(itemObj);
+    
+    console.log(bid);
+    
+    var bidFactory = new BidManager();
+    bidFactory.writePlacedBid(bid);
+    bidFactory.writeUserBid(bid);
+    
+    console.log("save db wrote data");
 
     this.loading.dismiss();
-    this.presentToast("Bid posted successfully");
-    this.navCtrl.pop();
+    this.navCtrl.setRoot('FeedPage');
 
 
   }

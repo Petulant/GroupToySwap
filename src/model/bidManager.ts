@@ -168,31 +168,29 @@ export class BidManager {
     }
   }
 
-  getBidById(bidId: String) {
-    var fireBaseBidObject: Object;
+  getBidById(bidId: String,consumedData) {
+    var fireBaseBidObject;
     firebase.database().ref('/placedBids/' + bidId).on('value', (snapshot) => {
       snapshot.forEach(snap => {
         console.log("------------------------------------------------------------");
         fireBaseBidObject = snap.val();
+        console.log(snap.val());
         console.log(fireBaseBidObject);
         return false;
       });
+      consumedData(fireBaseBidObject);
     });
-    if (fireBaseBidObject != null) {
-      return fireBaseBidObject;
-    }
+    // if (fireBaseBidObject != null) {
+    //   return fireBaseBidObject;
+    // }
   }
 
-  writeUserCancelledBids(bid: Bid) {
+  writeUserCancelledBids(bid: Bid,uid) {
 
     //cancelled
     var cancelledBidsRef = firebase.database().ref('/userCancelledBids/');
     var cancelledBidskey = bid.getBidId();
-    var userId = bid.getOwner().getUid();
-
-    bid.setBidId(cancelledBidskey);
-    console.log(userId);
-    cancelledBidsRef.child("/" + userId).set({
+    cancelledBidsRef.child("/" + uid + '/' + cancelledBidskey).set({
       bid: bid,
     });
 
@@ -207,18 +205,43 @@ export class BidManager {
       });
     });
   }
+  
   writeUserSuccessfullBids(bid: Bid) {
-
-    //cancelled
+    // cancelled
     var userSuccessfulBidsRef = firebase.database().ref('/userSuccessfulBids/');
     var userSuccessFulBidskey = bid.getBidId();
-    var userId = bid.getOwner().getUid();
-    bid.setBidId(userSuccessFulBidskey);
+    var bidOwner = new User(bid.getOwner());
+    var userId = bidOwner.getUid();
+    bid.setStatus("completed");
     console.log(userId);
-    userSuccessfulBidsRef.child("/" + userId).set({
+    userSuccessfulBidsRef.child("/" + userId + '/'+ userSuccessFulBidskey).set({
       bid: bid,
     });
 
+  }
+  writeUserRejectedOffer(offer:Offer,ownerId) {
+
+    var bidOfferRef = firebase.database().ref('/userRejectedOffers/');
+    var Offerkey = bidOfferRef.push().getKey();
+
+    // offer.setOfferId(Offerkey);
+    // console.log(offer);
+    // console.log(Offerkey);
+    // console.log(bidId);
+    bidOfferRef.child('/' + ownerId + '/' + offer.getOfferId()).set({
+      offer: offer,
+    });
+
+  }
+  removePlacedBid(bidId){
+    
+    firebase.database().ref('/placedBids/').child(bidId).remove();
+  }
+  removeBidOffer(bidId,offerId){
+    firebase.database().ref('/bidOffers/' + bidId).child(offerId).remove();
+  }
+  removeUserPlacedBid(uid,bidId){
+    firebase.database().ref('/userBids/' + uid).child(bidId).remove();
   }
   readUserSuccesfullBids(userId: String) {
 
@@ -328,7 +351,15 @@ export class BidManager {
       offer: offer,
     });
   }
+  writeAcceptedBids(bid:Bid) {
 
+    var acceptedBidsRef = firebase.database().ref('/acceptedBids/');
+    var acceptedBidKey =  bid.getBidId();
+    bid.setStatus("completed");
+    acceptedBidsRef.child('/' + acceptedBidKey + '/').set({
+      bid: bid,
+    });
+  }
   readBidOffer() {
 
     var bidOffer: Object;
@@ -344,6 +375,7 @@ export class BidManager {
   ownerArr = [];
   
   offerMechandiseArr = [];
+
   readBidOffersById(bidId: String,consumedOfferData) {
     var g = 0;
     // var bidOffer: Offer;
@@ -362,13 +394,19 @@ export class BidManager {
        g++;
         return false;
       });
-      console.log(this.offerItems);
-      console.log(this.offerItemsMerchandise[0][0]);
-      console.log(this.offerMechandiseArr);
-      console.log(this.offerMechandiseArr[0].description);
+      // console.log(this.offerItems);
+      // console.log(this.offerItemsMerchandise[0][0]);
+      // console.log(this.offerMechandiseArr);
+      // console.log(this.offerMechandiseArr[0].description);
       consumedOfferData(this.offerItems,this.ownerArr,this.offerMechandiseArr);
     });
 
+  }
+  readBidByOfferId(uid,bidId,consumedData){
+
+    firebase.database().ref('/bidOffers/'+  + bidId).on('value', (snapshot) => {
+
+    });
   }
   updateOffer(bidId: String, property: String, newVal: String) {
     var updates: Object;

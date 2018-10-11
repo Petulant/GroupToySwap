@@ -56,41 +56,45 @@ export class BidPage  {
   loading: any;
 
   bidder: User;
-  itemsObj = {};
+  itemsObj = [];
   activeBid: Bid;
   itemObj: Item;
   item: any;
   bid: Bid;
-  bidOwner;
-  bidObj: Bid
+  bidOwner:User;
+  bidObj: Bid;
+
+  itemPassedItem: Item;
+
+
+  itemName ;
+  itemDescription ;
+  itemPicture;
+  
   
   constructor(public toastCtrl: ToastController, private file: File, private crop: Crop, public loadingCtrl: LoadingController, private imagePicker: ImagePicker, private camera: Camera, public navCtrl: NavController, public navParams: NavParams, public profile: ProfileProvider) {
     this.selectOptions = {
       subTitle: 'Select a category',
     };
     this.firebaseStorage = firebase.storage();
-    
-    // let user = this.profile.user;
-    // this.uid = user.getUid()
-    // this.username = user.getUserName();
-    // this.profilePicture = user.getProfilePic();
-
-    console.log(navParams.get('item'));
+  
+  
     this.bidder = profile.user;
     this.item = navParams.get('item');
-    console.log(this.bidder);
-   this.bidObj = new Bid(this.item.bid);
-    console.log(this.bidObj.getOwner());
-    console.log(this.item.bid);
-   this.bidOwner = new User(this.bidObj.getOwner());
-    console.log(this.bidOwner);
-    // this.itemsObj = navParams.get('itemObj');
+    this.bidObj = new Bid(this.item.bid);
+    this.bidOwner = new User(this.bidObj.getOwner());
+
+    // console.log();
+    this.itemPassedItem = new Item(this.bidObj.getMerchandise());
+    console.log(this.itemPassedItem);
+
+    this.itemDescription = this.itemPassedItem.getDescription();
+    this.itemName = this.itemPassedItem.getName();
+    this.itemPicture = this.itemPassedItem.getImageUri();
+    
+
     this.firebaseStorage = firebase.storage();
-    // this.itemObj = new Item(null);
-    // this.bid = new Bid(this.item.bid);
-    // console.log(bidObj.getOwner().getUid());s
-    console.log(this.bidOwner);
-  
+    
   }
 
   close(){
@@ -218,7 +222,7 @@ export class BidPage  {
     console.log(this.description);
     offerItems.setDescription(this.description);
    
-  // this.downloadUrls.push("asdfsdfsdfsdf");
+    //this.downloadUrls.push("asdfsdfsdfsdf");
     console.log(this.downloadUrls);
     offerItems.setImageUri(this.downloadUrls);
     console.log(this.title);
@@ -237,41 +241,8 @@ export class BidPage  {
 
     bidFactory.writeBidOffer(bidOffer,this.bidObj.getBidId());
 
-    // var length = 0;
-    // firebase.database().ref('/bidOffers/' + this.bidObj.getBidId()).on('value', (snapshot) => {
-    //   snapshot.forEach(snap => {
-    //     length++;
-    //     return false;
-    //   });
-    //   console.log(length);
-    //   this.bidObj.setViews(length);
-    // });
-
-    // console.log(this.bidObj.getOffers());
-    // console.log(this.bidObj);
-    // console.log(this.bidOwner.getUid());
     bidFactory.updatePlacedBid(this.bidObj);
     bidFactory.updateUsersBid(this.bidObj,this.bidOwner.getUid());
-
-
-    // firebase.database().ref('/bidderItemOffer/' ).push(
-    //   {
-    //     uid: this.uid,
-    //     username : this.username,
-    //     imgUrl : this.downloadUrls,
-    //     title : this.title,
-    //     description : this.description,
-    //     toyType : this.toyType,
-    //     duration : this.bidDuration,
-    //     profilePicture : this.profilePicture,
-    //     status:"open",
-    //     views : 0,
-    //     itemId: "not specified",
-    //     bidderUid: "not specified",
-    //     bidDate: new Date()
-    //   }
-    // );
-
 
     this.loading.dismiss();
     this.presentToast("Bid posted successfully");

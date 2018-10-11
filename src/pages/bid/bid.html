@@ -4,12 +4,21 @@
 			<button icon-only clear ion-button (click)="close();">
 				<ion-icon name="close"></ion-icon>
 			</button>
+			<ion-title>Bid Item</ion-title>
 		</ion-row>
 	</ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
+	<div class="card-background-page">
+		<ion-card>
+			<img src="{{itemPicture}}"/>
+			<div class="card-title">{{itemName}}</div>
+			<div class="card-subtitle">{{itemDescription}}</div>
+		</ion-card>
+	</div>
+	
 	<ion-list>
 		<ion-item class="clear">
 			<ion-label floating>Title</ion-label>

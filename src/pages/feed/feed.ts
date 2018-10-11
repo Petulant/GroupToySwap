@@ -33,6 +33,7 @@ export class FeedPage {
   views = [];
   myInput;
   searchResults= [];
+  searchUrls = [];
 
 
   constructor(public toastCtrl: ToastController, private platform: Platform, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams,public userProfile: ProfileProvider) {
@@ -43,15 +44,13 @@ export class FeedPage {
     }else{
       
     }
-  }
 
-  ionViewDidLoad() {
     this.retrieveData();
   }
 
   retrieveData(){
 
-    this.searchResults = [];
+    this.searchResults.length = 0;
     this.date = new Date();
     let loading = this.loadingCtrl.create({
       content: "Loading please wait",
@@ -98,8 +97,11 @@ export class FeedPage {
       this.itemsObjArr.reverse();
       this.ownerObjArr.reverse();
       this.views.reverse();
+      console.log(this.items);
       loading.dismiss();
     });
+    
+    
   }
 
   profile() {
@@ -143,31 +145,48 @@ export class FeedPage {
   search($event) {
         
     this.searchResults = [];
+    this.searchUrls = [];
+    
+    
+
+    //|| this.items[i].bid.merchandise.name.toLowerCase() == this.myInput.toLowerCase()
 
     for(let i = 0 ; i < this.items.length ; i++){
-      if(this.items[i].bid.merchandise.type.toLowerCase() == this.myInput.toLowerCase() || this.items[i].bid.merchandise.name.toLowerCase() == this.myInput.toLowerCase() ){
-        console.log("item found on index " + i);
-        this.searchResults.push(this.items[1]);
+     
+      if(this.items[i].bid.merchandise.name.toLowerCase() === this.myInput.toLowerCase()  ){
+        this.searchResults.push(this.items[i]);
+
+        this.searchUrls.push( 
+          {
+            imageUri : this.items[i].bid.merchandise.imageUri
+          }
+        );        
       }
     }
 
 
     if(this.searchResults.length > 0){
+      console.log("theres results");
+      
+      this.items = [];
+      this.imgObjUri = [];
       this.items = this.searchResults;
+      this.imgObjUri = this.searchUrls;
+                
       
       this.presentToast("Now showing " +  this.myInput);
+      this.myInput = "";
     }else{
-      this.presentToast(this.myInput + " not found"); 
-    }
+      this.presentToast(this.myInput + " not found");
 
-    console.log(this.searchResults.length);
-    
+    } 
     
   }
 
   onClear($event){
 
     console.log("cancel");
+    this.myInput = "";
     this.retrieveData();
   }
 

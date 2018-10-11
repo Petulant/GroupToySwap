@@ -202,15 +202,17 @@ export class HomePage {
      
       this.profile.user = this.user;
       console.log(this.user.getType());
-      
-  
+      this.loading.dismiss();
+      this.navCtrl.setRoot('FeedPage');
+      /*
       if(this.user.getType() == "user"){
         this.loading.dismiss();
-        this.navCtrl.setRoot('FeedPage');
+        
       }else if(this.user.getType() != "user"){
         this.loading.dismiss();
         this.navCtrl.setRoot('DashboardPage');
       }
+      */
 
     });
   }

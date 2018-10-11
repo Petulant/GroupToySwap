@@ -1,5 +1,6 @@
 <ion-content id = "feed">
   <ion-fab id="nav">
+    <button ion-fab style="display: none;"></button>
     <ion-row>
       <ion-col  col-2>
         <button ion-button icon-only  clear medium (click) = "profile();">
@@ -28,7 +29,7 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <div *ngIf= "searchResults.length >= 1">
+  <div *ngIf= "searchResults.length > 0">
     <button ion-button id = "resetSearch" (click) = "retrieveData();">clear search</button>  
   </div>
   <div id = "main"> 
@@ -47,7 +48,7 @@
         </ion-fab>
         <ion-row>
           <ion-col>
-            <h3 ion-text>{{merchandiseObjArr[i].name}}</h3>
+            <h3 ion-text>{{ownerObjArr[i].name}}</h3>
           </ion-col>
           <ion-col>
             <h3 ion-text id = "right">{{(itemsObjArr[i].bidDuration - currentDay) / 60 / 60 / 24 / 1000   | number : '2.0-0' }} days left</h3>

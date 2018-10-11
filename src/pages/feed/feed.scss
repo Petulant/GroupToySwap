@@ -6,8 +6,7 @@
   
  
   button{
-    background: white;
-    
+    background: #eaf0f5;; 
    
   }
 }
@@ -37,7 +36,7 @@ h3{
 }
 
 #feed{
-  //background: #f0f8ff;
+  background: #eaf0f5;
   #activity{
 
     position: absolute;
@@ -47,8 +46,7 @@ h3{
     font-size: 22px;
     color: #f0f8ff;
     background: #1cd8d2;
-    border-bottom: 10px solid white;
-    border-left: 11px solid transparent;
+    padding-left: 11px;
 
     small{
       float: right;
@@ -88,7 +86,7 @@ h3{
 
 #main{
   position: relative;
-  margin-top: 123px;
+  margin-top: 113px;
   padding: 15px 0 70px;
 
 }

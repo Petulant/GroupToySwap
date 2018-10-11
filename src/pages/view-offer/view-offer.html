@@ -1,48 +1,50 @@
 <ion-header>
 
   <ion-navbar>
-    <button clear icon-only ion-button (click) = "close();">
-      <ion-icon name="close"></ion-icon>
-    </button>
-    <ion-title>viewOffer</ion-title>
+    <ion-row>
+      <button clear icon-only ion-button (click)="close();">
+        <ion-icon name="close"></ion-icon>
+      </button>
+      <ion-title>Offer</ion-title>
+    </ion-row>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-    <ion-slides pager>
+<ion-content>
+  <ion-card>
+
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="{{profilePic}}">
+        </ion-avatar>
+        <h2>{{ownerName}}</h2>
+        <p>{{itemname}}</p>
+      </ion-item>
+    
+      <ion-slides pager>
         <ion-slide *ngFor="let slideUrls of offeritemsFormatted; let j = index">
           <img class="ph" src="{{slideUrls}}" />
         </ion-slide>
       </ion-slides>
-<ion-card>
-
-  <img src="{{profilePic}}">
-  <ion-fab right top>
-    <button ion-fab>
-      <ion-icon name="pin"></ion-icon>
-    </button>
-  </ion-fab>
-
-  <ion-item>
-    <ion-icon name="football" item-start large></ion-icon>
-    <h2>Owner Name: {{ownerName}}</h2>
-  </ion-item>
-
-  <ion-item>
-    <ion-icon name="wine" item-start large ></ion-icon>
-    <h2>Toy Name: {{itemname}}</h2>
-  </ion-item>
-
-  <ion-item>
-    <span item-start>18 min</span>
-    <span item-start>(2.6 mi)</span>
-    <button ion-button icon-start clear item-end>
-      <ion-icon name="navigate"></ion-icon>
-      Start
-    </button>
-  </ion-item>
-
-</ion-card>
+    
+      <ion-card-content>
+        <p>{{itemDescription}}</p>
+      </ion-card-content>
+    
+      <ion-row>
+        <ion-col>
+          <button ion-button full (click)="acceptBid()">
+            Accept Bid
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button full (click)="rejectBid()">
+            Reject Bid
+          </button>
+        </ion-col>
+      </ion-row>
+    
+    </ion-card>
 </ion-content>

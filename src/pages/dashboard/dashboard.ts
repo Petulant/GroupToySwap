@@ -145,24 +145,6 @@ export class DashboardPage {
     
   }
 
-  // drawChart(o, c) {
-
-  //   var data = google.visualization.arrayToDataTable([
-  //     ['Task', 'Hours per Day'],
-  //     ['Closed', c],
-  //     ['Active', o],
-  //   ]);m
-
-  //   var options = {
-  //     title: 'Activity for ' + this.month,
-  //     pieHole: 0.4,
-  //   };
-
-  //   var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-  //   chart.draw(data, options);
-
-  // }
-
   home(){
     this.navCtrl.setRoot('FeedPage');
   }
