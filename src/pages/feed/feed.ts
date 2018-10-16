@@ -8,6 +8,7 @@ import { Bid } from '../../model/bid';
 import { User } from '../../model/user';
 import { ReportPage } from "../report/report";
 import { ProfileProvider } from '../../providers/profile/profile';
+import { BiddersProfilesPage } from '../bidders-profiles/bidders-profiles';
 declare var firebase;
 
 
@@ -106,6 +107,14 @@ export class FeedPage {
 
   profile() {
     this.navCtrl.push("ProfilePage");
+  }
+
+  viewBidderProfiles(item) {
+    console.log(item);
+    const modal = this.modalCtrl.create(BiddersProfilesPage, {
+      item: item
+    });
+    modal.present();
   }
 
   bidFor(activeItem) {

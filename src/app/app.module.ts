@@ -19,6 +19,7 @@ import { BidInfoPage } from '../pages/bid-info/bid-info';
 import { ReportPage } from "../pages/report/report";
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { ViewOfferPage } from "../pages/view-offer/view-offer";
+import { BiddersProfilesPage } from "../pages/bidders-profiles/bidders-profiles";
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ViewOfferPage } from "../pages/view-offer/view-offer";
     UploadPage,
     BidInfoPage,
     ReportPage,
-    ViewOfferPage 
+    ViewOfferPage,
+    BiddersProfilesPage
     
   ],
   imports: [
@@ -45,7 +47,8 @@ import { ViewOfferPage } from "../pages/view-offer/view-offer";
     UploadPage,
     BidInfoPage,
     ReportPage,
-    ViewOfferPage
+    ViewOfferPage,
+    BiddersProfilesPage
    
   ],
   providers: [

@@ -13,39 +13,46 @@
 
 
 <ion-content>
-  <div id="bid-preview">
-    <ion-slides pager>
-      <ion-slide *ngFor = "let slideUrls of itemImageUri; let j = index">
-        <img class = "ph" src="{{slideUrls}}"/>
-      </ion-slide>
-    </ion-slides>
-  </div>
+  
+
+  <ion-card>
+    <div id="bid-preview">
+      <ion-slides pager>
+        <ion-slide *ngFor = "let slideUrls of itemImageUri; let j = index">
+          <img class = "ph" src="{{slideUrls}}"/>
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <ion-card-content>
+      <ion-card-title>
+        {{itemName}}
+      </ion-card-title>
+      <p>
+        {{itemDescription}}
+      </p>
+    </ion-card-content>
+  </ion-card>
   
 
   <div id="bid-main">    
-    <ion-row>
-      <ion-list>
-        <ion-list-header>
-          <p>{{itemName}}</p>
-          <p>{{itemType}}</p>
-          <p>{{formattedDate}}</p>
-          <p>{{itemDescription}}</p>
-          <p>{{views}}</p>
-        </ion-list-header>
-
-        <ion-item *ngFor="let offer of offersObjArr; let i = index" (click)="viewOffer(offer)">
-          <ion-avatar item-start>
-            <img src={{ownerProfilePic}}>
-          </ion-avatar>
-          <p>
-            {{offerOwnersArr[i].name}}
-          </p>
-          <p>
-            {{offerMechandisesArr[i].name}}
-          </p>
-        </ion-item>
-      </ion-list>
-    </ion-row> 
-
+    <ion-list>
+      <ion-list-header>
+       <p>
+        Available Offers 
+       </p>
+       <ion-badge item-end>{{ offerSize }}</ion-badge>
+      </ion-list-header>
+      <ion-item *ngFor="let offer of offersObjArr; let i = index" (click)="viewOffer(offer)">
+        <ion-avatar item-start>
+          <img src={{ownerProfilePic}}>
+        </ion-avatar>
+        <p>
+          {{offerOwnersArr[i].name}}
+        </p>
+        <p>
+          {{offerMechandisesArr[i].name}}
+        </p>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>

@@ -15,4 +15,9 @@ export class NotificationsPage {
     this.navCtrl.pop();
   }
 
+  viewBid(){
+    console.log("clicked");
+    
+  }
+
 }

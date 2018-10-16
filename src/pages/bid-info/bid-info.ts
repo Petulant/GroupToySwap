@@ -33,7 +33,8 @@ export class BidInfoPage {
   offerObj;
   views;
   formattedDate;
-  offerMechandisesArr
+  offerMechandisesArr;
+  offerSize;
   
 
   // consumedData;
@@ -54,14 +55,7 @@ export class BidInfoPage {
     this.bidDate = this.bid.getBidDate();
     this.formattedDate = new Date(this.bidDate);
     this.formattedDate.toString("MMM dd YYYY");
-    
-  }
 
-  close() {
-    this.navCtrl.pop();
-  }
-
-  ionViewDidLoad() {
     var count = 0;
     var bidFactory = new BidManager();
     var items;
@@ -76,14 +70,22 @@ export class BidInfoPage {
       offerMechandises = offerMechandiseArr;
 
       count++;
-      // console.log(this.offersObjArr);
+      
     });
     this.offersObjArr = items;
     this.offerOwnersArr = offerOwners;
     this.offerObj = new Offer(items);
     this.offerMechandisesArr = offerMechandises;
-
+    //this.offerSize = this.offersObjArr.length;
+    console.log(count);
+    this.offerSize = count;
+    
   }
+
+  close() {
+    this.navCtrl.pop();
+  }
+
   viewOffer(item){
     const modal = this.modalCtrl.create(ViewOfferPage, {
       item: item

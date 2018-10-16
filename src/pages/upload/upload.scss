@@ -6,14 +6,16 @@
   justify-content: flex-start;
   align-items: center;
   border-radius: 5px;
-  padding: 2px;
+  padding: 1px;
 
   .thumbnails{
+    position: relative;
     background-size: 50px !important;
     background-position: center center;
+    background-color: red;
     border-radius: 50%;
-    height: 50px;
-    width: 50px;
+    width: 35px;
+    height: 35px;
     margin: 0px 5px;
     animation: pop 750ms ease;
     
@@ -37,7 +39,7 @@
   background-size: contain;
   width: 20px;
   height: 20px;
-  transform: translate(31px,2px);
+  transform: translate(20px,2px);
   text-align: center;
 }
 @keyframes pop{
