@@ -20,6 +20,7 @@ import { ReportPage } from "../pages/report/report";
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { ViewOfferPage } from "../pages/view-offer/view-offer";
 import { BiddersProfilesPage } from "../pages/bidders-profiles/bidders-profiles";
+import { PlacesProvider } from '../providers/places/places';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { BiddersProfilesPage } from "../pages/bidders-profiles/bidders-profiles"
     File,
     ProfileProvider,
     UploadProvider,
-    AndroidPermissions
+    AndroidPermissions,
+    PlacesProvider
 
   ]
 })
