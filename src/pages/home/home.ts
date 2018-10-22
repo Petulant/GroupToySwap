@@ -68,6 +68,11 @@ export class HomePage {
         Validators.minLength(5),
         Validators.required,
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$') //this is for the letters (both uppercase and lowercase) and numbers validation
+      ])),
+      cpass: new FormControl('', Validators.compose([
+        Validators.minLength(5),
+        Validators.required,
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$') //this is for the letters (both uppercase and lowercase) and numbers validation
       ]))
     });
 
@@ -144,9 +149,11 @@ export class HomePage {
   }
 
   register() {
-    
+    if(this.registerForm.value.pass != this.registerForm.value.cpass){
+      this.presentToast("Your Passwords dont match");
+    }
 
-    if(this.registerForm.value.name != "" && this.registerForm.value.surname != "" && this.registerForm.value.email != "" && this.registerForm.value.password != ""){
+    if(this.registerForm.value.name != "" && this.registerForm.value.surname != "" && this.registerForm.value.email != "" && this.registerForm.value.pass != ""){
       this.loading = this.loadingCtrl.create({
         content: 'Creating your account, Please wait...'
       });

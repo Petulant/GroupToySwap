@@ -64,7 +64,7 @@ export class ViewOfferPage {
     console.log(this.bid.getBidId());
     bidFactory.removePlacedBid(this.bid.getBidId());
     bidFactory.removeUserPlacedBid(this.profile.user.getUid(),this.bid.getBidId());
-    this.navCtrl.push("MeetpointPage");
+    this.navCtrl.push("MapboxPage");
   }
   rejectBid(){
     var bidFactory = new BidManager();

@@ -120,6 +120,19 @@
 						</div>
 					</ng-container>
 				</div>
+
+				<ion-item class="clear">
+					<ion-label stacked class="lb">Confirm Password</ion-label>
+					<ion-input type="password" formControlName="cpass" class="tb"></ion-input>
+				</ion-item>
+
+				<div class="validation-errors">
+					<ng-container *ngFor="let validation of validation_messages.pass">
+						<div class="error-message" *ngIf="registerForm.get('cpass').hasError(validation.type) && (registerForm.get('cpass').dirty || registerForm.get('cpass').touched)">
+							{{ validation.message }}
+						</div>
+					</ng-container>
+				</div>
 				<ion-row>
 					<ion-col>
 						<button ion-button full (click)="toggle(false);" class="bt">go to login</button>

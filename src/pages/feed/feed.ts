@@ -39,6 +39,7 @@ export class FeedPage {
 
   constructor(public toastCtrl: ToastController, private platform: Platform, public loadingCtrl: LoadingController, public modalCtrl: ModalController, public navCtrl: NavController, public navParams: NavParams,public userProfile: ProfileProvider) {
 
+    
     this.currentDay = Date.now();
     if(this.userProfile.user === undefined){
       console.log("user not loaded properly please reload the splash page");
@@ -47,6 +48,7 @@ export class FeedPage {
     }
 
     this.retrieveData();
+    
   }
 
   retrieveData(){

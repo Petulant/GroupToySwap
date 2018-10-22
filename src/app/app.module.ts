@@ -20,7 +20,7 @@ import { ReportPage } from "../pages/report/report";
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { ViewOfferPage } from "../pages/view-offer/view-offer";
 import { BiddersProfilesPage } from "../pages/bidders-profiles/bidders-profiles";
-import { PlacesProvider } from '../providers/places/places';
+import { Geolocation } from '@ionic-native/geolocation';
 
 
 @NgModule({
@@ -64,7 +64,7 @@ import { PlacesProvider } from '../providers/places/places';
     ProfileProvider,
     UploadProvider,
     AndroidPermissions,
-    PlacesProvider
+    Geolocation
 
   ]
 })
