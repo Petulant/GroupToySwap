@@ -1,6 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 306:
+/***/ 305:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47,7 +47,7 @@ var SplashPageModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_profile_profile__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_user__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_bidManager__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_bidManager__ = __webpack_require__(37);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -135,7 +135,7 @@ var SplashPage = /** @class */ (function () {
     ], SplashPage.prototype, "slides", void 0);
     SplashPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-splash',template:/*ion-inline-start:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\splash\splash.html"*/'<ion-content padding>\n\n  <div id="detail">\n\n    \n\n  </div>\n\n  <ion-slides pager = "true">\n\n    <ion-slide>\n\n      <img src="../../assets/imgs/online-payment.svg" class="ic">\n\n      <h5>instant bidding on the tip of your fingers</h5>\n\n    </ion-slide>\n\n    <ion-slide>\n\n      <img src="../../assets/imgs/location.svg" class="ic">\n\n      <h5>get great deals around your area</h5>\n\n    </ion-slide>\n\n    <ion-slide>\n\n      <img src="../../assets/imgs/search.svg" class="ic">\n\n      <h5>search through a range of items</h5>\n\n    </ion-slide>\n\n  </ion-slides>\n\n  <div id="splash-logo"></div>\n\n  <button id = "start" ion-button color = "secondary" (click) = "start();" >start</button>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\splash\splash.html"*/,
+            selector: 'page-splash',template:/*ion-inline-start:"C:\Users\PC\Desktop\toySwap\src\pages\splash\splash.html"*/'<ion-content padding>\n\n  <div id="detail">\n\n    \n\n  </div>\n\n  <ion-slides pager = "true">\n\n    <ion-slide>\n\n      <img src="../../assets/imgs/online-payment.svg" class="ic">\n\n      <h5>instant bidding on the tip of your fingers</h5>\n\n    </ion-slide>\n\n    <ion-slide>\n\n      <img src="../../assets/imgs/location.svg" class="ic">\n\n      <h5>get great deals around your area</h5>\n\n    </ion-slide>\n\n    <ion-slide>\n\n      <img src="../../assets/imgs/search.svg" class="ic">\n\n      <h5>search through a range of items</h5>\n\n    </ion-slide>\n\n  </ion-slides>\n\n  <div id="splash-logo"></div>\n\n  <button id = "start" ion-button color = "secondary" (click) = "start();" >start</button>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\PC\Desktop\toySwap\src\pages\splash\splash.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_profile_profile__["a" /* ProfileProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
     ], SplashPage);

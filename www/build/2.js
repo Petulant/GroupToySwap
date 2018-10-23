@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 302:
+/***/ 301:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -45,7 +45,7 @@ var MapboxPageModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapboxPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__ = __webpack_require__(216);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -94,7 +94,7 @@ var MapboxPage = /** @class */ (function () {
     };
     MapboxPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-mapbox',template:/*ion-inline-start:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\mapbox\mapbox.html"*/'<script src=\'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.3/mapbox-gl-directions.js\'></script>\n\n<link rel=\'stylesheet\' href=\'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.3/mapbox-gl-directions.css\' type=\'text/css\' />\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>mapbox</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n  <div id=\'map\' style=\'width: 100vw; height: calc(100vh - 56px);\'></div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\mapbox\mapbox.html"*/,
+            selector: 'page-mapbox',template:/*ion-inline-start:"C:\Users\PC\Desktop\toySwap\src\pages\mapbox\mapbox.html"*/'<script src=\'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.3/mapbox-gl-directions.js\'></script>\n\n<link rel=\'stylesheet\' href=\'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.3/mapbox-gl-directions.css\' type=\'text/css\' />\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>mapbox</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n  <div id=\'map\' style=\'width: 100vw; height: calc(100vh - 56px);\'></div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\PC\Desktop\toySwap\src\pages\mapbox\mapbox.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__ionic_native_geolocation__["a" /* Geolocation */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
     ], MapboxPage);

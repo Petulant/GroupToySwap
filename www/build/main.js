@@ -7,14 +7,14 @@ webpackJsonp([13],{
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UploadPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_crop__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_crop__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_profile_profile__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_image_picker__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__model_bidManager__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_image_picker__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__model_bidManager__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__model_bid__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__model_item__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__model_item__ = __webpack_require__(38);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -247,7 +247,7 @@ var UploadPage = /** @class */ (function () {
     };
     UploadPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-upload',template:/*ion-inline-start:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\upload\upload.html"*/'<ion-header>\n\n	<ion-navbar>\n\n		<ion-row>\n\n			<button clear icon-only ion-button (click)="close();">\n\n				<ion-icon name="close"></ion-icon>\n\n			</button>\n\n			<ion-title>Post Item</ion-title>\n\n		</ion-row>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n	<ion-list>\n\n		<ion-item class="clear">\n\n			<ion-label floating>Title</ion-label>\n\n			<ion-input type="text" [(ngModel)]="title"></ion-input>\n\n		</ion-item>\n\n		<ion-item class="clear">\n\n			<ion-label floating>Description</ion-label>\n\n			<ion-textarea type="text" [(ngModel)]="description"></ion-textarea>\n\n		</ion-item>\n\n		<ion-item class="clear">\n\n			<ion-label floating>Choose Toy Type</ion-label>\n\n			<ion-select [selectOptions]="selectOptions" [(ngModel)]="toyType">\n\n				<ion-option *ngFor="let type of types" value="{{type}}">{{type}}</ion-option>\n\n			</ion-select>\n\n		</ion-item>\n\n	</ion-list>\n\n\n\n	<ion-list-header>\n\n		Bid duration\n\n		<ion-badge item-end>{{bidDuration}} Days</ion-badge>\n\n		<ion-icon item-end name="calendar"></ion-icon>\n\n</ion-list-header>\n\n	<ion-item>\n\n		<ion-range [(ngModel)]="bidDuration" min="3" max="21" pin="true">\n\n			<ion-label range-left>3</ion-label>\n\n			<ion-label range-right>21</ion-label>\n\n		</ion-range>\n\n	</ion-item>\n\n\n\n	<ion-card id="preview">\n\n		\n\n		<div class="thumbnails" *ngFor="let thumb of pictures; let ind = index" [ngStyle] ="{ \'background-image\' : \'url(\' + thumb.uri + \')\'}">\n\n			<button class = "remove" icon-only (click) = "remove(ind)"></button>	\n\n		</div>\n\n	</ion-card>\n\n	<ion-row>\n\n		<ion-col col-8>\n\n			<div id="status">\n\n				{{pictures.length}} added. you can still add {{6 - pictures.length}}.\n\n			</div>\n\n		</ion-col>\n\n		<ion-col col-2>\n\n			<ion-fab center>\n\n				<button ion-fab mini (click)="openGallery();">\n\n          <ion-icon name="images"></ion-icon>\n\n        </button>\n\n			</ion-fab>\n\n		</ion-col>\n\n		<ion-col col-2>\n\n			<ion-fab center>\n\n				<button ion-fab mini (click)="takePicture();">\n\n          <ion-icon name="camera"></ion-icon>\n\n        </button>\n\n			</ion-fab>\n\n    </ion-col>\n\n	</ion-row>\n\n	<ion-row>\n\n		<button ion-button full (click)="uploadImage();">\n\n			place bid\n\n		</button>\n\n	</ion-row>\n\n\n\n	\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\upload\upload.html"*/,
+            selector: 'page-upload',template:/*ion-inline-start:"C:\Users\PC\Desktop\toySwap\src\pages\upload\upload.html"*/'<ion-header>\n\n	<ion-navbar>\n\n		<ion-row>\n\n			<button clear icon-only ion-button (click)="close();">\n\n				<ion-icon name="close"></ion-icon>\n\n			</button>\n\n			<ion-title>Post Item</ion-title>\n\n		</ion-row>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n	<ion-list>\n\n		<ion-item class="clear">\n\n			<ion-label floating>Title</ion-label>\n\n			<ion-input type="text" [(ngModel)]="title"></ion-input>\n\n		</ion-item>\n\n		<ion-item class="clear">\n\n			<ion-label floating>Description</ion-label>\n\n			<ion-textarea type="text" [(ngModel)]="description"></ion-textarea>\n\n		</ion-item>\n\n		<ion-item class="clear">\n\n			<ion-label floating>Choose Toy Type</ion-label>\n\n			<ion-select [selectOptions]="selectOptions" [(ngModel)]="toyType">\n\n				<ion-option *ngFor="let type of types" value="{{type}}">{{type}}</ion-option>\n\n			</ion-select>\n\n		</ion-item>\n\n	</ion-list>\n\n\n\n	<ion-list-header>\n\n		Bid duration\n\n		<ion-badge item-end>{{bidDuration}} Days</ion-badge>\n\n		<ion-icon item-end name="calendar"></ion-icon>\n\n</ion-list-header>\n\n	<ion-item>\n\n		<ion-range [(ngModel)]="bidDuration" min="3" max="21" pin="true">\n\n			<ion-label range-left>3</ion-label>\n\n			<ion-label range-right>21</ion-label>\n\n		</ion-range>\n\n	</ion-item>\n\n\n\n	<ion-card id="preview">\n\n		\n\n		<div class="thumbnails" *ngFor="let thumb of pictures; let ind = index" [ngStyle] ="{ \'background-image\' : \'url(\' + thumb.uri + \')\'}">\n\n			<button class = "remove" icon-only (click) = "remove(ind)"></button>	\n\n		</div>\n\n	</ion-card>\n\n	<ion-row>\n\n		<ion-col col-8>\n\n			<div id="status">\n\n				{{pictures.length}} added. you can still add {{6 - pictures.length}}.\n\n			</div>\n\n		</ion-col>\n\n		<ion-col col-2>\n\n			<ion-fab center>\n\n				<button ion-fab mini (click)="openGallery();">\n\n          <ion-icon name="images"></ion-icon>\n\n        </button>\n\n			</ion-fab>\n\n		</ion-col>\n\n		<ion-col col-2>\n\n			<ion-fab center>\n\n				<button ion-fab mini (click)="takePicture();">\n\n          <ion-icon name="camera"></ion-icon>\n\n        </button>\n\n			</ion-fab>\n\n    </ion-col>\n\n	</ion-row>\n\n	<ion-row>\n\n		<button ion-button full (click)="uploadImage();">\n\n			place bid\n\n		</button>\n\n	</ion-row>\n\n\n\n	\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\PC\Desktop\toySwap\src\pages\upload\upload.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__["a" /* File */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_crop__["a" /* Crop */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_image_picker__["a" /* ImagePicker */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_4__providers_profile_profile__["a" /* ProfileProvider */]])
     ], UploadPage);
@@ -262,114 +262,19 @@ var UploadPage = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewOfferPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_offer__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_item__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_user__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_bidManager__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_bid__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_profile_profile__ = __webpack_require__(32);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-/**
- * Generated class for the ViewOfferPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var ViewOfferPage = /** @class */ (function () {
-    function ViewOfferPage(navCtrl, navParams, profile) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.profile = profile;
-        this.offerItem = [];
-        this.offeritemsFormatted = []; // ngModel bind
-        console.log(navParams.get('item'));
-        this.bid = new __WEBPACK_IMPORTED_MODULE_6__model_bid__["a" /* Bid */](navParams.get('bid'));
-        console.log(this.bid.getBidId());
-        console.log(profile.user.getUserName());
-    }
-    ViewOfferPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ViewOfferPage');
-        this.offerObj = new __WEBPACK_IMPORTED_MODULE_2__model_offer__["a" /* Offer */](this.navParams.get('item'));
-        console.log(this.offerObj);
-        this.offerOwner = new __WEBPACK_IMPORTED_MODULE_4__model_user__["a" /* User */](this.offerObj.getOwner());
-        console.log(this.offerOwner);
-        this.ownerName = this.offerOwner.getUserName() + " " + this.offerOwner.getSurname();
-        this.profilePic = this.offerOwner.getProfilePic();
-        this.offerItem = this.offerObj.getItems();
-        "";
-        console.log(this.offerItem[0]);
-        this.offerItemObj = new __WEBPACK_IMPORTED_MODULE_3__model_item__["a" /* Item */](this.offerItem[0]);
-        this.itemname = this.offerItemObj.getName();
-        this.itemDescription = this.offerItemObj.getDescription();
-        console.log(this.offerItemObj);
-        this.offeritemsFormatted = this.offerItemObj.getImageUri();
-        console.log(this.offeritemsFormatted);
-    };
-    ViewOfferPage.prototype.acceptBid = function () {
-        var bidFactory = new __WEBPACK_IMPORTED_MODULE_5__model_bidManager__["a" /* BidManager */]();
-        bidFactory.writeUserSuccessfullBids(this.bid);
-        console.log(this.bid.getBidId());
-        bidFactory.removePlacedBid(this.bid.getBidId());
-        bidFactory.removeUserPlacedBid(this.profile.user.getUid(), this.bid.getBidId());
-        this.navCtrl.push("MapboxPage");
-    };
-    ViewOfferPage.prototype.rejectBid = function () {
-        var bidFactory = new __WEBPACK_IMPORTED_MODULE_5__model_bidManager__["a" /* BidManager */]();
-        bidFactory.removeBidOffer(this.bid.getBidId(), this.offerObj.getOfferId());
-        bidFactory.writeUserRejectedOffer(this.offerObj, this.offerOwner.getUid());
-    };
-    ViewOfferPage.prototype.close = function () {
-        this.navCtrl.pop();
-    };
-    ViewOfferPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-view-offer',template:/*ion-inline-start:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\view-offer\view-offer.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-row>\n\n      <button clear icon-only ion-button (click)="close();">\n\n        <ion-icon name="close"></ion-icon>\n\n      </button>\n\n      <ion-title>Offer</ion-title>\n\n    </ion-row>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n  <ion-card>\n\n\n\n      <ion-item>\n\n        <ion-avatar item-start>\n\n          <img src="{{profilePic}}">\n\n        </ion-avatar>\n\n        <h2>{{ownerName}}</h2>\n\n        <p>{{itemname}}</p>\n\n      </ion-item>\n\n    \n\n      <ion-slides pager>\n\n        <ion-slide *ngFor="let slideUrls of offeritemsFormatted; let j = index">\n\n          <img class="ph" src="{{slideUrls}}" />\n\n        </ion-slide>\n\n      </ion-slides>\n\n    \n\n      <ion-card-content>\n\n        <p>{{itemDescription}}</p>\n\n      </ion-card-content>\n\n    \n\n      <ion-row>\n\n        <ion-col>\n\n          <button ion-button full (click)="acceptBid()">\n\n            Accept Bid\n\n          </button>\n\n        </ion-col>\n\n        <ion-col>\n\n          <button ion-button full (click)="rejectBid()">\n\n            Reject Bid\n\n          </button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-card>\n\n</ion-content>'/*ion-inline-end:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\view-offer\view-offer.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_7__providers_profile_profile__["a" /* ProfileProvider */]])
-    ], ViewOfferPage);
-    return ViewOfferPage;
-}());
-
-//# sourceMappingURL=view-offer.js.map
-
-/***/ }),
-
-/***/ 113:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BidPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_user__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_crop__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_crop__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_profile_profile__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_image_picker__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_file__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__model_bidManager__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__model_offer__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_image_picker__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_file__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__model_bidManager__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__model_offer__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__model_bid__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__model_item__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__model_item__ = __webpack_require__(38);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -618,7 +523,7 @@ var BidPage = /** @class */ (function () {
     };
     BidPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-bid',template:/*ion-inline-start:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\bid\bid.html"*/'<ion-header>\n\n	<ion-navbar>\n\n		<ion-row>\n\n			<button icon-only clear ion-button (click)="close();">\n\n				<ion-icon name="close"></ion-icon>\n\n			</button>\n\n			<ion-title>Bid Item</ion-title>\n\n		</ion-row>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n	<div class="card-background-page">\n\n		<ion-card>\n\n			<img src="{{itemPicture}}"/>\n\n			<div class="card-title">{{itemName}}</div>\n\n			<div class="card-subtitle">{{itemDescription}}</div>\n\n		</ion-card>\n\n	</div>\n\n	\n\n	<ion-list>\n\n		<ion-item class="clear">\n\n			<ion-label floating>Title</ion-label>\n\n			<ion-input type="text" [(ngModel)]="title"></ion-input>\n\n		</ion-item>\n\n		<ion-item class="clear">\n\n			<ion-label floating>Description</ion-label>\n\n			<ion-textarea type="text" [(ngModel)]="description"></ion-textarea>\n\n		</ion-item>\n\n		<ion-item class="clear">\n\n			<ion-label floating>Choose Toy Type</ion-label>\n\n			<ion-select [selectOptions]="selectOptions" [(ngModel)]="toyType">\n\n				<ion-option *ngFor="let type of types" value="{{type}}">{{type}}</ion-option>\n\n			</ion-select>\n\n		</ion-item>\n\n	</ion-list>\n\n\n\n	<ion-card id="preview">\n\n		<div class="thumbnails" *ngFor="let thumb of pictures; let ind = index" [ngStyle] ="{ \'background-image\' : \'url(\' + thumb.uri + \')\'}">\n\n			<button ion-button icon-only clear (click) = "remove(ind)">\n\n				<ion-icon name="close-circle"></ion-icon>\n\n			</button>\n\n		</div>\n\n	</ion-card>\n\n	<ion-row>\n\n		<ion-col col-8>\n\n			<div id="status">\n\n				{{pictures.length}} added. you can still add {{6 - pictures.length}}.\n\n			</div>\n\n		</ion-col>\n\n		<ion-col col-2>\n\n			<ion-fab center>\n\n				<button ion-fab mini (click)="openGallery();">\n\n          <ion-icon name="images"></ion-icon>\n\n        </button>\n\n			</ion-fab>\n\n		</ion-col>\n\n		<ion-col col-2>\n\n			<ion-fab center>\n\n				<button ion-fab mini (click)="takePicture();">\n\n          <ion-icon name="camera"></ion-icon>\n\n        </button>\n\n			</ion-fab>\n\n    </ion-col>\n\n	</ion-row>\n\n	<ion-row>\n\n		<button ion-button full (click)="uploadImage();">\n\n			place bid\n\n		</button>\n\n	</ion-row>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\bid\bid.html"*/,
+            selector: 'page-bid',template:/*ion-inline-start:"C:\Users\PC\Desktop\toySwap\src\pages\bid\bid.html"*/'<ion-header>\n\n	<ion-navbar>\n\n		<ion-row>\n\n			<button icon-only clear ion-button (click)="close();">\n\n				<ion-icon name="close"></ion-icon>\n\n			</button>\n\n			<ion-title>Bid Item</ion-title>\n\n		</ion-row>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n	<div class="card-background-page">\n\n		<ion-card>\n\n			<img src="{{itemPicture}}"/>\n\n			<div class="card-title">{{itemName}}</div>\n\n			<div class="card-subtitle">{{itemDescription}}</div>\n\n		</ion-card>\n\n	</div>\n\n	\n\n	<ion-list>\n\n		<ion-item class="clear">\n\n			<ion-label floating>Title</ion-label>\n\n			<ion-input type="text" [(ngModel)]="title"></ion-input>\n\n		</ion-item>\n\n		<ion-item class="clear">\n\n			<ion-label floating>Description</ion-label>\n\n			<ion-textarea type="text" [(ngModel)]="description"></ion-textarea>\n\n		</ion-item>\n\n		<ion-item class="clear">\n\n			<ion-label floating>Choose Toy Type</ion-label>\n\n			<ion-select [selectOptions]="selectOptions" [(ngModel)]="toyType">\n\n				<ion-option *ngFor="let type of types" value="{{type}}">{{type}}</ion-option>\n\n			</ion-select>\n\n		</ion-item>\n\n	</ion-list>\n\n\n\n	<ion-card id="preview">\n\n		<div class="thumbnails" *ngFor="let thumb of pictures; let ind = index" [ngStyle] ="{ \'background-image\' : \'url(\' + thumb.uri + \')\'}">\n\n			<button ion-button icon-only clear (click) = "remove(ind)">\n\n				<ion-icon name="close-circle"></ion-icon>\n\n			</button>\n\n		</div>\n\n	</ion-card>\n\n	<ion-row>\n\n		<ion-col col-8>\n\n			<div id="status">\n\n				{{pictures.length}} added. you can still add {{6 - pictures.length}}.\n\n			</div>\n\n		</ion-col>\n\n		<ion-col col-2>\n\n			<ion-fab center>\n\n				<button ion-fab mini (click)="openGallery();">\n\n          <ion-icon name="images"></ion-icon>\n\n        </button>\n\n			</ion-fab>\n\n		</ion-col>\n\n		<ion-col col-2>\n\n			<ion-fab center>\n\n				<button ion-fab mini (click)="takePicture();">\n\n          <ion-icon name="camera"></ion-icon>\n\n        </button>\n\n			</ion-fab>\n\n    </ion-col>\n\n	</ion-row>\n\n	<ion-row>\n\n		<button ion-button full (click)="uploadImage();">\n\n			place bid\n\n		</button>\n\n	</ion-row>\n\n\n\n</ion-content>'/*ion-inline-end:"C:\Users\PC\Desktop\toySwap\src\pages\bid\bid.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */], __WEBPACK_IMPORTED_MODULE_7__ionic_native_file__["a" /* File */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_crop__["a" /* Crop */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_image_picker__["a" /* ImagePicker */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_camera__["a" /* Camera */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_5__providers_profile_profile__["a" /* ProfileProvider */]])
     ], BidPage);
@@ -629,15 +534,19 @@ var BidPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 114:
+/***/ 113:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BiddersProfilesPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewOfferPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_bid__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_user__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_offer__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_item__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_user__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_bidManager__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_bid__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_profile_profile__ = __webpack_require__(32);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -651,43 +560,76 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
+
 /**
- * Generated class for the BiddersProfilesPage page.
+ * Generated class for the ViewOfferPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var BiddersProfilesPage = /** @class */ (function () {
-    function BiddersProfilesPage(navCtrl, navParams) {
+var ViewOfferPage = /** @class */ (function () {
+    function ViewOfferPage(navCtrl, navParams, profile) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.profile = profile;
+        this.offerItem = [];
+        this.offeritemsFormatted = []; // ngModel bind
         console.log(navParams.get('item'));
-        this.bid = new __WEBPACK_IMPORTED_MODULE_2__model_bid__["a" /* Bid */](navParams.get('item').bid);
-        console.log(this.bid);
-        this.profileOwner = new __WEBPACK_IMPORTED_MODULE_3__model_user__["a" /* User */](this.bid.getOwner());
-        console.log(this.profileOwner);
-        this.profilePic = this.profileOwner.getProfilePic();
-        console.log(this.profilePic);
-        this.userName = this.profileOwner.getUserName() + " " + this.profileOwner.getSurname();
+        this.bid = new __WEBPACK_IMPORTED_MODULE_6__model_bid__["a" /* Bid */](navParams.get('bid'));
+        console.log(this.bid.getBidId());
+        console.log(profile.user.getUserName());
     }
-    BiddersProfilesPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad BiddersProfilesPage');
-        console.log(this.profileOwner);
+    ViewOfferPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ViewOfferPage');
+        this.offerObj = new __WEBPACK_IMPORTED_MODULE_2__model_offer__["a" /* Offer */](this.navParams.get('item'));
+        console.log(this.offerObj);
+        this.offerOwner = new __WEBPACK_IMPORTED_MODULE_4__model_user__["a" /* User */](this.offerObj.getOwner());
+        console.log(this.offerOwner);
+        this.ownerName = this.offerOwner.getUserName() + " " + this.offerOwner.getSurname();
+        this.profilePic = this.offerOwner.getProfilePic();
+        this.offerItem = this.offerObj.getItems();
+        "";
+        console.log(this.offerItem[0]);
+        this.offerItemObj = new __WEBPACK_IMPORTED_MODULE_3__model_item__["a" /* Item */](this.offerItem[0]);
+        this.itemname = this.offerItemObj.getName();
+        this.itemDescription = this.offerItemObj.getDescription();
+        console.log(this.offerItemObj);
+        this.offeritemsFormatted = this.offerItemObj.getImageUri();
+        console.log(this.offeritemsFormatted);
     };
-    BiddersProfilesPage = __decorate([
+    ViewOfferPage.prototype.acceptBid = function () {
+        var bidFactory = new __WEBPACK_IMPORTED_MODULE_5__model_bidManager__["a" /* BidManager */]();
+        bidFactory.writeUserSuccessfullBids(this.bid);
+        console.log(this.bid.getBidId());
+        bidFactory.removePlacedBid(this.bid.getBidId());
+        bidFactory.removeUserPlacedBid(this.profile.user.getUid(), this.bid.getBidId());
+        this.navCtrl.push("MapboxPage");
+    };
+    ViewOfferPage.prototype.rejectBid = function () {
+        var bidFactory = new __WEBPACK_IMPORTED_MODULE_5__model_bidManager__["a" /* BidManager */]();
+        bidFactory.removeBidOffer(this.bid.getBidId(), this.offerObj.getOfferId());
+        bidFactory.writeUserRejectedOffer(this.offerObj, this.offerOwner.getUid());
+    };
+    ViewOfferPage.prototype.close = function () {
+        this.navCtrl.pop();
+    };
+    ViewOfferPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-bidders-profiles',template:/*ion-inline-start:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\bidders-profiles\bidders-profiles.html"*/'<!--\n\n  Generated template for the BiddersProfilesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>biddersProfiles</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-card>\n\n\n\n    <img src="{{profilePic}}">\n\n    <ion-fab right top>\n\n      <button ion-fab>\n\n        <ion-icon name="pin"></ion-icon>\n\n      </button>\n\n    </ion-fab>\n\n  \n\n    <ion-item>\n\n      <ion-icon name="football" item-start large></ion-icon>\n\n      <h2>User Name: {{profilePic}}</h2>\n\n    </ion-item>\n\n  \n\n    <ion-item>\n\n      <ion-icon name="wine" item-start large ></ion-icon>\n\n      <h2>User Name: {{userName}}</h2>\n\n    </ion-item>\n\n  \n\n    <ion-item>\n\n      <span item-start>18 min</span>\n\n      <span item-start>(2.6 mi)</span>\n\n      <button ion-button icon-start clear item-end>\n\n        <ion-icon name="navigate"></ion-icon>\n\n        Start\n\n      </button>\n\n    </ion-item>\n\n  \n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\bidders-profiles\bidders-profiles.html"*/,
+            selector: 'page-view-offer',template:/*ion-inline-start:"C:\Users\PC\Desktop\toySwap\src\pages\view-offer\view-offer.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-row>\n\n      <button clear icon-only ion-button (click)="close();">\n\n        <ion-icon name="close"></ion-icon>\n\n      </button>\n\n      <ion-title>Offer</ion-title>\n\n    </ion-row>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n  <ion-card>\n\n\n\n      <ion-item>\n\n        <ion-avatar item-start>\n\n          <img src="{{profilePic}}">\n\n        </ion-avatar>\n\n        <h2>{{ownerName}}</h2>\n\n        <p>{{itemname}}</p>\n\n      </ion-item>\n\n    \n\n      <ion-slides pager>\n\n        <ion-slide *ngFor="let slideUrls of offeritemsFormatted; let j = index">\n\n          <img class="ph" src="{{slideUrls}}" />\n\n        </ion-slide>\n\n      </ion-slides>\n\n    \n\n      <ion-card-content>\n\n        <p>{{itemDescription}}</p>\n\n      </ion-card-content>\n\n    \n\n      <ion-row>\n\n        <ion-col>\n\n          <button ion-button full (click)="acceptBid()">\n\n            Accept Bid\n\n          </button>\n\n        </ion-col>\n\n        <ion-col>\n\n          <button ion-button full (click)="rejectBid()">\n\n            Reject Bid\n\n          </button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-card>\n\n</ion-content>'/*ion-inline-end:"C:\Users\PC\Desktop\toySwap\src\pages\view-offer\view-offer.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
-    ], BiddersProfilesPage);
-    return BiddersProfilesPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_7__providers_profile_profile__["a" /* ProfileProvider */]])
+    ], ViewOfferPage);
+    return ViewOfferPage;
 }());
 
-//# sourceMappingURL=bidders-profiles.js.map
+//# sourceMappingURL=view-offer.js.map
 
 /***/ }),
 
-/***/ 115:
+/***/ 114:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -718,7 +660,7 @@ var NotificationsPage = /** @class */ (function () {
     };
     NotificationsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-notifications',template:/*ion-inline-start:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\notifications\notifications.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n      <ion-row>\n\n          <button clear ion-button icon-only (click) = "cancel();">\n\n              <ion-icon name="arrow-back"></ion-icon>\n\n          </button>\n\n          <ion-title>Notifications</ion-title>\n\n      </ion-row>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <div class="notification" (click) = "viewBid();">\n\n    <ion-row>\n\n      <ion-col col-10>\n\n        this person made an offer\n\n      </ion-col>\n\n      <ion-col col-2>\n\n          <img src="../../assets/imgs/user.svg" alt="">\n\n        </ion-col>\n\n    </ion-row>\n\n  </div>\n\n  <div class="notification" (click) = "viewBid();">\n\n    <ion-row>\n\n      <ion-col col-10>\n\n        this person made an offer\n\n      </ion-col>\n\n      <ion-col col-2>\n\n        <img src="../../assets/imgs/user.svg" alt="">\n\n      </ion-col>\n\n    </ion-row>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\notifications\notifications.html"*/,
+            selector: 'page-notifications',template:/*ion-inline-start:"C:\Users\PC\Desktop\toySwap\src\pages\notifications\notifications.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n      <ion-row>\n\n          <button clear ion-button icon-only (click) = "cancel();">\n\n              <ion-icon name="arrow-back"></ion-icon>\n\n          </button>\n\n          <ion-title>Notifications</ion-title>\n\n      </ion-row>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <div class="notification" (click) = "viewBid();">\n\n    <ion-row>\n\n      <ion-col col-10>\n\n        this person made an offer\n\n      </ion-col>\n\n      <ion-col col-2>\n\n          <img src="../../assets/imgs/user.svg" alt="">\n\n        </ion-col>\n\n    </ion-row>\n\n  </div>\n\n  <div class="notification" (click) = "viewBid();">\n\n    <ion-row>\n\n      <ion-col col-10>\n\n        this person made an offer\n\n      </ion-col>\n\n      <ion-col col-2>\n\n        <img src="../../assets/imgs/user.svg" alt="">\n\n      </ion-col>\n\n    </ion-row>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\PC\Desktop\toySwap\src\pages\notifications\notifications.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
     ], NotificationsPage);
@@ -729,7 +671,7 @@ var NotificationsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 116:
+/***/ 115:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -737,11 +679,11 @@ var NotificationsPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_bid__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_item__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_item__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_user__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_flag__ = __webpack_require__(275);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_bidManager__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__feed_feed__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_bidManager__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__feed_feed__ = __webpack_require__(215);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -822,7 +764,7 @@ var ReportPage = /** @class */ (function () {
     };
     ReportPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-report',template:/*ion-inline-start:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\report\report.html"*/'<!--\n\n  Generated template for the ReportPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n	<ion-navbar>\n\n		<ion-row>\n\n			<button clear icon-only ion-button (click)="close();">\n\n				<ion-icon name="close"></ion-icon>\n\n			</button>\n\n			<ion-title>Report</ion-title>\n\n		</ion-row>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-item>\n\n    <p>\n\n      Bid Owner: {{ownerName}}\n\n    </p>\n\n  </ion-item>\n\n  <ion-item>\n\n    <p>\n\n      Bid Item: {{complaintBidName}}\n\n    </p>\n\n  </ion-item>\n\n  <ion-item>\n\n    <p>\n\n     Toy Type: {{complaintBidType}} \n\n    </p>\n\n  </ion-item>\n\n  <ion-item class="clear">\n\n    <ion-label floating>please write your detailed complaint here</ion-label>\n\n    <ion-input type="text" [(ngModel)]="complaint"></ion-input>\n\n  </ion-item>\n\n  <button ion-button full (click)="submitComplaint();">\n\n    Submit Report\n\n  </button>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\report\report.html"*/,
+            selector: 'page-report',template:/*ion-inline-start:"C:\Users\PC\Desktop\toySwap\src\pages\report\report.html"*/'<!--\n\n  Generated template for the ReportPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n	<ion-navbar>\n\n		<ion-row>\n\n			<button clear icon-only ion-button (click)="close();">\n\n				<ion-icon name="close"></ion-icon>\n\n			</button>\n\n			<ion-title>Report</ion-title>\n\n		</ion-row>\n\n	</ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-item>\n\n    <p>\n\n      Bid Owner: {{ownerName}}\n\n    </p>\n\n  </ion-item>\n\n  <ion-item>\n\n    <p>\n\n      Bid Item: {{complaintBidName}}\n\n    </p>\n\n  </ion-item>\n\n  <ion-item>\n\n    <p>\n\n     Toy Type: {{complaintBidType}} \n\n    </p>\n\n  </ion-item>\n\n  <ion-item class="clear">\n\n    <ion-label floating>please write your detailed complaint here</ion-label>\n\n    <ion-input type="text" [(ngModel)]="complaint"></ion-input>\n\n  </ion-item>\n\n  <button ion-button full (click)="submitComplaint();">\n\n    Submit Report\n\n  </button>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\PC\Desktop\toySwap\src\pages\report\report.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
     ], ReportPage);
@@ -830,6 +772,64 @@ var ReportPage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=report.js.map
+
+/***/ }),
+
+/***/ 116:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BiddersProfilesPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_bid__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_user__ = __webpack_require__(27);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the BiddersProfilesPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var BiddersProfilesPage = /** @class */ (function () {
+    function BiddersProfilesPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        console.log(navParams.get('item'));
+        this.bid = new __WEBPACK_IMPORTED_MODULE_2__model_bid__["a" /* Bid */](navParams.get('item').bid);
+        console.log(this.bid);
+        this.profileOwner = new __WEBPACK_IMPORTED_MODULE_3__model_user__["a" /* User */](this.bid.getOwner());
+        console.log(this.profileOwner);
+        this.profilePic = this.profileOwner.getProfilePic();
+        console.log(this.profilePic);
+        this.userName = this.profileOwner.getUserName() + " " + this.profileOwner.getSurname();
+    }
+    BiddersProfilesPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad BiddersProfilesPage');
+        console.log(this.profileOwner);
+    };
+    BiddersProfilesPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-bidders-profiles',template:/*ion-inline-start:"C:\Users\PC\Desktop\toySwap\src\pages\bidders-profiles\bidders-profiles.html"*/'<!--\n\n  Generated template for the BiddersProfilesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>biddersProfiles</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-card>\n\n\n\n    <img src="{{profilePic}}">\n\n    <ion-fab right top>\n\n      <button ion-fab>\n\n        <ion-icon name="pin"></ion-icon>\n\n      </button>\n\n    </ion-fab>\n\n  \n\n    <ion-item>\n\n      <ion-icon name="football" item-start large></ion-icon>\n\n      <h2>User Name: {{profilePic}}</h2>\n\n    </ion-item>\n\n  \n\n    <ion-item>\n\n      <ion-icon name="wine" item-start large ></ion-icon>\n\n      <h2>User Name: {{userName}}</h2>\n\n    </ion-item>\n\n  \n\n    <ion-item>\n\n      <span item-start>18 min</span>\n\n      <span item-start>(2.6 mi)</span>\n\n      <button ion-button icon-start clear item-end>\n\n        <ion-icon name="navigate"></ion-icon>\n\n        Start\n\n      </button>\n\n    </ion-item>\n\n  \n\n  </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\PC\Desktop\toySwap\src\pages\bidders-profiles\bidders-profiles.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
+    ], BiddersProfilesPage);
+    return BiddersProfilesPage;
+}());
+
+//# sourceMappingURL=bidders-profiles.js.map
 
 /***/ }),
 
@@ -855,23 +855,23 @@ webpackEmptyAsyncContext.id = 128;
 
 var map = {
 	"../pages/bid-info/bid-info.module": [
-		296,
+		297,
 		12
 	],
 	"../pages/bid/bid.module": [
-		297,
+		296,
 		11
 	],
 	"../pages/bidders-profiles/bidders-profiles.module": [
-		298,
+		308,
 		10
 	],
 	"../pages/dashboard/dashboard.module": [
-		299,
+		298,
 		4
 	],
 	"../pages/feed/feed.module": [
-		303,
+		299,
 		9
 	],
 	"../pages/home/home.module": [
@@ -879,23 +879,23 @@ var map = {
 		3
 	],
 	"../pages/mapbox/mapbox.module": [
-		302,
+		301,
 		2
 	],
 	"../pages/notifications/notifications.module": [
-		301,
+		302,
 		8
 	],
 	"../pages/profile/profile.module": [
-		304,
+		303,
 		1
 	],
 	"../pages/report/report.module": [
-		305,
+		304,
 		7
 	],
 	"../pages/splash/splash.module": [
-		306,
+		305,
 		0
 	],
 	"../pages/upload/upload.module": [
@@ -903,7 +903,7 @@ var map = {
 		6
 	],
 	"../pages/view-offer/view-offer.module": [
-		308,
+		306,
 		5
 	]
 };
@@ -932,11 +932,11 @@ module.exports = webpackAsyncContext;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_bid__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_profile_profile__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_offer__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_item__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_bidManager__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_offer__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_item__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_bidManager__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__model_user__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__view_offer_view_offer__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__view_offer_view_offer__ = __webpack_require__(113);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1014,7 +1014,7 @@ var BidInfoPage = /** @class */ (function () {
     };
     BidInfoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-bid-info',template:/*ion-inline-start:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\bid-info\bid-info.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-row>\n\n      <button clear icon-only ion-button (click) = "close();">\n\n        <ion-icon name="close"></ion-icon>\n\n      </button>\n\n      <ion-title>Item Details</ion-title>\n\n    </ion-row>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n  \n\n\n\n  <ion-card>\n\n    <div id="bid-preview">\n\n      <ion-slides pager>\n\n        <ion-slide *ngFor = "let slideUrls of itemImageUri; let j = index">\n\n          <img class = "ph" src="{{slideUrls}}"/>\n\n        </ion-slide>\n\n      </ion-slides>\n\n    </div>\n\n    <ion-card-content>\n\n      <ion-card-title>\n\n        {{itemName}}\n\n      </ion-card-title>\n\n      <p>\n\n        {{itemDescription}}\n\n      </p>\n\n    </ion-card-content>\n\n  </ion-card>\n\n  \n\n\n\n  <div id="bid-main">    \n\n    <ion-list>\n\n      <ion-list-header>\n\n       <p>\n\n        Available Offers \n\n       </p>\n\n       <ion-badge item-end>{{ offerSize }}</ion-badge>\n\n      </ion-list-header>\n\n      <ion-item *ngFor="let offer of offersObjArr; let i = index" (click)="viewOffer(offer)">\n\n        <ion-avatar item-start>\n\n          <img src={{ownerProfilePic}}>\n\n        </ion-avatar>\n\n        <p>\n\n          {{offerOwnersArr[i].name}}\n\n        </p>\n\n        <p>\n\n          {{offerMechandisesArr[i].name}}\n\n        </p>\n\n      </ion-item>\n\n    </ion-list>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\bid-info\bid-info.html"*/,
+            selector: 'page-bid-info',template:/*ion-inline-start:"C:\Users\PC\Desktop\toySwap\src\pages\bid-info\bid-info.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-row>\n\n      <button clear icon-only ion-button (click) = "close();">\n\n        <ion-icon name="close"></ion-icon>\n\n      </button>\n\n      <ion-title>Item Details</ion-title>\n\n    </ion-row>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n  \n\n\n\n  <ion-card>\n\n    <div id="bid-preview">\n\n      <ion-slides pager>\n\n        <ion-slide *ngFor = "let slideUrls of itemImageUri; let j = index">\n\n          <img class = "ph" src="{{slideUrls}}"/>\n\n        </ion-slide>\n\n      </ion-slides>\n\n    </div>\n\n    <ion-card-content>\n\n      <ion-card-title>\n\n        {{itemName}}\n\n      </ion-card-title>\n\n      <p>\n\n        {{itemDescription}}\n\n      </p>\n\n    </ion-card-content>\n\n  </ion-card>\n\n  \n\n\n\n  <div id="bid-main">    \n\n    <ion-list>\n\n      <ion-list-header>\n\n       <p>\n\n        Available Offers \n\n       </p>\n\n       <ion-badge item-end>{{ offerSize }}</ion-badge>\n\n      </ion-list-header>\n\n      <ion-item *ngFor="let offer of offersObjArr; let i = index" (click)="viewOffer(offer)">\n\n        <ion-avatar item-start>\n\n          <img src={{ownerProfilePic}}>\n\n        </ion-avatar>\n\n        <p>\n\n          {{offerOwnersArr[i].name}}\n\n        </p>\n\n        <p>\n\n          {{offerMechandisesArr[i].name}}\n\n        </p>\n\n      </ion-item>\n\n    </ion-list>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\PC\Desktop\toySwap\src\pages\bid-info\bid-info.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_profile_profile__["a" /* ProfileProvider */]])
     ], BidInfoPage);
@@ -1025,19 +1025,19 @@ var BidInfoPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 216:
+/***/ 215:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FeedPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bid_bid__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bid_bid__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__upload_upload__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__notifications_notifications__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__report_report__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__notifications_notifications__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__report_report__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_profile_profile__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__bidders_profiles_bidders_profiles__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__bidders_profiles_bidders_profiles__ = __webpack_require__(116);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1204,7 +1204,7 @@ var FeedPage = /** @class */ (function () {
     };
     FeedPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-feed',template:/*ion-inline-start:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\feed\feed.html"*/'<ion-content id = "feed">\n\n  <ion-fab id="nav">\n\n    <button ion-fab style="display: none;"></button>\n\n    <ion-row>\n\n      <ion-col  col-2>\n\n        <button ion-button icon-only  clear medium (click) = "profile();">\n\n          <ion-icon name = "person"></ion-icon>\n\n        </button>\n\n      </ion-col>\n\n      <ion-col  col->\n\n          <ion-searchbar\n\n          [(ngModel)]="myInput"\n\n          [showCancelButton]="True"\n\n          (search)="search($event)"\n\n          (ionClear)="onClear($event)"\n\n          (ionCancel)="onCancel($event)">\n\n        </ion-searchbar>\n\n      </ion-col>\n\n      <ion-col  col-2>\n\n        <button ion-button icon-only  clear medium (click) = "notify();">\n\n          <ion-icon name="notifications"></ion-icon>\n\n        </button>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-fab>\n\n  <div id="activity">\n\n    Activity feed <small>{{date | date:\'yyyy-MM-dd\'}}</small>\n\n  </div>\n\n  <ion-refresher (ionRefresh)="doRefresh($event)">\n\n    <ion-refresher-content></ion-refresher-content>\n\n  </ion-refresher>\n\n  <div *ngIf= "searchResults.length > 0">\n\n    <button ion-button id = "resetSearch" (click) = "retrieveData();">clear search</button>  \n\n  </div>\n\n  <div id = "main"> \n\n    <ion-card  *ngFor = "let item of items; let i = index" class = "cards">\n\n      <ion-slides pager>\n\n        <ion-slide *ngFor = "let slideUrls of imgObjUri[i].imageUri; let j = index">\n\n          <div class="img-ph">\n\n            <img class = "img" src="{{slideUrls}}"/>\n\n          </div>\n\n        </ion-slide>\n\n      </ion-slides>\n\n      <div class = "profile">\n\n  \n\n        <ion-fab class = "img-fab">\n\n          <button ion-fab (click)="viewBidderProfiles(item)"><img src="{{ownerObjArr[i].profilePic}}"></button>\n\n        </ion-fab>\n\n        <ion-row>\n\n          <ion-col>\n\n            <h3 ion-text>{{ownerObjArr[i].name}}</h3>\n\n          </ion-col>\n\n          <ion-col>\n\n            <h3 ion-text id = "right">{{(itemsObjArr[i].bidDuration - currentDay) / 60 / 60 / 24 / 1000   | number : \'2.0-0\' }} days left</h3>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col col-4>\n\n              <button ion-button icon-start clear medium (click) = "bidFor(item)">\n\n                <ion-icon name="add-circle" color = "light"></ion-icon>\n\n                <div>bid</div>\n\n              </button>\n\n            </ion-col>\n\n            <ion-col col-4>\n\n              <button ion-button icon-start clear medium (click)="reportBid(item)">\n\n                <ion-icon name="flag" color = "light"></ion-icon>\n\n                <div>report</div>\n\n              </button>\n\n            </ion-col>\n\n            <ion-col col-4 center text-center>\n\n              <button ion-button icon-start clear medium>\n\n                <ion-icon name="eye"color = "light" ></ion-icon>\n\n                <ion-badge color = "light" item-end>{{views[i]}}</ion-badge>\n\n              </button>\n\n            </ion-col>\n\n          </ion-row>\n\n      </div>\n\n    </ion-card>\n\n  </div>\n\n\n\n  <ion-fab bottom right fixed>\n\n    <button ion-fab color = "dark" (click) = "addItem();"><ion-icon name="add"></ion-icon></button>\n\n  </ion-fab>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\pages\feed\feed.html"*/,
+            selector: 'page-feed',template:/*ion-inline-start:"C:\Users\PC\Desktop\toySwap\src\pages\feed\feed.html"*/'<ion-content id = "feed">\n\n  <ion-fab id="nav">\n\n    <button ion-fab style="display: none;"></button>\n\n    <ion-row>\n\n      <ion-col  col-2>\n\n        <button ion-button icon-only  clear medium (click) = "profile();">\n\n          <ion-icon name = "person"></ion-icon>\n\n        </button>\n\n      </ion-col>\n\n      <ion-col  col->\n\n          <ion-searchbar\n\n          [(ngModel)]="myInput"\n\n          [showCancelButton]="True"\n\n          (search)="search($event)"\n\n          (ionClear)="onClear($event)"\n\n          (ionCancel)="onCancel($event)">\n\n        </ion-searchbar>\n\n      </ion-col>\n\n      <ion-col  col-2>\n\n        <button ion-button icon-only  clear medium (click) = "notify();">\n\n          <ion-icon name="notifications"></ion-icon>\n\n        </button>\n\n      </ion-col>\n\n    </ion-row>\n\n  </ion-fab>\n\n  <div id="activity">\n\n    Activity feed <small>{{date | date:\'yyyy-MM-dd\'}}</small>\n\n  </div>\n\n  <ion-refresher (ionRefresh)="doRefresh($event)">\n\n    <ion-refresher-content></ion-refresher-content>\n\n  </ion-refresher>\n\n  <div *ngIf= "searchResults.length > 0">\n\n    <button ion-button id = "resetSearch" (click) = "retrieveData();">clear search</button>  \n\n  </div>\n\n  <div id = "main"> \n\n    <ion-card  *ngFor = "let item of items; let i = index" class = "cards">\n\n      <ion-slides pager>\n\n        <ion-slide *ngFor = "let slideUrls of imgObjUri[i].imageUri; let j = index">\n\n          <div class="img-ph">\n\n            <img class = "img" src="{{slideUrls}}"/>\n\n          </div>\n\n        </ion-slide>\n\n      </ion-slides>\n\n      <div class = "profile">\n\n  \n\n        <ion-fab class = "img-fab">\n\n          <button ion-fab (click)="viewBidderProfiles(item)"><img src="{{ownerObjArr[i].profilePic}}"></button>\n\n        </ion-fab>\n\n        <ion-row>\n\n          <ion-col>\n\n            <h3 ion-text>{{ownerObjArr[i].name}}</h3>\n\n          </ion-col>\n\n          <ion-col>\n\n            <h3 ion-text id = "right">{{(itemsObjArr[i].bidDuration - currentDay) / 60 / 60 / 24 / 1000   | number : \'2.0-0\' }} days left</h3>\n\n          </ion-col>\n\n        </ion-row>\n\n        <ion-row>\n\n            <ion-col col-4>\n\n              <button ion-button icon-start clear medium (click) = "bidFor(item)">\n\n                <ion-icon name="add-circle" color = "light"></ion-icon>\n\n                <div>bid</div>\n\n              </button>\n\n            </ion-col>\n\n            <ion-col col-4>\n\n              <button ion-button icon-start clear medium (click)="reportBid(item)">\n\n                <ion-icon name="flag" color = "light"></ion-icon>\n\n                <div>report</div>\n\n              </button>\n\n            </ion-col>\n\n            <ion-col col-4 center text-center>\n\n              <button ion-button icon-start clear medium>\n\n                <ion-icon name="eye"color = "light" ></ion-icon>\n\n                <ion-badge color = "light" item-end>{{views[i]}}</ion-badge>\n\n              </button>\n\n            </ion-col>\n\n          </ion-row>\n\n      </div>\n\n    </ion-card>\n\n  </div>\n\n\n\n  <ion-fab bottom right fixed>\n\n    <button ion-fab color = "dark" (click) = "addItem();"><ion-icon name="add"></ion-icon></button>\n\n  </ion-fab>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\PC\Desktop\toySwap\src\pages\feed\feed.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_6__providers_profile_profile__["a" /* ProfileProvider */]])
     ], FeedPage);
@@ -1241,22 +1241,22 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common_http__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(293);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_bid_bid__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_notifications_notifications__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_bid_bid__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_notifications_notifications__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_upload_upload__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_image_picker__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_crop__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_file__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_camera__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_image_picker__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_crop__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_file__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_camera__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_test_test__ = __webpack_require__(294);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_profile_profile__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_upload_upload__ = __webpack_require__(295);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_bid_info_bid_info__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_report_report__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_report_report__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_android_permissions__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_view_offer_view_offer__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_bidders_profiles_bidders_profiles__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ionic_native_geolocation__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_view_offer_view_offer__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_bidders_profiles_bidders_profiles__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__ionic_native_geolocation__ = __webpack_require__(216);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1306,19 +1306,19 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_5__angular_common_http__["b" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/bid-info/bid-info.module#BidInfoPageModule', name: 'BidInfoPage', segment: 'bid-info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/bid/bid.module#BidPageModule', name: 'BidPage', segment: 'bid', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/bidders-profiles/bidders-profiles.module#BiddersProfilesPageModule', name: 'BiddersProfilesPage', segment: 'bidders-profiles', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/bid-info/bid-info.module#BidInfoPageModule', name: 'BidInfoPage', segment: 'bid-info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/notifications/notifications.module#NotificationsPageModule', name: 'NotificationsPage', segment: 'notifications', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/mapbox/mapbox.module#MapboxPageModule', name: 'MapboxPage', segment: 'mapbox', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/feed/feed.module#FeedPageModule', name: 'FeedPage', segment: 'feed', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/mapbox/mapbox.module#MapboxPageModule', name: 'MapboxPage', segment: 'mapbox', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/notifications/notifications.module#NotificationsPageModule', name: 'NotificationsPage', segment: 'notifications', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/profile/profile.module#ProfilePageModule', name: 'ProfilePage', segment: 'profile', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/report/report.module#ReportPageModule', name: 'ReportPage', segment: 'report', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/splash/splash.module#SplashPageModule', name: 'SplashPage', segment: 'splash', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/view-offer/view-offer.module#ViewOfferPageModule', name: 'ViewOfferPage', segment: 'view-offer', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/upload/upload.module#UploadPageModule', name: 'UploadPage', segment: 'upload', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/view-offer/view-offer.module#ViewOfferPageModule', name: 'ViewOfferPage', segment: 'view-offer', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/bidders-profiles/bidders-profiles.module#BiddersProfilesPageModule', name: 'BiddersProfilesPage', segment: 'bidders-profiles', priority: 'low', defaultHistory: [] }
                     ]
                 }),
             ],
@@ -1616,7 +1616,7 @@ var MyApp = /** @class */ (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\codeTribe\Pictures\TOY APPLICATION\toySwap\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\PC\Desktop\toySwap\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\PC\Desktop\toySwap\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__ionic_native_android_permissions__["a" /* AndroidPermissions */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
@@ -1747,58 +1747,6 @@ var ProfileProvider = /** @class */ (function () {
 /***/ }),
 
 /***/ 37:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Item; });
-var Item = /** @class */ (function () {
-    function Item(obj) {
-        if (obj != null) {
-            obj && Object.assign(this, obj);
-        }
-    }
-    Item.prototype.setItemId = function (itemId) {
-        //validate item id
-        this.itemId = itemId;
-    };
-    Item.prototype.setType = function (type) {
-        //validate item id
-        this.type = type;
-    };
-    Item.prototype.setName = function (name) {
-        //validate item id
-        this.name = name;
-    };
-    Item.prototype.setImageUri = function (imageUri) {
-        //validate item id
-        this.imageUri = imageUri;
-    };
-    Item.prototype.setDescription = function (description) {
-        this.description = description;
-    };
-    Item.prototype.getDescription = function () {
-        return this.description;
-    };
-    Item.prototype.getItemId = function () {
-        return this.itemId;
-    };
-    Item.prototype.getType = function () {
-        return this.type;
-    };
-    Item.prototype.getName = function () {
-        return this.name;
-    };
-    Item.prototype.getImageUri = function () {
-        return this.imageUri;
-    };
-    return Item;
-}());
-
-//# sourceMappingURL=item.js.map
-
-/***/ }),
-
-/***/ 38:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2248,7 +2196,59 @@ var BidManager = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 84:
+/***/ 38:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Item; });
+var Item = /** @class */ (function () {
+    function Item(obj) {
+        if (obj != null) {
+            obj && Object.assign(this, obj);
+        }
+    }
+    Item.prototype.setItemId = function (itemId) {
+        //validate item id
+        this.itemId = itemId;
+    };
+    Item.prototype.setType = function (type) {
+        //validate item id
+        this.type = type;
+    };
+    Item.prototype.setName = function (name) {
+        //validate item id
+        this.name = name;
+    };
+    Item.prototype.setImageUri = function (imageUri) {
+        //validate item id
+        this.imageUri = imageUri;
+    };
+    Item.prototype.setDescription = function (description) {
+        this.description = description;
+    };
+    Item.prototype.getDescription = function () {
+        return this.description;
+    };
+    Item.prototype.getItemId = function () {
+        return this.itemId;
+    };
+    Item.prototype.getType = function () {
+        return this.type;
+    };
+    Item.prototype.getName = function () {
+        return this.name;
+    };
+    Item.prototype.getImageUri = function () {
+        return this.imageUri;
+    };
+    return Item;
+}());
+
+//# sourceMappingURL=item.js.map
+
+/***/ }),
+
+/***/ 89:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
